@@ -12,6 +12,7 @@ package com.livehereandnow.sudoku.util;
  */
 public interface BasicRule {
     boolean isSudoku9x9 (Problem problem );
+    boolean isGoodSudoku9x9 (Problem problem );
     boolean isSudoku9x9 (String problem );
     
 }
