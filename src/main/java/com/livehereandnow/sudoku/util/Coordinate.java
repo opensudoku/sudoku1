@@ -3,18 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.livehereandnow.mark1.sudoku;
-
-import com.livehereandnow.sudoku.util.SudokuCellSequence;
+package com.livehereandnow.sudoku.util;
 
 /**
  *
  * @author mark
  */
-public class MySequence implements SudokuCellSequence {
+public class Coordinate {
 
-    @Override
-    public SudokuGroup getRow(int index) {
+    public class SudokuGroup {
+
+        private int member[] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+        public int[] getMember() {
+            return member;
+        }
+        public void setMember(int v0,int v1,int v2,int v3,int v4,
+                int v5,int v6,int v7,int v8 ){
+            member[0]=v0;
+            member[1]=v1;
+            member[2]=v2;
+            member[3]=v3;
+            member[4]=v4;
+            member[5]=v5;
+            member[6]=v6;
+            member[7]=v7;
+            member[8]=v8;            
+        }
+    }
+
+    public  SudokuGroup getRow(int index){
         SudokuGroup sg = new SudokuGroup();
 
         switch (index) {
@@ -49,9 +66,8 @@ public class MySequence implements SudokuCellSequence {
         return sg;
     }
 
-    @Override
-    public SudokuGroup getCol(int index) {
-        SudokuGroup sg = new SudokuGroup();
+    public SudokuGroup getCol(int index){
+     SudokuGroup sg = new SudokuGroup();
 
         switch (index) {
             case 0:
@@ -82,11 +98,10 @@ public class MySequence implements SudokuCellSequence {
                 sg.setMember(8, 17, 26, 35, 44, 53, 62, 71, 80);
                 break;
         }
-        return sg;
+        return sg;   
     }
 
-    @Override
-    public SudokuGroup getBox(int index) {
+    public SudokuGroup getBox(int index){
         SudokuGroup sg = new SudokuGroup();
 
         switch (index) {

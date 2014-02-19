@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.livehereandnow.mark1.sudoku.sudoku1;
+package com.livehereandnow.sudoku.util;
 
-import com.livehereandnow.mark1.sudoku.MySequence;
-import com.livehereandnow.sudoku.util.SudokuCellSequence;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author mark
  */
-public class MySequenceTest {
+public class CoordinateTest {
 
-    public MySequenceTest() {
+    public CoordinateTest() {
     }
 
     @BeforeClass
@@ -40,13 +38,13 @@ public class MySequenceTest {
     }
 
     /**
-     * Test of getRow method, of class MySequence.
+     * Test of getRow method, of class Coordinate.
      */
     @Test
     public void testGetRow() {
         System.out.println("getRow");
-        MySequence seq = new MySequence();
-        SudokuCellSequence.SudokuGroup sg;
+        Coordinate seq = new Coordinate();
+        Coordinate.SudokuGroup sg;
 
         for (int g = 0; g < 9; g++) {
             sg = seq.getRow(g);
@@ -60,13 +58,13 @@ public class MySequenceTest {
     }
 
     /**
-     * Test of getCol method, of class MySequence.
+     * Test of getCol method, of class Coordinate.
      */
     @Test
     public void testGetCol() {
         System.out.println("getCol");
-        MySequence seq = new MySequence();
-        SudokuCellSequence.SudokuGroup sg;
+        Coordinate seq = new Coordinate();
+        Coordinate.SudokuGroup sg;
 
         for (int g = 0; g < 9; g++) {
             sg = seq.getCol(g);
@@ -80,13 +78,13 @@ public class MySequenceTest {
     }
 
     /**
-     * Test of getBox method, of class MySequence.
+     * Test of getBox method, of class Coordinate.
      */
     @Test
     public void testGetBox() {
-        System.out.println("doing ...getBox");
-        MySequence seq = new MySequence();
-        SudokuCellSequence.SudokuGroup sg;
+        System.out.println("getBox");
+        Coordinate seq = new Coordinate();
+        Coordinate.SudokuGroup sg;
 
         for (int g = 0; g < 9; g++) {
             sg = seq.getBox(g);
@@ -97,6 +95,9 @@ public class MySequenceTest {
             }
             System.out.println();
         }
+    }
+
+    public class CoordinateImpl extends Coordinate {
     }
 
 }
