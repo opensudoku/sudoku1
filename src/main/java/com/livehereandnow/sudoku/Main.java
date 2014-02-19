@@ -11,8 +11,9 @@ import com.livehereandnow.sudoku.util.Coordinate;
  *
  * @author mark
  */
-public class Main  {
-public static void main(String[] arg){
-   System.out.println("=== com.livehereandnow.sodoku.Main");
-}
+public class Main {
+
+    public static void main(String[] arg) {
+        System.out.println("=== com.livehereandnow.sodoku.Main");
+    }
 }
