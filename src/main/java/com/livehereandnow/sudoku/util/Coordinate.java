@@ -11,27 +11,7 @@ package com.livehereandnow.sudoku.util;
  */
 public class Coordinate {
 
-    public class SudokuGroup {
-
-        private int member[] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-        public int[] getMember() {
-            return member;
-        }
-        public void setMember(int v0,int v1,int v2,int v3,int v4,
-                int v5,int v6,int v7,int v8 ){
-            member[0]=v0;
-            member[1]=v1;
-            member[2]=v2;
-            member[3]=v3;
-            member[4]=v4;
-            member[5]=v5;
-            member[6]=v6;
-            member[7]=v7;
-            member[8]=v8;            
-        }
-    }
-
-    public  SudokuGroup getRow(int index){
+    public SudokuGroup getRow(int index) {
         SudokuGroup sg = new SudokuGroup();
 
         switch (index) {
@@ -66,8 +46,8 @@ public class Coordinate {
         return sg;
     }
 
-    public SudokuGroup getCol(int index){
-     SudokuGroup sg = new SudokuGroup();
+    public SudokuGroup getCol(int index) {
+        SudokuGroup sg = new SudokuGroup();
 
         switch (index) {
             case 0:
@@ -80,7 +60,7 @@ public class Coordinate {
                 sg.setMember(2, 11, 20, 29, 38, 47, 56, 65, 74);
                 break;
             case 3:
-                sg.setMember(3, 12, 21, 30, 39, 48, 57, 66, 76);
+                sg.setMember(3, 12, 21, 30, 39, 48, 57, 66, 75);
                 break;
             case 4:
                 sg.setMember(4, 13, 22, 31, 40, 49, 58, 67, 76);
@@ -98,10 +78,10 @@ public class Coordinate {
                 sg.setMember(8, 17, 26, 35, 44, 53, 62, 71, 80);
                 break;
         }
-        return sg;   
+        return sg;
     }
 
-    public SudokuGroup getBox(int index){
+    public SudokuGroup getBox(int index) {
         SudokuGroup sg = new SudokuGroup();
 
         switch (index) {
@@ -109,28 +89,28 @@ public class Coordinate {
                 sg.setMember(0, 1, 2, 9, 10, 11, 18, 19, 20);
                 break;
             case 1:
-                sg.setMember(3,4,5,12,13,14,21,22,23);
+                sg.setMember(3, 4, 5, 12, 13, 14, 21, 22, 23);
                 break;
             case 2:
-                sg.setMember(6,7,8,15,16,17,24,25,26);
+                sg.setMember(6, 7, 8, 15, 16, 17, 24, 25, 26);
                 break;
             case 3:
-                sg.setMember(27,28,29,36,37,38,45,46,47);
+                sg.setMember(27, 28, 29, 36, 37, 38, 45, 46, 47);
                 break;
             case 4:
-                sg.setMember(30,31,32,39,40,41,48,49,50);
+                sg.setMember(30, 31, 32, 39, 40, 41, 48, 49, 50);
                 break;
             case 5:
-                sg.setMember(33,34,35,42,43,44,51,52,53);
+                sg.setMember(33, 34, 35, 42, 43, 44, 51, 52, 53);
                 break;
             case 6:
-                sg.setMember(54,55,56,63,64,65,72,73,74);
+                sg.setMember(54, 55, 56, 63, 64, 65, 72, 73, 74);
                 break;
             case 7:
-                sg.setMember(57,58,59,66,67,68,75,76,77);
+                sg.setMember(57, 58, 59, 66, 67, 68, 75, 76, 77);
                 break;
             case 8:
-                sg.setMember(60,61,62,69,70,71,78,79,80);
+                sg.setMember(60, 61, 62, 69, 70, 71, 78, 79, 80);
                 break;
         }
         return sg;

@@ -28,13 +28,70 @@ public class Checker extends Problem implements BasicRule {
         for (int i = 0; i < 81; i++) {
             sb.append(problem.getProblem()[i]);
             if (problem.getProblem()[i] < 0 || problem.getProblem()[i] > 9) {
-                System.out.println("Some cell's integer value is not between 0 and 9.");
+                System.out.println("(2)Some cell's integer value is not between 0 and 9.");
                 System.out.println("The first not legal number is found " + problem.getProblem()[i] + " of " + sb.toString());
                 return false;
 
             }
         }
         System.out.println("(2) all in number 0 to 9, passed!");
+
+        Coordinate coord = new Coordinate();
+        SudokuGroup sg;
+        // by Row
+        for (int g = 0; g < 9; g++) {
+            sg = coord.getRow(g);
+
+            int[] val = new int[10];
+            for (int i = 0; i < 9; i++) {
+//                System.out.println(i + " " + sg.getMember()[i] + " " + problem.getProblem()[sg.getMember()[i]]);
+                val[problem.getProblem()[sg.getMember()[i]]]++;
+            }
+            for (int i = 1; i < 9; i++) {
+//                System.out.println(i + " " + val[i]);
+                if (val[i] > 1) {
+                    System.out.println("(3)Repeat number on the same group," + " Row#" + (1 + g));
+                    return false;
+                }
+            }
+        }
+        System.out.println("(3-1) by Row, no repeat number between 1 to 9, passed!");
+
+        // by Col
+        for (int g = 0; g < 9; g++) {
+            sg = coord.getCol(g);
+            int[] val = new int[10];
+            for (int i = 0; i < 9; i++) {
+//                System.out.println(i + " " + sg.getMember()[i] + " " + problem.getProblem()[sg.getMember()[i]]);
+                val[problem.getProblem()[sg.getMember()[i]]]++;
+            }
+            for (int i = 1; i < 9; i++) {
+//                System.out.println(i + " " + val[i]);
+                if (val[i] > 1) {
+                    System.out.println("(3)Repeat number on the same group," + " Col#" + (1 + g));
+                    return false;
+                }
+            }
+        }
+        System.out.println("(3-2) by Col, no repeat number between 1 to 9, passed!");
+
+        // by Box
+        for (int g = 0; g < 9; g++) {
+            sg = coord.getBox(g);
+            int[] val = new int[10];
+            for (int i = 0; i < 9; i++) {
+//                System.out.println(i + " " + sg.getMember()[i] + " " + problem.getProblem()[sg.getMember()[i]]);
+                val[problem.getProblem()[sg.getMember()[i]]]++;
+            }
+            for (int i = 1; i < 9; i++) {
+//                System.out.println(i + " " + val[i]);
+                if (val[i] > 1) {
+                    System.out.println("(3)Repeat number on the same group," + " Box#" + (1 + g));
+                    return false;
+                }
+            }
+        }
+        System.out.println("(3-3) by Box, no repeat number between 1 to 9, passed!");
 
         return true;
 

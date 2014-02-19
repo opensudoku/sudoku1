@@ -44,7 +44,7 @@ public class CoordinateTest {
     public void testGetRow() {
         System.out.println("getRow");
         Coordinate seq = new Coordinate();
-        Coordinate.SudokuGroup sg;
+        SudokuGroup sg;
 
         for (int g = 0; g < 9; g++) {
             sg = seq.getRow(g);
@@ -64,7 +64,7 @@ public class CoordinateTest {
     public void testGetCol() {
         System.out.println("getCol");
         Coordinate seq = new Coordinate();
-        Coordinate.SudokuGroup sg;
+        SudokuGroup sg;
 
         for (int g = 0; g < 9; g++) {
             sg = seq.getCol(g);
@@ -84,7 +84,7 @@ public class CoordinateTest {
     public void testGetBox() {
         System.out.println("getBox");
         Coordinate seq = new Coordinate();
-        Coordinate.SudokuGroup sg;
+        SudokuGroup sg;
 
         for (int g = 0; g < 9; g++) {
             sg = seq.getBox(g);
