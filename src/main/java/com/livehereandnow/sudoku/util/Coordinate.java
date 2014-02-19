@@ -10,8 +10,17 @@ package com.livehereandnow.sudoku.util;
  * @author mark
  */
 public class Coordinate {
+    
+    public GroupX3 getGroupByCell(int id){
+        GroupX3 grp3=new GroupX3();
+        
+        
+        
+        
+        return grp3;
+    }
 
-    public SudokuGroup getRow(int index) {
+    public SudokuGroup getGroupByRow(int index) {
         SudokuGroup sg = new SudokuGroup();
 
         switch (index) {
@@ -46,7 +55,7 @@ public class Coordinate {
         return sg;
     }
 
-    public SudokuGroup getCol(int index) {
+    public SudokuGroup getGroupByCol(int index) {
         SudokuGroup sg = new SudokuGroup();
 
         switch (index) {
@@ -81,7 +90,7 @@ public class Coordinate {
         return sg;
     }
 
-    public SudokuGroup getBox(int index) {
+    public SudokuGroup getGroupByBox(int index) {
         SudokuGroup sg = new SudokuGroup();
 
         switch (index) {

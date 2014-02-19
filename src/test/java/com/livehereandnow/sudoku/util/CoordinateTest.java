@@ -41,13 +41,13 @@ public class CoordinateTest {
      * Test of getRow method, of class Coordinate.
      */
     @Test
-    public void testGetRow() {
+    public void testGetGroupByRow() {
         System.out.println("getRow");
         Coordinate seq = new Coordinate();
         SudokuGroup sg;
 
         for (int g = 0; g < 9; g++) {
-            sg = seq.getRow(g);
+            sg = seq.getGroupByRow(g);
 
             for (int i = 0; i < 9; i++) {
                 //  System.out.print(sg.getMember()[i] + ",");
@@ -61,13 +61,13 @@ public class CoordinateTest {
      * Test of getCol method, of class Coordinate.
      */
     @Test
-    public void testGetCol() {
+    public void testGetGroupByCol() {
         System.out.println("getCol");
         Coordinate seq = new Coordinate();
         SudokuGroup sg;
 
         for (int g = 0; g < 9; g++) {
-            sg = seq.getCol(g);
+            sg = seq.getGroupByCol(g);
 
             for (int i = 0; i < 9; i++) {
                 //  System.out.print(sg.getMember()[i] + ",");
@@ -81,13 +81,13 @@ public class CoordinateTest {
      * Test of getBox method, of class Coordinate.
      */
     @Test
-    public void testGetBox() {
+    public void testGetGroupByBox() {
         System.out.println("getBox");
         Coordinate seq = new Coordinate();
         SudokuGroup sg;
 
         for (int g = 0; g < 9; g++) {
-            sg = seq.getBox(g);
+            sg = seq.getGroupByBox(g);
 
             for (int i = 0; i < 9; i++) {
                 //  System.out.print(sg.getMember()[i] + ",");

@@ -40,7 +40,7 @@ public class Checker extends Problem implements BasicRule {
         SudokuGroup sg;
         // by Row
         for (int g = 0; g < 9; g++) {
-            sg = coord.getRow(g);
+            sg = coord.getGroupByRow(g);
 
             int[] val = new int[10];
             for (int i = 0; i < 9; i++) {
@@ -59,7 +59,7 @@ public class Checker extends Problem implements BasicRule {
 
         // by Col
         for (int g = 0; g < 9; g++) {
-            sg = coord.getCol(g);
+            sg = coord.getGroupByCol(g);
             int[] val = new int[10];
             for (int i = 0; i < 9; i++) {
 //                System.out.println(i + " " + sg.getMember()[i] + " " + problem.getProblem()[sg.getMember()[i]]);
@@ -77,7 +77,7 @@ public class Checker extends Problem implements BasicRule {
 
         // by Box
         for (int g = 0; g < 9; g++) {
-            sg = coord.getBox(g);
+            sg = coord.getGroupByBox(g);
             int[] val = new int[10];
             for (int i = 0; i < 9; i++) {
 //                System.out.println(i + " " + sg.getMember()[i] + " " + problem.getProblem()[sg.getMember()[i]]);
