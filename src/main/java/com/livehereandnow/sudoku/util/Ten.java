@@ -33,18 +33,47 @@ public class Ten {
         this.member[id] = val;
     }
 
+    public void setMemberAllZero() {
+        for (int i=0;i<member.length;i++){
+            member[i]=0;
+        }
+        
+        
+    }
+
     public void toPrint() {
         for (int i = 0; i < member.length; i++) {
             System.out.printf("(%d)%d ", i, member[i]);
         }
         System.out.println();
     }
+    public void toPrintMemo() {
+        String memo=" on class Sudoku9x9Ext\n"
+                +" design Ten to keep possible value of each single cell\n"
+                +" (1): 1 menas 1 is possible, 0 menas 1 is not possible\n"
+                +" (2): 1 menas 2 is possible, 0 menas 2 is not possible\n"
+                +" (3): 1 menas 3 is possible, 0 menas 3 is not possible\n"
+                +" (4): 1 menas 4 is possible, 0 menas 4 is not possible\n"
+                +" (5): 1 menas 5 is possible, 0 menas 5 is not possible\n"
+                +" (6): 1 menas 6 is possible, 0 menas 6 is not possible\n"
+                +" (7): 1 menas 7 is possible, 0 menas 7 is not possible\n"
+                +" (8): 1 menas 8 is possible, 0 menas 8 is not possible\n"
+                +" (9): 1 menas 9 is possible, 0 menas 9 is not possible\n"
+                ;
+                
+        
+        System.out.println(memo);
+    }
+    
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < member.length; i++) {
+            sb.append("(").append(i).append(")");
             sb.append(member[i]).append(" ");
+        
+        
         }
         return "Ten{" + sb.toString()+"}";
     }
