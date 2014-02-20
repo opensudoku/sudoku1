@@ -11,7 +11,7 @@ package com.livehereandnow.sudoku.util;
  */
 public class Ten {
 
-    private final int[] member; // 0 to 9
+    protected final int[] member; // 0 to 9
 
     public Ten() {
         this.member = new int[10];
@@ -36,6 +36,11 @@ public class Ten {
     public void setMemberAllZero() {
         for (int i=0;i<member.length;i++){
             member[i]=0;
+        }
+    }
+    public void setMember1to9() {
+        for (int i=0;i<member.length;i++){
+            member[i]=i;
         }
         
         

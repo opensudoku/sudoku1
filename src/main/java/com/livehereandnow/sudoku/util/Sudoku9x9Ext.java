@@ -3,54 +3,95 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.livehereandnow.sudoku.util;
 
 /**
  *
  * @author mark
  */
-public class Sudoku9x9Ext extends Sudoku9x9{
-    private Ten[] possible=new Ten[82];
+public class Sudoku9x9Ext extends Sudoku9x9 {
+
+    private NinePossible[] possible = new NinePossible[82];
 
     public Sudoku9x9Ext() {
-        Ten ten=new Ten();
-        ten.setMember(1, 1);
-        ten.setMember(2, 2);
-        ten.setMember(3, 3);
-        ten.setMember(4, 4);
-        ten.setMember(5, 5);
-        ten.setMember(6, 6);
-        ten.setMember(7, 7);
-        ten.setMember(8, 8);
-        ten.setMember(9, 9);
-        
-        for (int i=1;i<=81;i++){
-           possible[i]=ten;
-           
+
+        for (int i = 1; i <= 81; i++) {
+            NinePossible nine = new NinePossible();
+            nine.setMember(1, 1);
+            nine.setMember(2, 2);
+            nine.setMember(3, 3);
+            nine.setMember(4, 4);
+            nine.setMember(5, 5);
+            nine.setMember(6, 6);
+            nine.setMember(7, 7);
+            nine.setMember(8, 8);
+            nine.setMember(9, 9);
+
+            possible[i] = nine;
+
         }
-        
+
     }
 
-    
-    public Ten[] getPossible() {
-        return possible;
+    public NinePossible getPossible(int id) {
+        return possible[id];
     }
 
-    public void setPossible(int id, Ten value) {
+    public void setPossible(int id, NinePossible value) {
         this.possible[id] = value;
     }
-    
-    public void toPrint(){
+
+    /**
+     * NOT RIGHT HERE???
+     *
+     * @param ruleId
+     */
+    public void doRule(int ruleId) {
+
+        // when value is set, no more possible
+        if (ruleId == 1) {
+            for (int i = 1; i <= 81; i++) {
+                System.out.print(i + "," + this.getMember(i));
+
+                if (this.getMember(i) == 0) {
+//                    this.getPossible(i).setMemberAllZero();
+//                    System.out.println(" it's 0 ");
+
+                } else {
+//                    System.out.println(" it's not o, remove all possible");
+                    this.getPossible(i).setMemberAllZero();
+//                    this.getPossible(i).setMember(3, 1);
+                }
+            }
+
+        }
+
+    }
+
+    public void toPrint() {
         System.out.println("--- super.toPrint()---");
         super.toPrint();
-        
+
         System.out.println("--- Sudoku9x9Ext.toPrint()---");
+
+        for (int i = 1; i <= 81; i++) {
+            System.out.printf("  %2d %d %s %n", i,this.getMember(i), this.getPossible(i).toString());
+        }
+
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb=new StringBuilder();
+        sb.append("Sudoku9x9Ext:\n");
+        sb.append(super.toString());
         
-        for (int i=1;i<=81;i++){
-            System.out.printf("  %2d %s    %n", i,possible[i].toString());
+        for (int i = 1; i <= 81; i++) {
+          sb.append( System.out.format("  %2d %d %s %n", i,this.getMember(i), this.getPossible(i).toString()).toString());
         }
         
+                
+        return sb.toString();
     }
-    
+
 }
