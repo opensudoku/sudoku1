@@ -39,6 +39,10 @@ public class Sudoku9x9 {
     public int getMember(int id) {
         return member[id];
     }
+    public int getMemberGroups(int id) {
+        return member[id];
+    }
+    
 
 //    public void setMember(int[] member) {
 //        this.member = member;

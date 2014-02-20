@@ -19,7 +19,7 @@ public class ViewBaseOneTest {
     }
 
     /**
-     * Test of getRowGroup method, of class ViewBaseOne.
+     * Test of getRowGroup method, of class Directory.
      */
     @Test
     public void testGetRowGroup() {
@@ -28,33 +28,33 @@ public class ViewBaseOneTest {
     }
 
     /**
-     * Test of getColGroup method, of class ViewBaseOne.
+     * Test of getColGroup method, of class Directory.
      */
     @Test
     public void testGetColGroup() {
         System.out.println("getColGroup");
         int grpId = 0;
-        ViewBaseOne instance = new ViewBaseOne();
+        Directory instance = new Directory();
       }
 
     /**
-     * Test of getBoxGroup method, of class ViewBaseOne.
+     * Test of getBoxGroup method, of class Directory.
      */
     @Test
     public void testGetBoxGroup() {
         System.out.println("getBoxGroup");
         int grpId = 0;
-        ViewBaseOne instance = new ViewBaseOne();
+        Directory instance = new Directory();
      }
 
     /**
-     * Test of getThree method, of class ViewBaseOne.
+     * Test of getThree method, of class Directory.
      */
     @Test
     public void testGetThree() {
         System.out.println("getThree");
         int id = 0;
-        ViewBaseOne instance = new ViewBaseOne();
+        Directory instance = new Directory();
      }
     
 }

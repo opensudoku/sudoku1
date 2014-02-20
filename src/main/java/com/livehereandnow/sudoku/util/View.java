@@ -16,14 +16,14 @@ public interface View {
      * @param grpId, Row Group ID, between 1 and 9
      * @return 
      */
-    public Nine getRowGroup(int grpId);
-    public Nine getColGroup(int grpId);
-    public Nine getBoxGroup(int grpId);
+    public Group getRowGroup(int grpId);
+    public Group getColGroup(int grpId);
+    public Group getBoxGroup(int grpId);
     
     /**
      * 
      * @param id, cell index between 1 and 81
      * @return 
      */
-    public Three getThree(int id);
+    public Groups getThree(int id);
 }
