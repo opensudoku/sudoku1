@@ -32,13 +32,26 @@ public class Ten {
     public void setMember(int id, int val) {
         this.member[id] = val;
     }
+public void set9Members(int v1, int v2,int v3, int v4,int v5,int v6,int v7,int v8,int v9) {
+        this.member[1] = v1;
+        this.member[2] = v2;
+        this.member[3] = v3;
+        this.member[4] = v4;
+        this.member[5] = v5;
+        this.member[6] = v6;
+        this.member[7] = v7;
+        this.member[8] = v8;
+        this.member[9] = v9;
+        
+        
+    }
 
     public void setMemberAllZero() {
         for (int i=0;i<member.length;i++){
             member[i]=0;
         }
     }
-    public void setMember1to9() {
+    public void setMemberDefault1to9() {
         for (int i=0;i<member.length;i++){
             member[i]=i;
         }

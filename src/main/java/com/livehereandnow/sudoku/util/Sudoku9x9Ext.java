@@ -11,12 +11,14 @@ package com.livehereandnow.sudoku.util;
  */
 public class Sudoku9x9Ext extends Sudoku9x9 {
 
-    private NinePossible[] possible = new NinePossible[82];
+    private Nine[] possible = new Nine[82];
+    private Three[] group=new Three[82];
+    
 
     public Sudoku9x9Ext() {
 
         for (int i = 1; i <= 81; i++) {
-            NinePossible nine = new NinePossible();
+            Nine nine = new Nine();
             nine.setMember(1, 1);
             nine.setMember(2, 2);
             nine.setMember(3, 3);
@@ -29,15 +31,21 @@ public class Sudoku9x9Ext extends Sudoku9x9 {
 
             possible[i] = nine;
 
+            group[i]=new Three();
+            
         }
+        
+        group[1].setRow(null);
+        
+        
 
     }
 
-    public NinePossible getPossible(int id) {
+    public Nine getPossible(int id) {
         return possible[id];
     }
 
-    public void setPossible(int id, NinePossible value) {
+    public void setPossible(int id, Nine value) {
         this.possible[id] = value;
     }
 

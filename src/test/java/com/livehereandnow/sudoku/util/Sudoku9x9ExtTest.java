@@ -39,7 +39,7 @@ public class Sudoku9x9ExtTest {
        
         System.out.println("instance.getMember(1)="+instance.getMember(1));
         System.out.println("instance.getPossible(1)="+instance.getPossible(1));
-        instance.getPossible(1).setMember1to9();
+        instance.getPossible(1).setMemberDefault1to9();
         System.out.println("after setMember1to9, instance.getPossible(1)="+instance.getPossible(1));
         
         

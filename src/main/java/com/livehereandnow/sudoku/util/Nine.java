@@ -10,7 +10,17 @@ package com.livehereandnow.sudoku.util;
  *
  * @author mark
  */
-public class NinePossible extends Ten{
+public class Nine extends Ten{
+    public String toStringGroupNumbers() {
+        StringBuilder sb = new StringBuilder();
+         
+        for (int i = 1; i <=9; i++) {
+                sb.append(member[i]).append(",");
+          
+        }
+         
+        return "group{" + sb.toString()+"}";
+    }
     
     @Override
     public String toString() {
