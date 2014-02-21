@@ -18,35 +18,40 @@ public class GroupIndex extends Sudoku implements Basic {
         member = s.getMemberArray();
     }
 
+    /**
+     * 
+     * @param grpId 1 to 27
+     * @return true: no any repeat number on given group's value set 
+     */
     public boolean isGroupGood(int grpId) {
-        boolean result = true;
-
-        System.out.print("index:");
-        for (int m = 1; m <= 9; m++) {
-            System.out.print(GROUP_MEMBERS[grpId][m] + ",");
-            //     System.out.print( member[GROUP_MEMBERS[grpId][m]]+",");
-        }
-
-        System.out.print("\n");
-        System.out.print("value:");
-
+     /**
+      * 2/21/2014, by Mark
+      * GROUP_MEMBERS[grpId][m]: given group's specific item
+      * member[x]:value of known position
+      * val[value]++: to count how many times given value shows
+      */
+//
+//        System.out.print("index:");
+//        for (int m = 1; m <= 9; m++) {
+//            System.out.print(GROUP_MEMBERS[grpId][m] + ",");
+//        }
+//
+//        System.out.print("\n");
+        
+//        System.out.print("value:");
         int[] val = new int[10];
         for (int m = 1; m <= 9; m++) {
-            //System.out.print(GROUP_MEMBERS[grpId][m]+",");
-            System.out.print(member[GROUP_MEMBERS[grpId][m]] + ",");
+//            System.out.print(member[GROUP_MEMBERS[grpId][m]] + ",");
             val[member[GROUP_MEMBERS[grpId][m]]]++;
         }
-
-        System.out.print("\n");
+//        System.out.print("\n");
 
         for (int m = 1; m <= 9; m++) {
             if (val[m] > 1) {
                 return false;
             }
         }
-
         return true;
-
     }
 
     public void toPrint() {

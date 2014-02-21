@@ -14,7 +14,7 @@ package com.livehereandnow.sudoku.util;
  * @since Sudoku 1.0
  * @author mark
  */
-public class Sudoku {
+public class Sudoku implements Basic{
 
     /**
      * no need to let application developer to access
@@ -122,6 +122,21 @@ public class Sudoku {
         this.member[k + 8] = v8;
         this.member[k + 9] = v9;
     }
+    
+    public void setMembersByGroup(int grpId, int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9) {
+        
+        this.member[GROUP_MEMBERS[grpId][1]] = v1;
+        this.member[GROUP_MEMBERS[grpId][2]] = v2;
+        this.member[GROUP_MEMBERS[grpId][3]] = v3;
+        this.member[GROUP_MEMBERS[grpId][4]] = v4;
+        this.member[GROUP_MEMBERS[grpId][5]] = v5;
+        this.member[GROUP_MEMBERS[grpId][6]] = v6;
+        this.member[GROUP_MEMBERS[grpId][7]] = v7;
+        this.member[GROUP_MEMBERS[grpId][8]] = v8;
+        this.member[GROUP_MEMBERS[grpId][9]] = v9;
+        }
+    
+    
 
     public void debug() {
         System.out.println("--- index ---");
@@ -149,7 +164,8 @@ public class Sudoku {
                 System.out.println();
             }
         }
-        System.out.println("Count of cells with value 1 to 9: " + this.getKnownValueCount());
+        System.out.println("known cells count: " + this.getKnownValueCount());
+        System.out.println();
     }
 
     @Override

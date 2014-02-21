@@ -21,11 +21,37 @@ public class GroupIndexTest {
     public void testToPrint() {
         System.out.println("toPrint");
         Sudoku s = new Sudoku();
-        s.setMemberByRow(1, 1, 2, 3, 4, 5, 6, 7, 8, 9);
-        s.setMemberByRow(2, 1, 2, 3, 0, 5, 6, 1, 8, 0);
-        s.toPrint();
-        GroupIndex instance = new GroupIndex(s);
-        assertTrue(instance.isGroupGood(1));
-        assertFalse(instance.isGroupGood(2));
+
+        int grp1 = 12;
+        int grp2 = 10;
+        int grp3 = 19;
+        GroupIndex instance;
+        
+        instance = new GroupIndex(s);
+        for (int m = 1; m <= 9; m++) {
+            s.setMembersByGroup(m, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+            s.toPrint();
+            assertTrue(instance.isGroupGood(m));
+        }
+        instance = new GroupIndex(s);
+        for (int m = 10; m <= 18; m++) {
+            s.setMembersByGroup(m, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+            s.toPrint();
+            assertTrue(instance.isGroupGood(m));
+        }
+        instance = new GroupIndex(s);
+        for (int m = 19; m <= 27; m++) {
+            s.setMembersByGroup(m, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+            s.toPrint();
+            assertTrue(instance.isGroupGood(m));
+        }
+        
+        
+        
+//        s.setMembersByGroup(grp2, 0, 2, 3, 4, 5, 6, 7, 8, 9);
+//        s.setMembersByGroup(grp3, 1, 0, 3, 4, 5, 0, 7, 0, 0);
+
+//        assertFalse(instance.isGroupGood(grp2));
+//        assertFalse(instance.isGroupGood(grp3));
     }
 }
