@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 public class GroupIndexTest {
 
     /**
-     * Test of toPrint method, of class GroupIndex.
+     * Test of toPrint method, of class SudokuSolver.
      */
     @Test
     public void testToPrint() {
@@ -25,21 +25,21 @@ public class GroupIndexTest {
         int grp1 = 12;
         int grp2 = 10;
         int grp3 = 19;
-        GroupIndex instance;
+      SudokuSolver instance;
         
-        instance = new GroupIndex(s);
+        instance =new SudokuSolver(s);
         for (int m = 1; m <= 9; m++) {
             s.setMembersByGroup(m, 1, 2, 3, 4, 5, 6, 7, 8, 9);
             s.toPrint();
             assertTrue(instance.isGroupGood(m));
         }
-        instance = new GroupIndex(s);
+        instance =new SudokuSolver(s);
         for (int m = 10; m <= 18; m++) {
             s.setMembersByGroup(m, 1, 2, 3, 4, 5, 6, 7, 8, 9);
             s.toPrint();
             assertTrue(instance.isGroupGood(m));
         }
-        instance = new GroupIndex(s);
+        instance =new SudokuSolver(s);
         for (int m = 19; m <= 27; m++) {
             s.setMembersByGroup(m, 1, 2, 3, 4, 5, 6, 7, 8, 9);
             s.toPrint();

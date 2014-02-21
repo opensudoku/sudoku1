@@ -10,11 +10,11 @@ package com.livehereandnow.sudoku.util;
  *
  * @author mark
  */
-public class GroupIndex extends Sudoku implements Basic {
+public class SudokuSolver extends Sudoku implements Basic {
 
     private int[] member;
 
-    public GroupIndex(Sudoku s) {
+    public SudokuSolver(Sudoku s) {
         member = s.getMemberArray();
     }
 

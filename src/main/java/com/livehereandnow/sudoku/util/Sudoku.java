@@ -61,6 +61,9 @@ public class Sudoku implements Basic{
         return member[id];
     }
 
+       public Sudoku getSudoku() {
+        return this;
+    }
     /**
      * Returns the count of cells with values 1 to 9
      *
