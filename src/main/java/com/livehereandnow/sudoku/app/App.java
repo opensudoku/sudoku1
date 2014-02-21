@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.livehereandnow.sudoku;
+package com.livehereandnow.sudoku.app;
 
 
 import com.livehereandnow.sudoku.util.Checker;

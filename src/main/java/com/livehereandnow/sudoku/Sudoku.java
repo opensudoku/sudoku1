@@ -6,24 +6,26 @@
 package com.livehereandnow.sudoku;
 
 /**
- * Sudoku basic model, for size 9x9 to set Sudoku question to get status, how
- * many cells solved and total possible count in order to be provide possible
- * number count based on simple rule: to eliminate possible number from known
- * value for each cell if value>0 reset this cell possible numbers to none
- * eliminate possible of 3 group's members
+ * Sudoku is a basic model, size 9x9, to hold 81 values.
  *
+ * For application developer, the index of cell is base 1.
  *
- * Sudoku should be just like Point, 2/21/2014 It's 81 cells, each cell can be 0
- * to 9 integer We can setSudoku by String or int[] or per cell or per row,
- * possible per col/box
- *
+ * @version 1.0
+ * @since Sudoku 1.0
  * @author mark
  */
 public class Sudoku {
 
+    /**
+     * no need to let application developer to access
+     */
     private int[] member;
     //  private final int[] wikiSample;
 
+    /**
+     * Constructs and initializes a Sudoku with all 0 in 81 cells. Index for
+     * application developer is 1 to 81, 0 is not in use
+     */
     public Sudoku() {
 //        this.wikiSample = new int[]{0,
 //            5, 3, 0, 0, 7, 0, 0, 0, 0,
@@ -41,23 +43,49 @@ public class Sudoku {
 //    public void setSample(int i) {
 //        member = wikiSample;
 //    }
+    /**
+     * Returns current Sudoku instance
+     *
+     * @return this Sudoku
+     */
     public Sudoku getSudoku() {
         return this;
     }
 
     /**
+     * Returns cell value by given index
      *
-     * @param id, 1 to 81, by Row x Col
-     * @return 0 to 9, 0 means empty, 1 to 9 are visible to users
+     * @param id cell id, from 1 to 81
+     * @return cell value
      */
     public int getMember(int id) {
         return member[id];
     }
 
+    /**
+     * Sets cell value by index
+     *
+     * @param id cell id, from 1 to 81
+     * @param val cell value, from 0 to 9, 0 is for empty
+     */
     public void setMember(int id, int val) {
         this.member[id] = val;
     }
 
+    /**
+     * Sets one row value with 9 cell values
+     *
+     * @param rowId row number, from 1 to 9
+     * @param v1 #1 cell value, from 0 to 9
+     * @param v2 #2 cell value, from 0 to 9
+     * @param v3 #3 cell value, from 0 to 9
+     * @param v4 #4 cell value, from 0 to 9
+     * @param v5 #5 cell value, from 0 to 9
+     * @param v6 #6 cell value, from 0 to 9
+     * @param v7 #7 cell value, from 0 to 9
+     * @param v8 #8 cell value, from 0 to 9
+     * @param v9 #9 cell value, from 0 to 9
+     */
     public void setMemberByRow(int rowId, int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9) {
         int k = (rowId - 1) * 9;
         this.member[k + 1] = v1;
