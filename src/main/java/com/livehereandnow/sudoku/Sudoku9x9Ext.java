@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.livehereandnow.sudoku.util;
+package com.livehereandnow.sudoku;
+
+import com.livehereandnow.sudoku.Sudoku;
+import com.livehereandnow.sudoku.util.Group;
+import com.livehereandnow.sudoku.util.Groups;
 
 /**
  *
  * @author mark
  */
-public class Sudoku9x9Ext extends Sudoku9x9 {
+public class Sudoku9x9Ext extends Sudoku {
 
     private Group[] possible = new Group[82];
     private Groups[] group=new Groups[82];
@@ -76,6 +80,7 @@ public class Sudoku9x9Ext extends Sudoku9x9 {
 
     }
 
+//    @Override
     public void toPrint() {
         System.out.println("--- super.toPrint()---");
         super.toPrint();
@@ -85,7 +90,6 @@ public class Sudoku9x9Ext extends Sudoku9x9 {
         for (int i = 1; i <= 81; i++) {
             System.out.printf("  %2d %d %s %n", i,this.getMember(i), this.getPossible(i).toString());
         }
-
     }
 
     @Override
