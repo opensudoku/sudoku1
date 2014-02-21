@@ -52,6 +52,8 @@ public class Sudoku {
         return this;
     }
 
+ 
+    
     /**
      * Returns cell value by given index
      *
@@ -60,6 +62,22 @@ public class Sudoku {
      */
     public int getMember(int id) {
         return member[id];
+    }
+    
+    /**
+     * Returns the count of cells with values 1 to 9
+     * 
+     * @return 
+     */
+    public int getKnownValueCount(){
+        int cnt=0;
+        for (int i = 1; i <=81; i++) {
+            if (member[i]>0){
+                cnt++;
+            }
+        }
+        
+        return cnt;
     }
 
     /**
@@ -125,7 +143,7 @@ public class Sudoku {
                 System.out.println();
             }
         }
-        System.out.println();
+        System.out.println("Count of cells with value 1 to 9: "+this.getKnownValueCount());
     }
 
     @Override

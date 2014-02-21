@@ -78,10 +78,13 @@ public class SudokuTest {
         int v9 = 9;
         Sudoku instance = new Sudoku();
         instance.setMemberByRow(rowId, v1, v2, v3, v4, v5, v6, v7, v8, v9);
+        
         instance.setMemberByRow(2, 2, 3, 4, 5, 6, 7, 8, 9, 1);
         instance.setMemberByRow(3, 3, 4, 5, 6, 7, 8, 9, 1, 2);
         instance.setMemberByRow(4, 4, 5, 6, 7, 8, 9, 1, 2, 3);
         instance.setMemberByRow(5, 5, 6, 7, 8, 9, 1, 2, 3, 4);
+        instance.toPrint();
+        
         instance.setMemberByRow(6, 6, 7, 8, 9, 1, 2, 3, 4, 5);
         instance.setMemberByRow(7, 7, 8, 9, 1, 2, 3, 4, 5, 6);
         instance.setMemberByRow(8, 8, 9, 1, 2, 3, 4, 5, 6, 7);
