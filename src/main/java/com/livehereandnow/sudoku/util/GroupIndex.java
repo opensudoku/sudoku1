@@ -10,7 +10,44 @@ package com.livehereandnow.sudoku.util;
  *
  * @author mark
  */
-public class GroupIndex implements Basic {
+public class GroupIndex extends Sudoku implements Basic {
+
+    private int[] member;
+
+    public GroupIndex(Sudoku s) {
+        member = s.getMemberArray();
+    }
+
+    public boolean isGroupGood(int grpId) {
+        boolean result = true;
+
+        System.out.print("index:");
+        for (int m = 1; m <= 9; m++) {
+            System.out.print(GROUP_MEMBERS[grpId][m] + ",");
+            //     System.out.print( member[GROUP_MEMBERS[grpId][m]]+",");
+        }
+
+        System.out.print("\n");
+        System.out.print("value:");
+
+        int[] val = new int[10];
+        for (int m = 1; m <= 9; m++) {
+            //System.out.print(GROUP_MEMBERS[grpId][m]+",");
+            System.out.print(member[GROUP_MEMBERS[grpId][m]] + ",");
+            val[member[GROUP_MEMBERS[grpId][m]]]++;
+        }
+
+        System.out.print("\n");
+
+        for (int m = 1; m <= 9; m++) {
+            if (val[m] > 1) {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
 
     public void toPrint() {
         System.out.println(" testing  toPrint --- start");
