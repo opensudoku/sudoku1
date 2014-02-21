@@ -5,6 +5,7 @@
  */
 package com.livehereandnow.sudoku;
 
+import com.livehereandnow.sudoku.util.Sudoku;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -17,19 +18,7 @@ public class SudokuTest {
     public SudokuTest() {
     }
 
-    /**
-     * Test of getSudoku method, of class Sudoku.
-     */
-    @Test
-    public void testGetSudoku() {
-        System.out.println("getSudoku");
-        Sudoku instance = new Sudoku();
-        Sudoku expResult = null;
-        Sudoku result = instance.getSudoku();
-//        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-    }
+
 
     /**
      * Test of getMember method, of class Sudoku.

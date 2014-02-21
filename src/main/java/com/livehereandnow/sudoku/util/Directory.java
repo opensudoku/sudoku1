@@ -12,11 +12,18 @@ package com.livehereandnow.sudoku.util;
  */
 public class Directory implements View {
 
+    private int[] sms;// Sudoku sms set
+
+    public void setSudokuMemberSet(int[] sudokuMember) {
+        sms = sudokuMember;
+    }
     private Group[] row = new Group[10];
     private Group[] col = new Group[10];
     private Group[] box = new Group[10];
     private Groups[] groups = new Groups[82];
 
+  //  private int[][][] dir=new int[4][10][];// [row|col|box][sms index 1 to 9]
+    
     {
         for (int i = 1; i <= 9; i++) {
             row[i] = new Group();
@@ -25,7 +32,7 @@ public class Directory implements View {
             row[i].setId(i);
             col[i].setId(i);
             box[i].setId(i);
-            
+
         }
         // row
         row[1].set9Members(1, 2, 3, 4, 5, 6, 7, 8, 9);
@@ -38,6 +45,12 @@ public class Directory implements View {
         row[8].set9Members(64, 65, 66, 67, 68, 69, 70, 71, 72);
         row[9].set9Members(73, 74, 75, 76, 77, 78, 79, 80, 81);
 
+       
+           int[] row1={0,1, 2, 3, 4, 5, 6, 7, 8, 9};
+            
+        
+        
+        
         // col
         col[1].set9Members(1, 10, 19, 28, 37, 46, 55, 64, 73);
         col[2].set9Members(2, 11, 20, 29, 38, 47, 56, 65, 74);
@@ -167,22 +180,30 @@ public class Directory implements View {
     }
 
     public Group getRowGroup(int grpId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
+        return row[grpId];
     }
 
     public Group getColGroup(int grpId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return col[grpId];
     }
 
     public Group getBoxGroup(int grpId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return box[grpId];
     }
 
     public Groups getThree(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public boolean isRowGroupGood(int grpId){
+        boolean result=true;
+        
+        Group g=getRowGroup(grpId);
+        
+        
+        return result;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

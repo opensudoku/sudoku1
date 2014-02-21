@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.livehereandnow.sudoku;
+package com.livehereandnow.sudoku.util;
 
 /**
  * Sudoku is a basic model, size 9x9, to hold 81 values.
@@ -40,20 +40,17 @@ public class Sudoku {
         this.member = new int[82]; // 0 to 80, or 1 to 81 ???
     }
 
-//    public void setSample(int i) {
-//        member = wikiSample;
-//    }
+
+    
     /**
-     * Returns current Sudoku instance
+     * Returns current Sudoku's value set in array
      *
-     * @return this Sudoku
+     * @return int array
      */
-    public Sudoku getSudoku() {
-        return this;
+    public int[] getMemberArray() {
+        return this.member;
     }
 
- 
-    
     /**
      * Returns cell value by given index
      *
@@ -63,20 +60,20 @@ public class Sudoku {
     public int getMember(int id) {
         return member[id];
     }
-    
+
     /**
      * Returns the count of cells with values 1 to 9
-     * 
-     * @return 
+     *
+     * @return
      */
-    public int getKnownValueCount(){
-        int cnt=0;
-        for (int i = 1; i <=81; i++) {
-            if (member[i]>0){
+    public int getKnownValueCount() {
+        int cnt = 0;
+        for (int i = 1; i <= 81; i++) {
+            if (member[i] > 0) {
                 cnt++;
             }
         }
-        
+
         return cnt;
     }
 
@@ -88,6 +85,15 @@ public class Sudoku {
      */
     public void setMember(int id, int val) {
         this.member[id] = val;
+    }
+
+    /**
+     * Sets value set with given int array
+     * 
+     * @param val values in array
+     */
+    public void setMembers(int[] val) {
+        this.member = val;
     }
 
     /**
@@ -143,7 +149,7 @@ public class Sudoku {
                 System.out.println();
             }
         }
-        System.out.println("Count of cells with value 1 to 9: "+this.getKnownValueCount());
+        System.out.println("Count of cells with value 1 to 9: " + this.getKnownValueCount());
     }
 
     @Override

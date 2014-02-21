@@ -5,12 +5,14 @@
  */
 package com.livehereandnow.sudoku;
 
+import com.livehereandnow.sudoku.util.Sudoku;
+
 /**
  * SudokuManager provides service for Sudoku related issues.
  *
  * @author mark
  */
-public class SudokuManager {
+public class SudokuManager extends Sudoku{
 
     /**
      * Returns given Sudoku's value set is good or not.
@@ -26,7 +28,12 @@ public class SudokuManager {
      */
     public boolean isGoodSudoku(Sudoku s) {
         boolean result = true;
-
+        this.setMembers(s.getMemberArray());
+        
+        
+        
         return result;
     }
+    
+    
 }

@@ -5,7 +5,7 @@
  */
 package com.livehereandnow.sudoku;
 
-import com.livehereandnow.sudoku.Sudoku;
+import com.livehereandnow.sudoku.util.Sudoku;
 import com.livehereandnow.sudoku.util.Group;
 import com.livehereandnow.sudoku.util.Groups;
 
