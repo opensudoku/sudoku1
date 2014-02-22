@@ -9,13 +9,25 @@ package com.livehereandnow.sudoku.util;
  *
  * @author mark
  */
-public class Solver {
+public class Solver implements RunMode {
 
-    private boolean IS_DEBUG = false;
+    
 
     private Sudoku question;
     private Sudoku answer = new Sudoku();
     private Possible possible = new Possible();
+
+    public void setQuestion(Sudoku question) {
+        this.question = question;
+    }
+
+    public void setPossible(Possible possible) {
+        this.possible = possible;
+    }
+
+    public Sudoku getQuestion() {
+        return question;
+    }
 
     public Sudoku getAnswer() {
         return answer;
@@ -130,8 +142,8 @@ public class Solver {
             System.out.println("This Sudoku is Broken!!!");
         } else {
             if (answer.getCount() == 81) {
-     System.out.println("Got it!");
-           
+                System.out.println("Got it!");
+
             } else {
                 System.out.println(" ... still good, need to go deeper");
             }

@@ -16,7 +16,7 @@ public class Possible implements Basic {
 
     private int[][] possible = new int[82][10];
 
-  //  private int[] member;
+    //  private int[] member;
     public Possible() {
         init();
     }
@@ -24,23 +24,22 @@ public class Possible implements Basic {
 //    public void setSudokuMembers(int[] m) {
 //        member = m;
 //    }
-    
-    
     public void removeSinglePossibleValue(int cellId, int val) {
 //  
-        possible[cellId][val]=0;
+        possible[cellId][val] = 0;
     }
-    
+
     public void setSinglePossibleValue(int cellId, int val) {
 //      
         resetPossible(cellId);
-        possible[cellId][val]=val;
+        possible[cellId][val] = val;
     }
-    
+
     /**
      * to remove possible value from 9x3 cells
+     *
      * @param cellId
-     * @param val 
+     * @param val
      */
     public void removePossibleValueByCell(int cellId, int val) {
 //        System.out.println("id=" + cellId + ", val=" + val);
@@ -103,10 +102,28 @@ public class Possible implements Basic {
         return 0;
     }
 
+    public int[] getPossibleValues(int id) {
+//        List<Integer> list = new ArrayList<Integer>();
+//        for (int n = 1; n <= 9; n++) {
+//            if (possible[id][n] > 0) {
+//                list.add(n);
+//            }
+//        }
+
+        int[] list=new int[10];
+        int cnt=0;
+          for (int n = 1; n <= 9; n++) {
+            if (possible[id][n] > 0) {
+                list[cnt++]=n;
+            }
+        }
+        return list;
+    }
+
     public int getFirstCellIdHavingPossible() {
         //  int val = 0;
         for (int n = 1; n <= 81; n++) {
-            if (getCount(n)> 0) {
+            if (getCount(n) > 0) {
                 return n;
             }
         }
