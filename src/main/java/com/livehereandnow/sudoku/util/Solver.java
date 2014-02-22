@@ -36,6 +36,24 @@ public class Solver {
         //  run();
     }
 
+    /**
+     * for any unknown cell having no any possible values
+     *
+     * @return true: it's broken
+     */
+    public boolean isBroken() {
+        for (int k = 1; k <= 81; k++) {
+            if (answer.getMember(k) == 0) {
+                if (possible.getCount(k) == 0) {
+                    return true;
+                }
+            }
+        }
+        //for (answer.getMember(id))
+
+        return false;
+    }
+
     public void run() {
         if (IS_DEBUG) {
             System.out.println("**************");
@@ -104,6 +122,16 @@ public class Solver {
         System.out.println("*  Possible  *");
         System.out.println("**************");
         possible.show();
+
+        System.out.println("**************");
+        System.out.println("*   Status   *");
+        System.out.println("**************");
+        if (isBroken()) {
+            System.out.println("This Sudoku is Broken!!!");
+        } else {
+            System.out.println("still good");
+
+        }
 
         System.out.println("======== Solver.show ======== (end)");
 

@@ -74,25 +74,35 @@ public class App {
             
             Possible p1= new Possible();
             Possible p2=new Possible();
+            Sudoku ans1=new Sudoku();
+            Sudoku ans2=new Sudoku();
+            
+            ans1.setSudokuData(solver.getAnswer().getSudokuData());
+            ans2.setSudokuData(solver.getAnswer().getSudokuData());
             
             
             
             p1.setPossibleData(solver.getPossible().getPossibleData());
             p2.setPossibleData(solver.getPossible().getPossibleData());
             
-            
-            
-           // p2.resetPossible(1);
-            p2.removeSinglePossibleValue(2, 3);
+            p1.show();
             p1.setSinglePossibleValue(3, 2);
-            p2.setSinglePossibleValue(3, 4);
+         //   p2.setSinglePossibleValue(3, 4);
             
             p1.show();
             p2.show();
             
+            System.out.println("****************************** sol1");
+            Solver sol1=new Solver(ans1);
+            sol1.getPossible().setPossibleData(p1.getPossibleData());
+            sol1.run();
+            sol1.show();
             
-            
-            
+//            System.out.println("****************************** sol2");
+//            Solver sol2=new Solver(ans2);
+//            sol2.getPossible().setPossibleData(p2.getPossibleData());
+//            sol2.run();
+//            sol2.show();
         } else {
             System.out.println("This Sudoku has been solved successfully.");
 
