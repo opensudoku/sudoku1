@@ -11,6 +11,8 @@ package com.livehereandnow.sudoku.util;
  */
 public class Solver {
 
+    private boolean IS_DEBUG = true;
+
     private Sudoku question;
     private Sudoku answer = new Sudoku();
     private Possible possible = new Possible();
@@ -31,32 +33,39 @@ public class Solver {
     public Solver(Sudoku s) {
         question = s;
         answer.setSudoku(s);;
-      //  run();
+        //  run();
     }
 
     public void run() {
-//        System.out.println("**************");
-//        System.out.println("*   Step 1   *");
-//        System.out.println("**************");
-
-        for (int m = 1; m < 81; m++) {
+        if (IS_DEBUG) {
+            System.out.println("**************");
+            System.out.println("*   Step 1   *");
+            System.out.println("**************");
+        }
+        for (int m = 1; m <= 81; m++) {
             if (question.getMember(m) > 0) { // for known cell, 
                 possible.removePossibleValueByCell(m, question.getMember(m));
             }//    
         }
-//        System.out.println(possible.toString());
         answer.setKnownMembers(possible.getSingleArray());
-//        answer.show(1);
 
+        if (IS_DEBUG) {
+            System.out.println(possible.toString());
+            answer.show(1);
+        }
+//
         // === 2. going for loop ===
-//        System.out.println("**************");
-//        System.out.println("*   Step 2   *");
-//        System.out.println("**************");
+        if (IS_DEBUG) {
+            System.out.println("**************");
+            System.out.println("*   Step 2   *");
+            System.out.println("**************");
+
+        }
         int possibleCnt = possible.getCount();
 
         while (true) {
             int[] newlyAdded = answer.getNewlyAdded();
-            for (int m = 1; m < 81; m++) {
+            for (int m = 1; m <= 81; m++) {
                 if (newlyAdded[m] > 0) { // for known cell, 
                     possible.removePossibleValueByCell(m, answer.getMember(m));
                 }//    
@@ -69,10 +78,11 @@ public class Solver {
                 break;
             } else {
                 possibleCnt = possible.getCount();
-//                System.out.println(possible.toString());
                 answer.setKnownMembers(possible.getSingleArray());
-//                answer.show(1);
-
+                if (IS_DEBUG) {
+                    System.out.println(possible.toString());
+                    answer.show(1);
+                }
             }
         }
     }
@@ -82,21 +92,21 @@ public class Solver {
         System.out.println("**************");
         System.out.println("*  Question  *");
         System.out.println("**************");
-        System.out.println("question is "+question.toString());        
+        System.out.println("question is " + question.toString());
         question.show();
-        
+
         System.out.println("**************");
         System.out.println("*   Answer   *");
         System.out.println("**************");
         answer.show();
-        
+
         System.out.println("**************");
         System.out.println("*  Possible  *");
         System.out.println("**************");
         possible.toPrint(1);
 
         System.out.println("======== Solver.show ======== (end)");
-     
+
     }
 
 }
