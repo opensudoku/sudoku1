@@ -103,7 +103,7 @@ public class Solver {
         System.out.println("**************");
         System.out.println("*  Possible  *");
         System.out.println("**************");
-        possible.toPrint(1);
+        possible.show();
 
         System.out.println("======== Solver.show ======== (end)");
 

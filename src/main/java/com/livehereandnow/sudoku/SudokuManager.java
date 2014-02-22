@@ -28,7 +28,7 @@ public class SudokuManager extends Sudoku{
      */
     public boolean isGoodSudoku(Sudoku s) {
         boolean result = true;
-        this.setMembers(s.getSudokuIntArray());
+        this.setSudokuData(s.getSudokuData());
         
         
         

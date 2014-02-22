@@ -67,7 +67,7 @@ public class Sudoku implements Basic {
     }
 
     public void setSudoku(Sudoku s) {
-        this.member = s.getSudokuIntArray();
+        this.member = s.getSudokuData();
     }
 
     /**
@@ -75,13 +75,20 @@ public class Sudoku implements Basic {
      *
      * @return mnt array
      */
-    public int[] getSudokuIntArray() {
-        int[] temp = new int[82];
-        for (int k = 1; k <= 81; k++) {
-            temp[k] = member[k];
-        }
-
-        return temp;
+    public int[] getSudokuData() {
+//        int[] temp = new int[82];
+//        for (int k = 1; k <= 81; k++) {
+//            temp[k] = member[k];
+//        }
+//
+//        return temp;
+        
+//  2/22/2014, by Mark      
+// clone is in need
+//  return member; // This will affect question        
+       return member.clone();
+     
+       
     }
 
     /**
@@ -94,9 +101,9 @@ public class Sudoku implements Basic {
         return member[id];
     }
 
-    public Sudoku getSudoku() {
-        return this;
-    }
+//    public Sudoku getSudoku() {
+//        return this;  // ??? need to verify
+//    }
 
     /**
      * Returns the count of cells wmth know values
@@ -152,7 +159,7 @@ public class Sudoku implements Basic {
      *
      * @param val values mn array
      */
-    public void setMembers(int[] val) {
+    public void setSudokuData(int[] val) {
         this.member = val;
     }
 

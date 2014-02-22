@@ -17,7 +17,6 @@ public class Possible implements Basic {
     private int[][] possible = new int[82][10];
 
   //  private int[] member;
-
     public Possible() {
         init();
     }
@@ -25,8 +24,25 @@ public class Possible implements Basic {
 //    public void setSudokuMembers(int[] m) {
 //        member = m;
 //    }
-
-    public void removePossibleValueByCell( int cellId,int val) {
+    
+    
+    public void removeSinglePossibleValue(int cellId, int val) {
+//  
+        possible[cellId][val]=0;
+    }
+    
+    public void setSinglePossibleValue(int cellId, int val) {
+//      
+        resetPossible(cellId);
+        possible[cellId][val]=val;
+    }
+    
+    /**
+     * to remove possible value from 9x3 cells
+     * @param cellId
+     * @param val 
+     */
+    public void removePossibleValueByCell(int cellId, int val) {
 //        System.out.println("id=" + cellId + ", val=" + val);
         //   int val=member[cellId];
         int grp1 = CELL_GROUPS[cellId][1];
@@ -100,6 +116,16 @@ public class Possible implements Basic {
         return single;
     }
 
+    public int[][] getPossibleData() {
+        return possible.clone(); // get clone
+
+    }
+
+    public void setPossibleData(int[][] data) {
+        possible = data; // use given copy directly
+
+    }
+
     public int[] getSingleArray() {
         int[] single = new int[162];
         int cnt = 0;
@@ -126,6 +152,11 @@ public class Possible implements Basic {
         this.possible[id] = val;
     }
 
+    public void resetPossible(int id) {
+        int[] val = new int[10];
+        this.possible[id] = val;
+    }
+
     public void init() {
         for (int id = 1; id <= 81; id++) {
             // System.out.printf("%2d ", id);
@@ -141,7 +172,7 @@ public class Possible implements Basic {
 
     }
 
-    public void toPrint() {
+    public void xxxshow() {
         for (int id = 0; id < 81; id++) {
             System.out.printf("%2d ", id);
 
@@ -179,9 +210,82 @@ public class Possible implements Basic {
         return "--- not yet define ---";
     }
 
-    public void toPrint(int style){
-        System.out.println(toString());
+    public void show() {
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("--- Sudoku 9x9 possible --- (start)\n");
+        int id = 0;
+        int cellCnt = 0;
+        for (int m = 1; m <= 9; m++) {
+            sb.append("row#").append(m).append(":");
+
+            for (int n = 1; n <= 9; n++) {
+                id = (m - 1) * 9 + n;
+                boolean anyPossible = false;
+                sb.append("{");
+                for (int i = 1; i <= 9; i++) {
+                    if (possible[id][i] > 0) {
+                        sb.append(possible[id][i]);
+                        anyPossible = true;
+                    }
+                }
+                sb.append("}");
+                if (anyPossible) {
+                    cellCnt++;
+                }
+
+                if (n < 9) {
+                    sb.append(",");
+                }
+            }// end of id
+            sb.append("\n");
+
+        }// end of m
+
+        sb.append("possible values count:").append(this.getCount()).append("\n");
+        sb.append("          cells count:").append(cellCnt).append("\n");
+//
+//          sb.append("single possible value: ");
+//
+//        int[] temp = getSingleArray();
+//        for (int m = 0; m < 81; m = m + 2) {
+//            if (temp[m] > 0) {
+//                //answer.setMember(temp[m], temp[m + 1]);
+//                //  System.out.println("cell#" + temp[m] + " is {" + temp[m + 1] + "}");
+//                sb.append("\n  cell[").append(temp[m]).append("]=").append(temp[m + 1]).append(" " );
+//
+//            } else {
+//                break;
+//            }
+//
+//        }
+
+        sb.append("--- Sudoku 9x9 possible --- (end)\n");
+        System.out.println(sb.toString());
     }
+
+    public void showSingle() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("single possible value: ");
+
+        int[] temp = getSingleArray();
+        for (int m = 0; m < 81; m = m + 2) {
+            if (temp[m] > 0) {
+                //answer.setMember(temp[m], temp[m + 1]);
+                //  System.out.println("cell#" + temp[m] + " is {" + temp[m + 1] + "}");
+                sb.append("\n  cell[").append(temp[m]).append("]=").append(temp[m + 1]).append(" ");
+
+            } else {
+                break;
+            }
+
+        }
+
+        //sb.append("\n--- Sudoku 9x9 possible --- (end)\n");
+        sb.append("\n");
+        System.out.println(sb.toString());
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -210,14 +314,14 @@ public class Possible implements Basic {
 
         sb.append("possible value count:").append(this.getCount()).append("\n\n");
 
-          sb.append("single possible value: ");
+        sb.append("single possible value: ");
 
         int[] temp = getSingleArray();
         for (int m = 0; m < 81; m = m + 2) {
             if (temp[m] > 0) {
                 //answer.setMember(temp[m], temp[m + 1]);
                 //  System.out.println("cell#" + temp[m] + " is {" + temp[m + 1] + "}");
-                sb.append("\n  cell[").append(temp[m]).append("]=").append(temp[m + 1]).append(" " );
+                sb.append("\n  cell[").append(temp[m]).append("]=").append(temp[m + 1]).append(" ");
 
             } else {
                 break;

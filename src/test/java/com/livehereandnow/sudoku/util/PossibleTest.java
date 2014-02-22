@@ -38,15 +38,15 @@ public class PossibleTest {
     }
 
     /**
-     * Test of toPrint method, of class Possible.
+     * Test of show method, of class Possible.
      */
     @Test
     public void testToPrint() {
         System.out.println("toPrint");
         Possible instance = new Possible();
-        instance.toPrint();
+        instance.show();
         instance.init();
-        instance.toPrint();
+        instance.show();
         
         // TODO review the generated test code and remove the default call to fail.
         //       fail("The test case is a prototype.");
