@@ -103,6 +103,16 @@ public class Possible implements Basic {
         return 0;
     }
 
+    public int getFirstCellIdHavingPossible() {
+        //  int val = 0;
+        for (int n = 1; n <= 81; n++) {
+            if (getCount(n)> 0) {
+                return n;
+            }
+        }
+        return 0;
+    }
+
     public List<Integer> getSinglePossibleArray() {
         List<Integer> single = new ArrayList<Integer>();
 

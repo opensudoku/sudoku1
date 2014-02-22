@@ -11,7 +11,7 @@ package com.livehereandnow.sudoku.util;
  */
 public class Solver {
 
-    private boolean IS_DEBUG = true;
+    private boolean IS_DEBUG = false;
 
     private Sudoku question;
     private Sudoku answer = new Sudoku();
@@ -129,8 +129,12 @@ public class Solver {
         if (isBroken()) {
             System.out.println("This Sudoku is Broken!!!");
         } else {
-            System.out.println("still good");
-
+            if (answer.getCount() == 81) {
+     System.out.println("Got it!");
+           
+            } else {
+                System.out.println(" ... still good, need to go deeper");
+            }
         }
 
         System.out.println("======== Solver.show ======== (end)");
