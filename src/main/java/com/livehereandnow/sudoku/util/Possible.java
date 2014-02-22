@@ -179,6 +179,9 @@ public class Possible implements Basic {
         return "--- not yet define ---";
     }
 
+    public void toPrint(int style){
+        System.out.println(toString());
+    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

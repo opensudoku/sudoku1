@@ -8,6 +8,7 @@ package com.livehereandnow.sudoku.app;
 import com.livehereandnow.sudoku.util.Checker;
 import com.livehereandnow.sudoku.util.Possible;
 import com.livehereandnow.sudoku.util.Problem;
+import com.livehereandnow.sudoku.util.Solver;
 import com.livehereandnow.sudoku.util.Sudoku;
 
 /**
@@ -20,83 +21,29 @@ public class App {
         System.out.println("=== com.livehereandnow.sodoku.Main");
 
         // === 0. setup default question ===
-        Sudoku question = new Sudoku();
-//            5, 3, 0, 0, 7, 0, 0, 0, 0,
-//            6, 0, 0, 1, 9, 5, 0, 0, 0,
-//            0, 9, 8, 0, 0, 0, 0, 6, 0,
-//            8, 0, 0, 0, 6, 0, 0, 0, 3,
-//            4, 0, 0, 8, 0, 3, 0, 0, 1,
-//            7, 0, 0, 0, 2, 0, 0, 0, 6,
-//            0, 6, 0, 0, 0, 0, 2, 8, 0,
-//            0, 0, 0, 4, 1, 9, 0, 0, 5,
-//            0, 0, 0, 0, 8, 0, 0, 7, 9};
-        question.setMembersByGroup(1, 5, 3, 0, 0, 7, 0, 0, 0, 0);
-        question.setMembersByGroup(2, 6, 0, 0, 1, 9, 5, 0, 0, 0);
-        question.setMembersByGroup(3, 0, 9, 8, 0, 0, 0, 0, 6, 0);
-        question.setMembersByGroup(4, 8, 0, 0, 0, 6, 0, 0, 0, 3);
-        question.setMembersByGroup(5, 4, 0, 0, 8, 0, 3, 0, 0, 1);
-        question.setMembersByGroup(6, 7, 0, 0, 0, 2, 0, 0, 0, 6);
-        question.setMembersByGroup(7, 0, 6, 0, 0, 0, 0, 2, 8, 0);
-        question.setMembersByGroup(8, 0, 0, 0, 4, 1, 9, 0, 0, 5);
-        question.setMembersByGroup(9, 0, 0, 0, 0, 8, 0, 0, 7, 9);
+        String str = ""
+                + "530070000"
+                + "600195000"
+                + "098000060"
+                + "800060003"
+                + "400803001"
+                + "700020006"
+                + "060000280"
+                + "000419005"
+                + "000080079";
 
-        System.out.println("**************");
-        System.out.println("*  Question  *");
-        System.out.println("**************");
-        question.toPrint();
+        Sudoku question = new Sudoku(str);
+//// 
+        Solver solver = new Solver(question);
 
-        Sudoku answer = new Sudoku(question.getSudokuIntArray());
-        //answer.setMembers(question.getSudokuIntArray());
+        solver.run();
+        solver.toPrint();
+//        solver.getAnswer().toPrint();
+//        solver.getPossible().toPrint();
 
-        Possible possible = new Possible();
-       // possible.setSudokuMembers(question.getSudokuIntArray());
-
-        // === 1. first time ===
-        System.out.println("**************");
-        System.out.println("*   Step 1   *");
-        System.out.println("**************");
-
-        for (int m = 1; m < 81; m++) {
-            if (answer.getMember(m) > 0) { // for known cell, 
-                possible.removePossibleValueByCell(m, answer.getMember(m));
-            }//    
-        }
-        System.out.println(possible.toString());
-        answer.setMember(possible.getSingleArray());
-        answer.toPrint(1);
-
-        // === 2. going for loop ===
-        System.out.println("**************");
-        System.out.println("*   Step 2   *");
-        System.out.println("**************");
-
-        int possibleCnt = possible.getCount();
-
-        while (true) {
-            int[] newlyAdded = answer.getNewlyAdded();
-            for (int m = 1; m < 81; m++) {
-                if (newlyAdded[m] > 0) { // for known cell, 
-                    possible.removePossibleValueByCell(m, answer.getMember(m));
-                }//    
-            }
-
-            //
-            // to end this loop  
-            //   when no more improvement
-            if (possibleCnt == possible.getCount()) {
-                break;
-            } else {
-                possibleCnt = possible.getCount();
-                System.out.println(possible.toString());
-                answer.setMember(possible.getSingleArray());
-                answer.toPrint(1);
-
-            }
-        }
-        System.out.println("**************");
-        System.out.println("*   Step 3   *");
-        System.out.println("**************");
-        System.out.println(" ... doing ");
-
+//        System.out.println("**************");
+//        System.out.println("*   Step 3   *");
+//        System.out.println("**************");
+//        System.out.println(" ... doing ");
     }
 }

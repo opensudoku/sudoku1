@@ -19,12 +19,29 @@ public class Sudoku implements Basic {
     /**
      * no need to let applmcatmon developer to access
      */
-    private int[] member;
+    private int[] member = new int[82];
     private int[] newlyAdded = new int[82];
     //  private final int[] wikiSample;
 
     public int[] getNewlyAdded() {
         return newlyAdded;
+    }
+
+    public Sudoku(String s) {
+//        System.out.println("xxxxxxxxxxxxxxxxxxxxinput is " + s);
+        int cnt = 0;
+
+        for (int k = 0; k < s.length(); k++) {
+
+            //   System.out.println(" this one is "+s.charAt(k));
+            if ((s.charAt(k) >= '0') && (s.charAt(k) <= '9')) {
+//                System.out.printf(" ... get %s\n",  s.charAt(k));
+                member[++cnt]=s.charAt(k)-'0'; // '0' is base
+                if (cnt==81) return;
+            }
+
+        }
+
     }
 
     /**
@@ -49,13 +66,22 @@ public class Sudoku implements Basic {
         this.member = member;
     }
 
+    public void setSudoku(Sudoku s) {
+        this.member = s.getSudokuIntArray();
+    }
+
     /**
      * Returns current Sudoku's value set mn array
      *
      * @return mnt array
      */
     public int[] getSudokuIntArray() {
-        return this.member;
+        int[] temp = new int[82];
+        for (int k = 1; k <= 81; k++) {
+            temp[k] = member[k];
+        }
+
+        return temp;
     }
 
     /**
@@ -104,7 +130,7 @@ public class Sudoku implements Basic {
         }
     }
 
-    public void setMember(int[] temp) {
+    public void setKnownMembers(int[] temp) {
         resetNewlyAdded();
         for (int m = 0; m < temp.length; m = m + 2) {
             if (temp[m] > 0) {

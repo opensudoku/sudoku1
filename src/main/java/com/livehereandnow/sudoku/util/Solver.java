@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.livehereandnow.sudoku.util;
 
 /**
@@ -11,33 +10,91 @@ package com.livehereandnow.sudoku.util;
  * @author mark
  */
 public class Solver {
-    private Problem problem=new Problem();
-    private Problem answer=new Problem();
-    
-    private int[][] possible=new int[81][10];
-    
-    private Checker checker=new Checker();
-    public Solver() {
+
+    private Sudoku question;
+    private Sudoku answer = new Sudoku();
+    private Possible possible = new Possible();
+
+    public Sudoku getAnswer() {
+        return answer;
     }
 
-    public Problem getProblem() {
-        return problem;
+    public Possible getPossible() {
+        return possible;
     }
 
-    public void setProblem(Problem problem) {
-        this.problem = problem;
+    /**
+     * Main purpose for Solver to provide answer based on given Sudoku question
+     *
+     * @param problem
+     */
+    public Solver(Sudoku s) {
+        question = s;
+        answer.setSudoku(s);;
+      //  run();
     }
-    
-    public void doAnswer(){
-        // method 1
-        // for given cell, byRow,byCol and byBox
-        // if only one number didn't show, then it is the number
+
+    public void run() {
+//        System.out.println("**************");
+//        System.out.println("*   Step 1   *");
+//        System.out.println("**************");
+
+        for (int m = 1; m < 81; m++) {
+            if (question.getMember(m) > 0) { // for known cell, 
+                possible.removePossibleValueByCell(m, question.getMember(m));
+            }//    
+        }
+//        System.out.println(possible.toString());
+        answer.setKnownMembers(possible.getSingleArray());
+//        answer.toPrint(1);
+
+        // === 2. going for loop ===
+//        System.out.println("**************");
+//        System.out.println("*   Step 2   *");
+//        System.out.println("**************");
+        int possibleCnt = possible.getCount();
+
+        while (true) {
+            int[] newlyAdded = answer.getNewlyAdded();
+            for (int m = 1; m < 81; m++) {
+                if (newlyAdded[m] > 0) { // for known cell, 
+                    possible.removePossibleValueByCell(m, answer.getMember(m));
+                }//    
+            }
+
+            //
+            // to end this loop  
+            //   when no more improvement
+            if (possibleCnt == possible.getCount()) {
+                break;
+            } else {
+                possibleCnt = possible.getCount();
+//                System.out.println(possible.toString());
+                answer.setKnownMembers(possible.getSingleArray());
+//                answer.toPrint(1);
+
+            }
+        }
+    }
+
+    public void toPrint() {
+        System.out.println("=== Solver.toPrint() === start");
+        System.out.println("**************");
+        System.out.println("*  Question  *");
+        System.out.println("**************");
+        question.toPrint();
         
-        // method 2
-        // possible array
-        // for given cell, known number, to elimilate same possible number on
-        // same row
-        // same col
-        // same box
+        System.out.println("**************");
+        System.out.println("*   Answer   *");
+        System.out.println("**************");
+        answer.toPrint();
+        
+        System.out.println("**************");
+        System.out.println("*  Possible  *");
+        System.out.println("**************");
+        possible.toPrint(1);
+
+        System.out.println("=== Solver.toPrint() === end");
     }
+
 }

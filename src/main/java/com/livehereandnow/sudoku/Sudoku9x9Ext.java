@@ -72,7 +72,7 @@ public class Sudoku9x9Ext extends Sudoku {
                 } else {
 //                    System.out.println(" it's not o, remove all possible");
                     this.getPossible(i).setMemberAllZero();
-//                    this.getPossible(i).setMember(3, 1);
+//                    this.getPossible(i).setKnownMembers(3, 1);
                 }
             }
 
