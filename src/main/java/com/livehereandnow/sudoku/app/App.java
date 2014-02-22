@@ -86,7 +86,9 @@ public class App {
             p2.setPossibleData(solver.getPossible().getPossibleData());
             
             p1.show();
-            p1.setSinglePossibleValue(3, 2);
+//            p1.setSinglePossibleValue(3, 2); // correct
+            p1.setSinglePossibleValue(3, 4); // correct
+            
          //   p2.setSinglePossibleValue(3, 4);
             
             p1.show();
@@ -104,7 +106,7 @@ public class App {
 //            sol2.run();
 //            sol2.show();
         } else {
-            System.out.println("This Sudoku has been solved successfully.");
+            System.out.println("########### no split yet ##############This Sudoku has been solved successfully.");
 
         }
     }
