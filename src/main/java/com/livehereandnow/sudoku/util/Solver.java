@@ -11,7 +11,15 @@ package com.livehereandnow.sudoku.util;
  */
 public class Solver implements RunMode {
 
-    
+    public static void mark(String str) {
+        if (IS_DEBUG) {
+            mark(str);
+        }
+    }
+
+    public static void show(String str) {
+        System.out.println(str);
+    }
 
     private Sudoku question;
     private Sudoku answer = new Sudoku();
@@ -68,9 +76,9 @@ public class Solver implements RunMode {
 
     public void run() {
         if (IS_DEBUG) {
-            System.out.println("**************");
-            System.out.println("*   Step 1   *");
-            System.out.println("**************");
+            mark("**************");
+            mark("*   Step 1   *");
+            mark("**************");
         }
         for (int m = 1; m <= 81; m++) {
             if (question.getMember(m) > 0) { // for known cell, 
@@ -80,15 +88,15 @@ public class Solver implements RunMode {
         answer.setKnownMembers(possible.getSingleArray());
 
         if (IS_DEBUG) {
-            System.out.println(possible.toString());
+            mark(possible.toString());
             answer.show(1);
         }
 //
         // === 2. going for loop ===
         if (IS_DEBUG) {
-            System.out.println("**************");
-            System.out.println("*   Step 2   *");
-            System.out.println("**************");
+            mark("**************");
+            mark("*   Step 2   *");
+            mark("**************");
 
         }
         int possibleCnt = possible.getCount();
@@ -110,7 +118,7 @@ public class Solver implements RunMode {
                 possibleCnt = possible.getCount();
                 answer.setKnownMembers(possible.getSingleArray());
                 if (IS_DEBUG) {
-                    System.out.println(possible.toString());
+                    mark(possible.toString());
                     answer.show(1);
                 }
             }
@@ -118,38 +126,42 @@ public class Solver implements RunMode {
     }
 
     public void show() {
-        System.out.println("======== Solver.show ======== (start)");
-        System.out.println("**************");
-        System.out.println("*  Question  *");
-        System.out.println("**************");
-        System.out.println("question is " + question.toString());
-        question.show();
+        mark("======== Solver.show ======== (start)");
+        show("**************");
+        show("*  Question  *");
+        show("**************");
+        show("question is " + question.toString());
+       
+            question.show();
+        
 
-        System.out.println("**************");
-        System.out.println("*   Answer   *");
-        System.out.println("**************");
+        show("**************");
+        show("*   Answer   *");
+        show("**************");
         answer.show();
 
-        System.out.println("**************");
-        System.out.println("*  Possible  *");
-        System.out.println("**************");
-        possible.show();
+        mark("**************");
+        mark("*  Possible  *");
+        mark("**************");
+        if (IS_DEBUG) {
+            possible.show();
+        }
 
-        System.out.println("**************");
-        System.out.println("*   Status   *");
-        System.out.println("**************");
+        mark("**************");
+        mark("*   Status   *");
+        mark("**************");
         if (isBroken()) {
-            System.out.println("This Sudoku is Broken!!!");
+            mark("This Sudoku is Broken!!!");
         } else {
             if (answer.getCount() == 81) {
-                System.out.println("Got it!");
+                show("Got it!");
 
             } else {
-                System.out.println(" ... still good, need to go deeper");
+                mark(" ... still good, need to go deeper");
             }
         }
 
-        System.out.println("======== Solver.show ======== (end)");
+        mark("======== Solver.show ======== (end)");
 
     }
 

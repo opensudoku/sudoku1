@@ -39,15 +39,16 @@ public class SolverManager implements RunMode {
 
     public void run() {
         solver.run();
-        solver.show();
+//        solver.show();
         if (solver.getAnswer().getCount() == 81) {
+//            solver.show();
             return; // simple case
         }
 //        sudokuStack=new Stack<Sudoku>();
 //        possibleStack=new Stack<Possible>();
         stack = new Stack();
         run2();
-        solver.show();
+//        solver.show();
     }
 
     public void run2() {

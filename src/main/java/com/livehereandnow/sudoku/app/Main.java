@@ -15,7 +15,7 @@ import java.util.Stack;
  *
  * @author mark
  */
-public class App1 {
+public class Main {
 
     public static void show(String str) {
         System.out.println(str);
@@ -31,16 +31,19 @@ public class App1 {
 
             http://www.dailysudoku.com/sudoku/archive/2014/02/2014-02-22.shtml
             str = "009036040008070310007000060000000050090642030070000000020000400081090600040580900";
+//            str = "709036040008070310007000060000000050090642030070000000020000400081090600040580900";
         } else {
             str = arg[0]; // just accept the FIRST arguement
         }
         Sudoku question = new Sudoku(str);
+        question.show();
         Solver solver = new Solver(question);
         
         SolverManager sm=new SolverManager();
         
         sm.setSolver(solver);
         sm.run();
+        sm.getSolver().getAnswer().show();
         
     }
 }
