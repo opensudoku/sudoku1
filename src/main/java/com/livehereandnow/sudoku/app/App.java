@@ -39,6 +39,10 @@ public class App {
         question.setMembersByGroup(7, 0, 6, 0, 0, 0, 0, 2, 8, 0);
         question.setMembersByGroup(8, 0, 0, 0, 4, 1, 9, 0, 0, 5);
         question.setMembersByGroup(9, 0, 0, 0, 0, 8, 0, 0, 7, 9);
+
+        System.out.println("**************");
+        System.out.println("*  Question  *");
+        System.out.println("**************");
         question.toPrint();
 
         Sudoku answer = new Sudoku(question.getSudokuIntArray());
@@ -48,8 +52,12 @@ public class App {
        // possible.setSudokuMembers(question.getSudokuIntArray());
 
         // === 1. first time ===
+        System.out.println("**************");
+        System.out.println("*   Step 1   *");
+        System.out.println("**************");
+
         for (int m = 1; m < 81; m++) {
-            if (question.getMember(m) > 0) { // for known cell, 
+            if (answer.getMember(m) > 0) { // for known cell, 
                 possible.removePossibleValueByCell(m, answer.getMember(m));
             }//    
         }
@@ -58,6 +66,10 @@ public class App {
         answer.toPrint(1);
 
         // === 2. going for loop ===
+        System.out.println("**************");
+        System.out.println("*   Step 2   *");
+        System.out.println("**************");
+
         int possibleCnt = possible.getCount();
 
         while (true) {
@@ -68,18 +80,23 @@ public class App {
                 }//    
             }
 
-            System.out.println(possible.toString());
-            answer.setMember(possible.getSingleArray());
-            answer.toPrint(1);
-//
+            //
             // to end this loop  
             //   when no more improvement
             if (possibleCnt == possible.getCount()) {
                 break;
             } else {
                 possibleCnt = possible.getCount();
+                System.out.println(possible.toString());
+                answer.setMember(possible.getSingleArray());
+                answer.toPrint(1);
+
             }
         }
+        System.out.println("**************");
+        System.out.println("*   Step 3   *");
+        System.out.println("**************");
+        System.out.println(" ... doing ");
 
     }
 }
