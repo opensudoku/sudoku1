@@ -13,7 +13,7 @@ public class Solver implements RunMode {
 
     public static void mark(String str) {
         if (IS_DEBUG) {
-            mark(str);
+            System.out.println(str);
         }
     }
 

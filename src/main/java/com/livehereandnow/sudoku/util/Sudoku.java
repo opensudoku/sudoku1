@@ -257,6 +257,8 @@ public class Sudoku implements Basic {
         System.out.println("note: * is newly added");
         for (int k = 1; k <= 81; k++) {
             if (newlyAdded[k] > 0) {
+                //TODO
+                // WHY  cell[81]=0 is newly added ???
                 System.out.println("  cell[" + newlyAdded[k] + "]=" + member[newlyAdded[k]] + " is newly added");
             }
         }
