@@ -28,10 +28,10 @@ public class SudokuManagerTest {
         Sudoku s = new Sudoku();
         s.setMemberByRow(1, 1, 2, 3, 4, 5, 6, 7, 8, 9);
         SudokuManager sm = new SudokuManager();
-        sm.setMembers(s.getMemberArray());
+        sm.setMembers(s.getSudokuIntArray());
         sm.toPrint();
         Directory dir=new Directory();
-        dir.setSudokuMemberSet(s.getMemberArray());
+        dir.setSudokuMemberSet(s.getSudokuIntArray());
         
         dir.getRowGroup(1);
 

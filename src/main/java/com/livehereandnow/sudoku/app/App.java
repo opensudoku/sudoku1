@@ -18,6 +18,8 @@ public class App {
 
     public static void main(String[] arg) {
         System.out.println("=== com.livehereandnow.sodoku.Main");
+
+        // === 0. setup default question ===
         Sudoku question = new Sudoku();
 //            5, 3, 0, 0, 7, 0, 0, 0, 0,
 //            6, 0, 0, 1, 9, 5, 0, 0, 0,
@@ -39,34 +41,45 @@ public class App {
         question.setMembersByGroup(9, 0, 0, 0, 0, 8, 0, 0, 7, 9);
         question.toPrint();
 
-        Sudoku answer = new Sudoku();
-        answer.setMembers(question.getMemberArray());
+        Sudoku answer = new Sudoku(question.getSudokuIntArray());
+        //answer.setMembers(question.getSudokuIntArray());
+
         Possible possible = new Possible();
-        possible.setSudokuMembers(question.getMemberArray());
-// System.out.println("=====");
+       // possible.setSudokuMembers(question.getSudokuIntArray());
 
+        // === 1. first time ===
         for (int m = 1; m < 81; m++) {
-            if (question.getMember(m) > 0) // for known cell, 
-            {
-                possible.removePossibleValueByCell(question.getMember(m), m);
-            }
-//    
+            if (question.getMember(m) > 0) { // for known cell, 
+                possible.removePossibleValueByCell(m, answer.getMember(m));
+            }//    
         }
-//        System.out.println("#####");
-
         System.out.println(possible.toString());
-        int[] temp = possible.getSingleArray();
-        for (int m = 0; m < 81; m = m + 2) {
-            if (temp[m] > 0) {
-                answer.setMember(temp[m], temp[m + 1]);
-                System.out.println("cell#" + temp[m] + " is {" + temp[m + 1] + "}");
+        answer.setMember(possible.getSingleArray());
+        answer.toPrint(1);
 
-            } else {
-                break;
+        // === 2. going for loop ===
+        int possibleCnt = possible.getCount();
+
+        while (true) {
+            int[] newlyAdded = answer.getNewlyAdded();
+            for (int m = 1; m < 81; m++) {
+                if (newlyAdded[m] > 0) { // for known cell, 
+                    possible.removePossibleValueByCell(m, answer.getMember(m));
+                }//    
             }
 
+            System.out.println(possible.toString());
+            answer.setMember(possible.getSingleArray());
+            answer.toPrint(1);
+//
+            // to end this loop  
+            //   when no more improvement
+            if (possibleCnt == possible.getCount()) {
+                break;
+            } else {
+                possibleCnt = possible.getCount();
+            }
         }
 
-        //    possible.toPrint();
     }
 }

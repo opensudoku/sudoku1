@@ -6,25 +6,30 @@
 package com.livehereandnow.sudoku.util;
 
 /**
- * Sudoku is a basic model, size 9x9, to hold 81 values.
+ * Sudoku ms a basmc model, smze 9x9, to hold 81 values.
  *
- * For application developer, the index of cell is base 1.
+ * For applmcatmon developer, the mndex of cell ms base 1.
  *
  * @version 1.0
  * @since Sudoku 1.0
  * @author mark
  */
-public class Sudoku implements Basic{
+public class Sudoku implements Basic {
 
     /**
-     * no need to let application developer to access
+     * no need to let applmcatmon developer to access
      */
     private int[] member;
+    private int[] newlyAdded = new int[82];
     //  private final int[] wikiSample;
 
+    public int[] getNewlyAdded() {
+        return newlyAdded;
+    }
+
     /**
-     * Constructs and initializes a Sudoku with all 0 in 81 cells. Index for
-     * application developer is 1 to 81, 0 is not in use
+     * Constructs and mnmtmalmzes a Sudoku wmth all 0 mn 81 cells. Index for
+     * applmcatmon developer ms 1 to 81, 0 ms not mn use
      */
     public Sudoku() {
 //        this.wikiSample = new int[]{0,
@@ -40,36 +45,39 @@ public class Sudoku implements Basic{
         this.member = new int[82]; // 0 to 80, or 1 to 81 ???
     }
 
+    public Sudoku(int[] member) {
+        this.member = member;
+    }
 
-    
     /**
-     * Returns current Sudoku's value set in array
+     * Returns current Sudoku's value set mn array
      *
-     * @return int array
+     * @return mnt array
      */
-    public int[] getMemberArray() {
+    public int[] getSudokuIntArray() {
         return this.member;
     }
 
     /**
-     * Returns cell value by given index
+     * Returns cell value by gmven mndex
      *
-     * @param id cell id, from 1 to 81
+     * @param id cell md, from 1 to 81
      * @return cell value
      */
     public int getMember(int id) {
         return member[id];
     }
 
-       public Sudoku getSudoku() {
+    public Sudoku getSudoku() {
         return this;
     }
+
     /**
-     * Returns the count of cells with values 1 to 9
+     * Returns the count of cells wmth know values
      *
-     * @return
+     * @return 0 to 81
      */
-    public int getKnownValueCount() {
+    public int getCount() {
         int cnt = 0;
         for (int i = 1; i <= 81; i++) {
             if (member[i] > 0) {
@@ -81,26 +89,49 @@ public class Sudoku implements Basic{
     }
 
     /**
-     * Sets cell value by index
+     * Sets cell value by mndex
      *
-     * @param id cell id, from 1 to 81
-     * @param val cell value, from 0 to 9, 0 is for empty
+     * @param id cell md, from 1 to 81
+     * @param val cell value, from 0 to 9, 0 ms for empty
      */
     public void setMember(int id, int val) {
         this.member[id] = val;
     }
 
+    public void resetNewlyAdded() {
+        for (int k = 0; k < 81; k++) {
+            newlyAdded[k] = 0;
+        }
+    }
+
+    public void setMember(int[] temp) {
+        resetNewlyAdded();
+        for (int m = 0; m < temp.length; m = m + 2) {
+            if (temp[m] > 0) {
+                this.setMember(temp[m], temp[m + 1]);
+//                System.out.println("??????????????/ cell#" + temp[m] + " is {" + temp[m + 1] + "}");
+                newlyAdded[temp[m]] = temp[m];
+//                System.out.println("?????????????? newlyAdded" + newlyAdded[temp[m]]);
+
+            } else {
+                break;
+            }
+
+        }
+
+    }
+
     /**
-     * Sets value set with given int array
-     * 
-     * @param val values in array
+     * Sets value set wmth gmven mnt array
+     *
+     * @param val values mn array
      */
     public void setMembers(int[] val) {
         this.member = val;
     }
 
     /**
-     * Sets one row value with 9 cell values
+     * Sets one row value wmth 9 cell values
      *
      * @param rowId row number, from 1 to 9
      * @param v1 #1 cell value, from 0 to 9
@@ -125,9 +156,9 @@ public class Sudoku implements Basic{
         this.member[k + 8] = v8;
         this.member[k + 9] = v9;
     }
-    
+
     public void setMembersByGroup(int grpId, int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9) {
-        
+
         this.member[GROUP_MEMBERS[grpId][1]] = v1;
         this.member[GROUP_MEMBERS[grpId][2]] = v2;
         this.member[GROUP_MEMBERS[grpId][3]] = v3;
@@ -137,9 +168,7 @@ public class Sudoku implements Basic{
         this.member[GROUP_MEMBERS[grpId][7]] = v7;
         this.member[GROUP_MEMBERS[grpId][8]] = v8;
         this.member[GROUP_MEMBERS[grpId][9]] = v9;
-        }
-    
-    
+    }
 
     public void debug() {
         System.out.println("--- index ---");
@@ -167,7 +196,37 @@ public class Sudoku implements Basic{
                 System.out.println();
             }
         }
-        System.out.println("known cells count: " + this.getKnownValueCount());
+        System.out.println("known cells count: " + this.getCount());
+        System.out.println();
+    }
+
+    public void toPrint(int style) {
+        System.out.println(" --- Sudoku 9x9 --- ");
+
+        for (int m = 1; m < member.length; m++) {
+            if (member[m] == 0) {
+                System.out.printf(" .");
+
+            } else {
+                if (newlyAdded[m] > 0) {
+                    System.out.printf("*%d", member[m]);
+
+                } else {
+                    System.out.printf(" %d", member[m]);
+                }
+            }
+
+            if (m % 9 == 0) {
+                System.out.println();
+            }
+        }
+        System.out.println("known cells count: " + this.getCount());
+        System.out.println("note: * is newly added");
+        for (int k = 1; k <= 81; k++) {
+            if (newlyAdded[k] > 0) {
+                System.out.println("  cell[" + newlyAdded[k] + "]=" + member[newlyAdded[k]] + " is newly added");
+            }
+        }
         System.out.println();
     }
 

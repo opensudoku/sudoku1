@@ -15,7 +15,7 @@ public class SudokuSolver extends Sudoku implements Basic {
     private int[] member;
 
     public SudokuSolver(Sudoku s) {
-        member = s.getMemberArray();
+        member = s.getSudokuIntArray();
     }
 
     /**
