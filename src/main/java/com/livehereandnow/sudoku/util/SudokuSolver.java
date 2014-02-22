@@ -54,7 +54,7 @@ public class SudokuSolver extends Sudoku implements Basic {
         return true;
     }
 
-    public void toPrint() {
+    public void show() {
         System.out.println(" testing  toPrint --- start");
         System.out.println("=== GROUP_MEMBERS");
 

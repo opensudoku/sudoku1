@@ -46,7 +46,7 @@ public class Solver {
         }
 //        System.out.println(possible.toString());
         answer.setKnownMembers(possible.getSingleArray());
-//        answer.toPrint(1);
+//        answer.show(1);
 
         // === 2. going for loop ===
 //        System.out.println("**************");
@@ -71,30 +71,32 @@ public class Solver {
                 possibleCnt = possible.getCount();
 //                System.out.println(possible.toString());
                 answer.setKnownMembers(possible.getSingleArray());
-//                answer.toPrint(1);
+//                answer.show(1);
 
             }
         }
     }
 
-    public void toPrint() {
-        System.out.println("=== Solver.toPrint() === start");
+    public void show() {
+        System.out.println("======== Solver.show ======== (start)");
         System.out.println("**************");
         System.out.println("*  Question  *");
         System.out.println("**************");
-        question.toPrint();
+        System.out.println("question is "+question.toString());        
+        question.show();
         
         System.out.println("**************");
         System.out.println("*   Answer   *");
         System.out.println("**************");
-        answer.toPrint();
+        answer.show();
         
         System.out.println("**************");
         System.out.println("*  Possible  *");
         System.out.println("**************");
         possible.toPrint(1);
 
-        System.out.println("=== Solver.toPrint() === end");
+        System.out.println("======== Solver.show ======== (end)");
+     
     }
 
 }

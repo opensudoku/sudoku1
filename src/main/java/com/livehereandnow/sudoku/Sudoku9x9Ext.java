@@ -81,9 +81,9 @@ public class Sudoku9x9Ext extends Sudoku {
     }
 
 //    @Override
-    public void toPrint() {
+    public void show() {
         System.out.println("--- super.toPrint()---");
-        super.toPrint();
+        super.show();
 
         System.out.println("--- Sudoku9x9Ext.toPrint()---");
 

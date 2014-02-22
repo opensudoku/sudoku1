@@ -207,7 +207,7 @@ public class Sudoku implements Basic {
 
     }
 
-    public void toPrint() {
+    public void show() {
         System.out.println(" --- Sudoku 9x9 ---");
 
         for (int i = 1; i < member.length; i++) {
@@ -226,7 +226,7 @@ public class Sudoku implements Basic {
         System.out.println();
     }
 
-    public void toPrint(int style) {
+    public void show(int style) {
         System.out.println(" --- Sudoku 9x9 --- ");
 
         for (int m = 1; m < member.length; m++) {
@@ -259,8 +259,11 @@ public class Sudoku implements Basic {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 1; i < member.length; i++) {
+        for (int i = 1; i <=81; i++) {
             sb.append(member[i]);
+            if ((i % 9==0) && (i<81)){
+            sb.append("_");                
+            }
         }
         return sb.toString();
     }

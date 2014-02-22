@@ -46,7 +46,7 @@ public class SudokuTest {
                 + "0, 0, 0, 0, 8, 0, 0, 7, 9,";
         Sudoku instance = new Sudoku(str);
        
-        instance.toPrint();
+        instance.show();
     }
 
  

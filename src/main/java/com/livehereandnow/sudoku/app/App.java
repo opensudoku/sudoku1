@@ -5,9 +5,6 @@
  */
 package com.livehereandnow.sudoku.app;
 
-import com.livehereandnow.sudoku.util.Checker;
-import com.livehereandnow.sudoku.util.Possible;
-import com.livehereandnow.sudoku.util.Problem;
 import com.livehereandnow.sudoku.util.Solver;
 import com.livehereandnow.sudoku.util.Sudoku;
 
@@ -18,32 +15,15 @@ import com.livehereandnow.sudoku.util.Sudoku;
 public class App {
 
     public static void main(String[] arg) {
-        System.out.println("=== com.livehereandnow.sodoku.Main");
-
-        // === 0. setup default question ===
-        String str = ""
-                + "530070000"
-                + "600195000"
-                + "098000060"
-                + "800060003"
-                + "400803001"
-                + "700020006"
-                + "060000280"
-                + "000419005"
-                + "000080079";
-
+        String str = null;
+        if (arg.length == 0) {
+            str = "530070000_600195000_098000060_800060003_400803001_700020006_060000280_000419005_000080079";
+        }else{
+           str= arg[0]; // just accept the FIRST arguement
+        }
         Sudoku question = new Sudoku(str);
-//// 
         Solver solver = new Solver(question);
-
         solver.run();
-        solver.toPrint();
-//        solver.getAnswer().toPrint();
-//        solver.getPossible().toPrint();
-
-//        System.out.println("**************");
-//        System.out.println("*   Step 3   *");
-//        System.out.println("**************");
-//        System.out.println(" ... doing ");
+        solver.show();
     }
 }
