@@ -6,7 +6,12 @@
 package com.livehereandnow.sudoku.util;
 
 /**
- *
+ * Solver uses method run to perform very basic rule of Sudoku, which is to eliminate possible value 
+ * from each cell's possible list then to reveal single value.
+ * It stops when no more improvement. Programmer can use isBroken to determine 
+ * current answer is useful or now.
+ * There are 3 private fields: Sudoku question, Sudoku answer and Possible possible.
+ * Currently use setter and getter on data, not using clone method yet (and to evaluate it).
  * @author mark
  */
 public class Solver implements RunMode {
