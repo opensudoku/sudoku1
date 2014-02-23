@@ -25,12 +25,15 @@ public class SolverCoreExtDev {
         String str = null;
 //        SolverCore solves following in one shot, not a good example for this needs
         str = "530070000_600195000_098000060_800060003_400803001_700020006_060000280_000419005_000080079";//SolverCore done
+ 
+        //broken case
+//        str = "535070000_600195000_098000060_800060003_400803001_700020006_060000280_000419005_000080079";//SolverCore done
 
 //        SolverCore has no finding at first try, easily confused
 //        str = "000902007006003900200067048900070060805010709060030002710620004002300100600701000";//SolverCore no first move
 //   
 //        SolverCore has some finding but not complete, better sample
-//        str = "009036040008070310007000060000000050090642030070000000020000400081090600040580900";
+        str = "009036040008070310007000060000000050090642030070000000020000400081090600040580900";
         Sudoku s = new Sudoku(str);
         SolverCoreExt sce = new SolverCoreExt();
         sce.getSolverCore().setQuestion(s);

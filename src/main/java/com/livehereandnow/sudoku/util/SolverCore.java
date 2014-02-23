@@ -40,9 +40,13 @@ public class SolverCore {
 //    public void setPossible(Possible possible) {
 //        this.possible = possible;
 //    }
-
     public Sudoku getQuestion() {
         return question;
+    }
+
+    public int getBranchCellId() {
+        return this.getPossible().getFirstCellIdHavingPossible();
+
     }
 
     public List<Integer> getBranch() {
@@ -118,12 +122,9 @@ public class SolverCore {
 
     public void run() throws CloneNotSupportedException {
         //DEBUG
-        answer=question.clone();
-        possible=new Possible();
-        
-        
-        
-        
+        answer = question.clone();
+        possible = new Possible();
+
 //        if (IS_DEBUG) {
 //            mark("**************");
 //            mark("*   Step 1   *");
