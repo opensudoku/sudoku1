@@ -110,11 +110,11 @@ public class Possible implements Basic {
 //            }
 //        }
 
-        int[] list=new int[10];
-    //    int cnt=0;
-          for (int n = 1; n <= 9; n++) {
+        int[] list = new int[10];
+        //    int cnt=0;
+        for (int n = 1; n <= 9; n++) {
             if (possible[id][n] > 0) {
-                list[n]=n;
+                list[n] = n;
             }
         }
         return list;
@@ -173,8 +173,11 @@ public class Possible implements Basic {
     }
 
     public int[] getPossible(int id) {
-        return possible[id];
+//      returns clone array is safer 
+//      by Mark , 2/14/2014
+        return possible[id].clone();
     }
+
 
     public void setPossible(int id, int[] val) {
         this.possible[id] = val;
@@ -186,7 +189,7 @@ public class Possible implements Basic {
     }
 
     /**
-     * Initializes each cell's possible array to be {0,1,2,3,4,5,6,7,8,9} 
+     * Initializes each cell's possible array to be {0,1,2,3,4,5,6,7,8,9}
      */
     public void init() {
         for (int id = 1; id <= 81; id++) {
@@ -288,7 +291,6 @@ public class Possible implements Basic {
 //            }
 //
 //        }
-
         sb.append(" --- Sudoku 9x9 possible --- (end)");
         sb.append("  possible count:").append(this.getCount()).append("\n");
         sb.append("                                       cells count:").append(cellCnt).append("\n");
@@ -343,7 +345,6 @@ public class Possible implements Basic {
 
         }// end of m
 
-        
         int[] temp = getSingleArray();
         for (int m = 0; m < 81; m = m + 2) {
             if (temp[m] > 0) {

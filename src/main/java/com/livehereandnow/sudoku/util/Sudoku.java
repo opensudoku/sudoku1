@@ -25,13 +25,12 @@ public class Sudoku implements Basic, Cloneable {
     //  private final int[] wikiSample;
     @Override
     protected Sudoku clone() throws CloneNotSupportedException {
-        Sudoku s=new Sudoku();
-        s.member=member.clone();
-        
+        Sudoku s = new Sudoku();
+        s.member = member.clone();
+
         return s; //To change body of generated methods, choose Tools | Templates.
     }
 
-    
     public int[] getNewlyAdded() {
         return newlyAdded;
     }
@@ -45,8 +44,10 @@ public class Sudoku implements Basic, Cloneable {
             //   System.out.println(" this one is "+s.charAt(k));
             if ((s.charAt(k) >= '0') && (s.charAt(k) <= '9')) {
 //                System.out.printf(" ... get %s\n",  s.charAt(k));
-                member[++cnt]=s.charAt(k)-'0'; // '0' is base
-                if (cnt==81) return;
+                member[++cnt] = s.charAt(k) - '0'; // '0' is base
+                if (cnt == 81) {
+                    return;
+                }
             }
 
         }
@@ -79,6 +80,26 @@ public class Sudoku implements Basic, Cloneable {
         this.member = s.getSudokuData();
     }
 
+    public boolean isBroken() {
+        int cnt;
+        int[] val;
+        for (int grp = 1; grp <= 27; grp++) {
+            val = new int[10];
+            for (int k = 1; k <= 9; k++) {
+//                System.out.print(GROUP_MEMBERS[grp][k]);
+                val[member[GROUP_MEMBERS[grp][k]]]++;
+
+            }
+            for (int k = 1; k <= 9; k++) {
+                if (val[k] > 1) {
+                    return true;
+                }
+            }
+
+        }
+        return false;
+    }
+
     /**
      * Returns current Sudoku's value set mn array
      *
@@ -91,13 +112,12 @@ public class Sudoku implements Basic, Cloneable {
 //        }
 //
 //        return temp;
-        
+
 //  2/22/2014, by Mark      
 // clone is in need
 //  return member; // This will affect question        
-       return member.clone();
-     
-       
+        return member.clone();
+
     }
 
     /**
@@ -113,7 +133,6 @@ public class Sudoku implements Basic, Cloneable {
 //    public Sudoku getSudoku() {
 //        return this;  // ??? need to verify
 //    }
-
     /**
      * Returns the count of cells wmth know values
      *
@@ -241,7 +260,12 @@ public class Sudoku implements Basic, Cloneable {
         System.out.print(" --- Sudoku 9x9 --- (end)");
 
         System.out.println(" known cells count: " + this.getCount());
-        System.out.println(" "+this.toString());
+        System.out.println(" " + this.toString());
+        if (isBroken()) {
+            System.out.println(" xxx It's broken! xxx");
+        } else {
+            System.out.println(" ...still in good shape");
+        }
         System.out.println();
     }
 
@@ -276,16 +300,16 @@ public class Sudoku implements Basic, Cloneable {
                 System.out.println("  cell[" + newlyAdded[k] + "]=" + member[newlyAdded[k]] + " is newly added");
             }
         }
-       
+
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 1; i <=81; i++) {
+        for (int i = 1; i <= 81; i++) {
             sb.append(member[i]);
-            if ((i % 9==0) && (i<81)){
-            sb.append("_");                
+            if ((i % 9 == 0) && (i < 81)) {
+                sb.append("_");
             }
         }
         return sb.toString();

@@ -5,6 +5,9 @@
  */
 package com.livehereandnow.sudoku.util;
 
+import static com.livehereandnow.sudoku.app.Terminal.show;
+import static com.livehereandnow.sudoku.util.Solver.show;
+
 /**
  * SolverCore uses method run to perform very basic rule of Sudoku, which is to
  * eliminate possible value from each cell's possible list then to reveal single
@@ -71,7 +74,6 @@ public class SolverCore {
 //        --------------------------------------------
 //        question.setSudokuData(s.getSudokuData());
 //        answer.setSudokuData(s.getSudokuData());
-
     }
 
     /**
@@ -141,42 +143,63 @@ public class SolverCore {
     }
 
     public void show() {
-        mark("======== Solver.show ======== (start)");
-        show("**************");
-        show("*  Question  *");
-        show("**************");
-        show("question is " + question.toString());
+        show("");
+        show(" *=============*");
+        show(" *   Question  *");
+        show(" *=============*");
 
-        question.show();
+        this.getQuestion().show();
 
-        show("**************");
-        show("*   Answer   *");
-        show("**************");
-        answer.show();
+        show("");
+        show(" *=============*");
+        show(" *    Answer   *");
+        show(" *=============*");
+        this.getAnswer().show();
 
-        mark("**************");
-        mark("*  Possible  *");
-        mark("**************");
-        if (IS_DEBUG) {
-            possible.show();
+        //
+        // when solved, done
+        //
+        show("");
+        show(" *=============*");
+        show(" *    Status   *");
+        show(" *=============*");
+        if (this.getAnswer().getCount() == 81) {
+            show("");
+            show("***********************************************");
+            show("*   This Sudoku question has been solved!!!   *");
+            show("***********************************************");
+            show("");
+            return;
         }
 
-        mark("**************");
-        mark("*   Status   *");
-        mark("**************");
-        if (isBroken()) {
-            mark("This Sudoku is Broken!!!");
-        } else {
-            if (answer.getCount() == 81) {
-                show("Got it!");
+        if (this.isBroken()) {
+            show(" It's broken!");
 
-            } else {
-                mark(" ... still good, need to go deeper");
+        } else {
+            show("  ...still good");
+            show("  ...TODO Branch");
+
+        }
+
+        // prompts possible to users
+        show("");
+        show(" *=============*");
+        show(" *   Possible  *");
+        show(" *=============*");
+        this.getPossible().show();
+
+        show("");
+        show(" *=============*");
+        show(" *   Branch    *");
+        show(" *=============*");
+        // determine which cell and given value
+        int id = this.getPossible().getFirstCellIdHavingPossible();
+        int[] val = this.getPossible().getPossible(id);
+        for (int k = 1; k <= 9; k++) {
+            if (val[k] > 0) {
+                show(" ...cell[" + id + "]=" + val[k]);
             }
         }
-
-        mark("======== Solver.show ======== (end)");
-
     }
 
 }

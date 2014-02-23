@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.livehereandnow.sudoku.util;
 
 import org.junit.Test;
@@ -16,12 +15,16 @@ import org.junit.BeforeClass;
  * @author mark
  */
 public class SudokuTest {
-    
+
     public SudokuTest() {
     }
 
     @BeforeClass
     public static void setUpClass() throws Exception {
+    }
+
+    static void show(String str) {
+        System.out.println(str);
     }
 
     @Before
@@ -34,7 +37,7 @@ public class SudokuTest {
     @Test
     public void testGetNewlyAdded() {
         System.out.println("doing here...");
-              String str = ""
+        String str = ""
                 + "5, 3, 0, 0, 7, 0, 0, 0, 0,"
                 + "6, 0, 0, 1, 9, 5, 0, 0, 0,"
                 + "0, 9, 8, 0, 0, 0, 0, 6, 0,"
@@ -45,10 +48,20 @@ public class SudokuTest {
                 + "0, 0, 0, 4, 1, 9, 0, 0, 5,"
                 + "0, 0, 0, 0, 8, 0, 0, 7, 9,";
         Sudoku instance = new Sudoku(str);
-       
+
         instance.show();
     }
 
- 
-    
+    @Test
+    public void testIsBroken() {
+
+        Sudoku s = new Sudoku();
+        s.setMembersByGroup(1, 1, 2, 3, 4, 5, 6, 7, 8, 8);
+        s.show();
+        assertTrue(s.isBroken());
+        s.setMembersByGroup(1, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+        s.show();
+        assertFalse(s.isBroken());
+    }
+
 }

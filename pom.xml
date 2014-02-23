@@ -55,7 +55,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.livehereandnow.sudoku.app.Terminal</mainClass>
+                            <mainClass>com.livehereandnow.sudoku.app.SolverCoreDev</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

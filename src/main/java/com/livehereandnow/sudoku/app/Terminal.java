@@ -7,7 +7,7 @@ package com.livehereandnow.sudoku.app;
 
 import com.livehereandnow.sudoku.util.Possible;
 import com.livehereandnow.sudoku.util.Solver;
-import com.livehereandnow.sudoku.util.SolverCore;
+import com.livehereandnow.sudoku.util.SolverCore_Prototype;
 import com.livehereandnow.sudoku.util.Sudoku;
 import java.util.Stack;
 
@@ -45,7 +45,7 @@ public class Terminal {
         //
         //
         //
-        SolverCore solver = new SolverCore(new Sudoku(str));
+        SolverCore_Prototype solver = new SolverCore_Prototype(new Sudoku(str));
         show("");
         show(" *=============*");
         show(" *   Question  *");
