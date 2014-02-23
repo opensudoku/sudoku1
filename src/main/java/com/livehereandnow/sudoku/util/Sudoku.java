@@ -215,7 +215,7 @@ public class Sudoku implements Basic {
     }
 
     public void show() {
-        System.out.println(" --- Sudoku 9x9 ---");
+        System.out.println(" --- Sudoku 9x9 --- (start)");
 
         for (int i = 1; i < member.length; i++) {
             if (member[i] == 0) {
@@ -229,12 +229,15 @@ public class Sudoku implements Basic {
                 System.out.println();
             }
         }
-        System.out.println("known cells count: " + this.getCount());
+        System.out.print(" --- Sudoku 9x9 --- (end)");
+
+        System.out.println(" known cells count: " + this.getCount());
+        System.out.println(" "+this.toString());
         System.out.println();
     }
 
     public void show(int style) {
-        System.out.println(" --- Sudoku 9x9 --- ");
+        System.out.println(" --- Sudoku 9x9 --- (start)");
 
         for (int m = 1; m < member.length; m++) {
             if (member[m] == 0) {
@@ -253,7 +256,9 @@ public class Sudoku implements Basic {
                 System.out.println();
             }
         }
-        System.out.println("known cells count: " + this.getCount());
+        System.out.print(" --- Sudoku 9x9 --- (end)");
+
+        System.out.print(" known cells count: " + this.getCount());
         System.out.println("note: * is newly added");
         for (int k = 1; k <= 81; k++) {
             if (newlyAdded[k] > 0) {
@@ -262,7 +267,7 @@ public class Sudoku implements Basic {
                 System.out.println("  cell[" + newlyAdded[k] + "]=" + member[newlyAdded[k]] + " is newly added");
             }
         }
-        System.out.println();
+       
     }
 
     @Override

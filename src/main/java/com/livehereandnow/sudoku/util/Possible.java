@@ -185,11 +185,14 @@ public class Possible implements Basic {
         this.possible[id] = val;
     }
 
+    /**
+     * Initializes each cell's possible array to be {0,1,2,3,4,5,6,7,8,9} 
+     */
     public void init() {
         for (int id = 1; id <= 81; id++) {
             // System.out.printf("%2d ", id);
 
-            for (int i = 1; i <= 9; i++) {
+            for (int i = 0; i <= 9; i++) {
                 possible[id][i] = i;
             }
 
@@ -241,11 +244,11 @@ public class Possible implements Basic {
     public void show() {
 
         StringBuilder sb = new StringBuilder();
-        sb.append("--- Sudoku 9x9 possible --- (start)\n");
+        sb.append(" --- Sudoku 9x9 possible --- (start)\n");
         int id = 0;
         int cellCnt = 0;
         for (int m = 1; m <= 9; m++) {
-            sb.append("row#").append(m).append(":");
+            sb.append(" row#").append(m).append(":");
 
             for (int n = 1; n <= 9; n++) {
                 id = (m - 1) * 9 + n;
@@ -270,8 +273,6 @@ public class Possible implements Basic {
 
         }// end of m
 
-        sb.append("possible values count:").append(this.getCount()).append("\n");
-        sb.append("          cells count:").append(cellCnt).append("\n");
 //
 //          sb.append("single possible value: ");
 //
@@ -288,7 +289,9 @@ public class Possible implements Basic {
 //
 //        }
 
-        sb.append("--- Sudoku 9x9 possible --- (end)\n");
+        sb.append(" --- Sudoku 9x9 possible --- (end)");
+        sb.append("  possible count:").append(this.getCount()).append("\n");
+        sb.append("                                       cells count:").append(cellCnt).append("\n");
         System.out.println(sb.toString());
     }
 
@@ -340,10 +343,7 @@ public class Possible implements Basic {
 
         }// end of m
 
-        sb.append("possible value count:").append(this.getCount()).append("\n\n");
-
-        sb.append("single possible value: ");
-
+        
         int[] temp = getSingleArray();
         for (int m = 0; m < 81; m = m + 2) {
             if (temp[m] > 0) {
@@ -357,7 +357,10 @@ public class Possible implements Basic {
 
         }
 
-        sb.append("\n--- Sudoku 9x9 possible --- (end)\n");
+        sb.append("\n--- Sudoku 9x9 possible --- (end)");
+        sb.append("possible value count:").append(this.getCount()).append(" ");
+        sb.append("single possible value: ");
+
         return sb.toString();
     }
 }
