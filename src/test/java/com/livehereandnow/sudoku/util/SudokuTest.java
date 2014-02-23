@@ -62,6 +62,14 @@ public class SudokuTest {
         s.setMembersByGroup(1, 1, 2, 3, 4, 5, 6, 7, 8, 9);
         s.show();
         assertFalse(s.isBroken());
+        String  str = "530070000_600195000_098000060_800060003_400803001_700020006_060000280_000419005_000080079";
+        s.setMembers(str);
+        s.show();
+        str = "358942617_476183925_291567348_934275861_825416739_167839452_713628594_582394176_649751283";
+        s.setMembers(str);
+        s.show();
+        
+
     }
 
 }

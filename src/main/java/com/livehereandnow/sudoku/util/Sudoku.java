@@ -35,6 +35,23 @@ public class Sudoku implements Basic, Cloneable {
         return newlyAdded;
     }
 
+    public void  setMembers(String s){
+        int cnt = 0;
+
+        for (int k = 0; k < s.length(); k++) {
+
+            //   System.out.println(" this one is "+s.charAt(k));
+            if ((s.charAt(k) >= '0') && (s.charAt(k) <= '9')) {
+//                System.out.printf(" ... get %s\n",  s.charAt(k));
+                member[++cnt] = s.charAt(k) - '0'; // '0' is base
+                if (cnt == 81) {
+                    return;
+                }
+            }
+
+        }
+
+    }
     public Sudoku(String s) {
 //        System.out.println("xxxxxxxxxxxxxxxxxxxxinput is " + s);
         int cnt = 0;
@@ -133,6 +150,13 @@ public class Sudoku implements Basic, Cloneable {
 //    public Sudoku getSudoku() {
 //        return this;  // ??? need to verify
 //    }
+    public boolean isSolved() {
+        if (getCount() == 81) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Returns the count of cells wmth know values
      *
@@ -263,6 +287,9 @@ public class Sudoku implements Basic, Cloneable {
         System.out.println(" " + this.toString());
         if (isBroken()) {
             System.out.println(" xxx It's broken! xxx");
+        } else if (isSolved()) {
+            System.out.println(" *** It's solved! ***");
+
         } else {
             System.out.println(" ...still in good shape");
         }

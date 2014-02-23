@@ -7,6 +7,8 @@ package com.livehereandnow.sudoku.util;
 
 import static com.livehereandnow.sudoku.app.Terminal.show;
 import static com.livehereandnow.sudoku.util.Solver.show;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * SolverCore uses method run to perform very basic rule of Sudoku, which is to
@@ -51,6 +53,19 @@ public class SolverCore {
         return question;
     }
 
+    public List<Integer> getBranch() {
+        List list = new ArrayList<Integer>();
+
+        int id = this.getPossible().getFirstCellIdHavingPossible();
+        int[] val = this.getPossible().getPossible(id);
+        for (int k = 1; k <= 9; k++) {
+            if (val[k] > 0) {
+                list.add(k);
+            }
+        }
+        return list;
+    }
+
     public Sudoku getAnswer() {
         return answer;
     }
@@ -76,12 +91,29 @@ public class SolverCore {
 //        answer.setSudokuData(s.getSudokuData());
     }
 
+    public boolean isDone() {
+        if (isBroken()) {
+            return true;
+        }
+        if (this.answer.isSolved()) { //TESTING...
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * for any unknown cell having no any possible values
      *
      * @return true: it's broken
      */
     public boolean isBroken() {
+        // Sudoku level
+        if (answer.isBroken()) {
+            return true;
+        }
+
+        // Sudoku and Possible level
         for (int k = 1; k <= 81; k++) {
             if (answer.getMember(k) == 0) {
                 if (possible.getCount(k) == 0) {
@@ -89,8 +121,6 @@ public class SolverCore {
                 }
             }
         }
-        //for (answer.getMember(id))
-
         return false;
     }
 
