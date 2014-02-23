@@ -60,7 +60,7 @@ public class SolverCoreExt {
         for (Integer val : branch) {
             Sudoku newQuestion = new Sudoku();
             newQuestion = sc.getAnswer().clone();
-            show(" ... cell#" + id + " with assigned value " + val.toString());
+//            show(" ... cell#" + id + " with assigned value " + val.toString());
             newQuestion.setMember(id, val);
 //            newQuestion.show();
             stack.push(newQuestion);
@@ -71,8 +71,8 @@ public class SolverCoreExt {
         }
         run2();
 
-        show(" just show last try");
-        sc.show();
+//        show(" just show last try");
+        sc.getAnswer().show();
     }
 
     public int run2() throws CloneNotSupportedException {
@@ -104,7 +104,7 @@ public class SolverCoreExt {
             for (Integer val : branch) {
                 Sudoku newQuestion = new Sudoku();
                 newQuestion = sc.getAnswer().clone();
-                show(" ... cell#" + id + " with assigned value " + val.toString());
+//                show(" ... cell#" + id + " with assigned value " + val.toString());
                 newQuestion.setMember(id, val);
 //            newQuestion.show();
 
@@ -118,6 +118,6 @@ public class SolverCoreExt {
 
     public void show() {
         // sc.run();
-        show(" ...DOING show");
+//        show(" ...DOING show");
     }
 }
