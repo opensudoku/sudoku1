@@ -11,7 +11,7 @@ package com.livehereandnow.sudoku.util;
  * @author mark
  */
 public class SolverCoreExt {
-    private SolverCore sc;
+    private final SolverCore sc;
 
     public SolverCoreExt() throws CloneNotSupportedException {
         Sudoku question=new Sudoku();        
@@ -32,9 +32,17 @@ public class SolverCoreExt {
     }
 
     
-    public void run(){
+    public void run() throws CloneNotSupportedException{
         sc.run();
         sc.show();
+        
+        if (sc.getAnswer().isSolved()){
+        show(" *** Game Over  ***");
+        show(" *** Solved!!!  ***");
+            
+        }
+        
+        
         show(" ...after SolverCore's run");
     }
     

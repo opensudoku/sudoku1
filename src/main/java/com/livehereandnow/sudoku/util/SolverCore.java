@@ -25,14 +25,6 @@ public class SolverCore {
     //
     // my basic setup to dev
     //
-    static boolean IS_DEBUG = true;
-
-    public static void mark(String str) {
-        if (IS_DEBUG) {
-            System.out.println(str);
-        }
-    }
-
     public static void show(String str) {
         System.out.println(str);
     }
@@ -45,9 +37,9 @@ public class SolverCore {
         this.question = question;
     }
 
-    public void setPossible(Possible possible) {
-        this.possible = possible;
-    }
+//    public void setPossible(Possible possible) {
+//        this.possible = possible;
+//    }
 
     public Sudoku getQuestion() {
         return question;
@@ -124,7 +116,14 @@ public class SolverCore {
         return false;
     }
 
-    public void run() {
+    public void run() throws CloneNotSupportedException {
+        //DEBUG
+        answer=question.clone();
+        possible=new Possible();
+        
+        
+        
+        
 //        if (IS_DEBUG) {
 //            mark("**************");
 //            mark("*   Step 1   *");

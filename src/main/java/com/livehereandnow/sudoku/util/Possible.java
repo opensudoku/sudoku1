@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author mark
  */
-public class Possible implements Basic {
+public final class Possible implements Basic {
 
     private int[][] possible = new int[82][10];
 
