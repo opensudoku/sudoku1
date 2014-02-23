@@ -37,16 +37,16 @@ public class SolverCoreExt {
 
     public void run() throws CloneNotSupportedException {
         sc.run();
-        sc.show();
+//        sc.show();
 
         if (sc.getAnswer().isSolved()) {
-            show(" *** Game Over  ***");
-            show(" *** Solved!!!  ***");
+//            show(" *** Game Over  ***");
+//            show(" *** Solved!!!  ***");
             return;
         }
         if (sc.getAnswer().isBroken()) {
-            show(" *** Game Over  ***");
-            show(" *** xxx broken xxx  ***");
+//            show(" *** Game Over  ***");
+//            show(" *** xxx broken xxx  ***");
             return;
         }
 
@@ -72,7 +72,7 @@ public class SolverCoreExt {
         run2();
 
 //        show(" just show last try");
-        sc.getAnswer().show();
+//        sc.getAnswer().show();
     }
 
     public int run2() throws CloneNotSupportedException {
@@ -82,16 +82,16 @@ public class SolverCoreExt {
             s = stack.pop();
             sc.getQuestion().setSudoku(s);
             sc.run();
-            sc.show();
+//            sc.show();
 
             if (sc.getAnswer().isSolved()) {
-                show(" *** Game Over  ***");
-                show(" *** Solved!!!  ***");
+//                show(" *** Game Over  ***");
+//                show(" *** Solved!!!  ***");
                 return 1;
             }
             if (sc.getAnswer().isBroken()) {
-                show(" *** Game Over  ***");
-                show(" *** xxx broken xxx  ***");
+//                show(" *** Game Over  ***");
+//                show(" *** xxx broken xxx  ***");
                 continue;
             }
 

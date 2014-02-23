@@ -267,6 +267,36 @@ public class Sudoku implements Basic, Cloneable {
     }
 
     public void show() {
+        //System.out.println(" --- Sudoku 9x9 --- ");
+
+        for (int i = 1; i < member.length; i++) {
+            if (member[i] == 0) {
+                System.out.printf(" .");
+
+            } else {
+                System.out.printf(" %d", member[i]);
+            }
+
+            if (i % 9 == 0) {
+                System.out.println();
+            }
+        }
+//        System.out.print(" --- Sudoku 9x9 --- (end)");
+//
+//        System.out.println(" known cells count: " + this.getCount());
+//        System.out.println(" " + this.toString());
+//        if (isBroken()) {
+//            System.out.println(" xxx It's broken! xxx");
+//        } else if (isSolved()) {
+//            System.out.println(" *** It's solved! ***");
+//
+//        } else {
+//            System.out.println(" ...still in good shape");
+//        }
+//        System.out.println();
+    }
+
+    public void showDebug() {
         System.out.println(" --- Sudoku 9x9 --- (start)");
 
         for (int i = 1; i < member.length; i++) {
