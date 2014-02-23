@@ -10,6 +10,11 @@ package com.livehereandnow.sudoku.util;
  *
  * @author mark
  */
-public class SolverCoreExt {
+public class SolverCoreExt extends SolverCore{
+   
+    public SolverCoreExt(Sudoku s) throws CloneNotSupportedException {
+        super(s);
+        show(" === SolverCoreExt ===");
+    }
     
 }
