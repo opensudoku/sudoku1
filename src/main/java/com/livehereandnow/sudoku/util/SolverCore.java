@@ -6,29 +6,33 @@
 package com.livehereandnow.sudoku.util;
 
 /**
- * SolverCore uses method run to perform very basic rule of Sudoku, which is to eliminate possible value 
- * from each cell's possible list then to reveal single value.
- * It stops when no more improvement. Programmer can use isBroken to determine 
- * current answer is useful or now.
- * There are 3 private fields: Sudoku question, Sudoku answer and Possible possible.
- * Currently use setter and getter on data, not using clone method yet (and to evaluate it).
+ * SolverCore uses method run to perform very basic rule of Sudoku, which is to
+ * eliminate possible value from each cell's possible list then to reveal single
+ * value. It stops when no more improvement. Programmer can use isBroken to
+ * determine current answer is useful or now. There are 3 private fields: Sudoku
+ * question, Sudoku answer and Possible possible. Currently use setter and
+ * getter on data, not using clone method yet (and to evaluate it).
+ *
  * @author mark
  */
-public class SolverCore  {
+public class SolverCore {
+
     //
     // my basic setup to dev
     //
-    static boolean IS_DEBUG=true;
+    static boolean IS_DEBUG = true;
+
     public static void mark(String str) {
         if (IS_DEBUG) {
             System.out.println(str);
         }
     }
+
     public static void show(String str) {
         System.out.println(str);
     }
 
-    private Sudoku question=new Sudoku();
+    private Sudoku question = new Sudoku();
     private Sudoku answer = new Sudoku();
     private Possible possible = new Possible();
 
@@ -53,15 +57,21 @@ public class SolverCore  {
     }
 
     /**
-     * Main purpose for Solver to provide answer based on given Sudoku question. 
-     * Constructor copies given Sudoku's data, so it won't affect original Sudoku's data.
+     * Main purpose for Solver to provide answer based on given Sudoku question.
+     * Constructor copies given Sudoku's data, so it won't affect original
+     * Sudoku's data.
+     *
      * @param problem
      */
-    public SolverCore(Sudoku s) {
-        question.setSudokuData(s.getSudokuData());
-        answer.setSudokuData(s.getSudokuData());
-//        possible=new Possible();
-      //  possible.init();
+    public SolverCore(Sudoku s) throws CloneNotSupportedException {
+        question = s.clone();
+        answer = s.clone();
+
+//        following is the style without clone method,
+//        --------------------------------------------
+//        question.setSudokuData(s.getSudokuData());
+//        answer.setSudokuData(s.getSudokuData());
+
     }
 
     /**
@@ -105,7 +115,6 @@ public class SolverCore  {
 //            mark("**************");
 //            mark("*   Step 2   *");
 //            mark("**************");
-
 //        }
         int possibleCnt = possible.getCount();
 

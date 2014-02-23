@@ -23,7 +23,7 @@ public class Terminal {
         System.out.println(str);
     }
 
-    public static void main(String[] arg) {
+    public static void main(String[] arg) throws CloneNotSupportedException {
         String str = null;
         if (arg.length == 0) {
 ////            http://www.dailysudoku.com/sudoku/archive/2014/02/2014-02-12.shtml

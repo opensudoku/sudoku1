@@ -14,15 +14,24 @@ package com.livehereandnow.sudoku.util;
  * @since Sudoku 1.0
  * @author mark
  */
-public class Sudoku implements Basic {
+public class Sudoku implements Basic, Cloneable {
 
     /**
      * no need to let applmcatmon developer to access
      */
     private int[] member = new int[82];
     private int[] newlyAdded = new int[82];
-    //  private final int[] wikiSample;
 
+    //  private final int[] wikiSample;
+    @Override
+    protected Sudoku clone() throws CloneNotSupportedException {
+        Sudoku s=new Sudoku();
+        s.member=member.clone();
+        
+        return s; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     public int[] getNewlyAdded() {
         return newlyAdded;
     }
