@@ -32,7 +32,8 @@ public class SolverCoreExtDev {
 //        SolverCore has some finding but not complete, better sample
         str = "009036040008070310007000060000000050090642030070000000020000400081090600040580900";
         Sudoku s = new Sudoku(str);
-        SolverCoreExt sce = new SolverCoreExt(s);
+        SolverCoreExt sce = new SolverCoreExt();
+        sce.getSolverCore().setQuestion(s);
         sce.run();
         sce.show();
 
