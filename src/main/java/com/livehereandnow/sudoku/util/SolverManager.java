@@ -47,8 +47,129 @@ public class SolverManager implements RunMode {
 //        sudokuStack=new Stack<Sudoku>();
 //        possibleStack=new Stack<Possible>();
         stack = new Stack();
-        run2();
+
+        System.out.println("TODO...");
+        solver.getAnswer().show();
+        solver.getPossible().show();
+
+        _BRANCH:
+        for (;;) {
+            branching();
+            checkStack();
+            _POP:
+            for (;;) {
+             //   checkStack();
+                solver.getQuestion().setSudokuData((int[]) stack.pop());
+                checkStack();
+                solver.getAnswer().setSudokuData(solver.getQuestion().getSudokuData());
+                solver.getPossible().init();
+
+                solver.getQuestion().show();
+                //          checkStack();
+                solver.run();
+                solver.getAnswer().show();
+                solver.getPossible().show();
+                if (solver.getAnswer().getCount() ==81) { //DEBUG ***
+                    System.out.println("Solved!");
+
+                    return;
+                }
+               
+                
+
+                if (solver.isBroken()) {
+                    System.out.println("Broken case!");
+                    break _POP;
+                } else {
+                    System.out.println("...stile good");
+                    break _BRANCH;
+                }
+            }
+        }
+        //branching
+//        while (true) {
+//            branching();
+//            
+//            //pop
+//            if (!popData()) {
+//                System.out.println("NO MORE STACK !");
+//                return;
+//            }
+//            solver.getQuestion().show();
+//            solver.run();
+//            mark("result?" + solver.getAnswer().getCount());
+//            if (solver.getAnswer().getCount() == 81) {
+//                return;
+//            } else {
+//                if (solver.isBroken()) {
+//                    if (!popData()) {
+//                        System.out.println("NO MORE STACK !");
+//                        return;
+//                    }
+//
+//                } else {
+//                    continue;
+//                }
+//            }
+//
+//        }
+        //try
 //        solver.show();
+    }
+
+    private void checkStack() {
+        int k = stack.size();
+
+        for (int i = 0; i < k; i++) {
+            int[] x = (int[]) stack.get(i);
+            //mark(x.toString());
+            for (int n = 1; n < x.length; n++) {
+                System.out.print(x[n]);
+            }
+            System.out.println(" --- " + i);
+        }
+        System.out.println();
+
+    }
+
+    public void branching() {
+        int id = solver.getPossible().getFirstCellIdHavingPossible();
+        int[] list = solver.getPossible().getPossibleValues(id);
+        mark("list???" + list.toString());
+
+        for (int k = 1; k <= 9; k++) { // SOLVED why add 0
+            if (list[k] > 0) {
+
+                show("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~branch at cell#" + id + ", value is " + list[k]);
+                Sudoku s1 = new Sudoku();
+                s1.setSudokuData(solver.getAnswer().getSudokuData());
+                s1.setMember(id, list[k]);
+                stack.push(s1.getSudokuData());// 
+                //        mark("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@after adding , size now is " + stack.size());
+
+            } else {
+//                        break;
+            }
+        }
+
+    }
+
+    public boolean popData() {
+        if (stack.size() <= 0) {
+            mark("no more Sudoku on stack ");
+            mark("XXXX should be no answer for this question XXXX ");
+
+            return false;
+        }
+        solver.getQuestion().setSudokuData((int[]) stack.pop());
+        mark(" now ....stack size is " + stack.size());
+
+        solver.getAnswer().setSudokuData(solver.getQuestion().getSudokuData());
+        solver.getPossible().init();
+        return true;
+//        solver.run();
+        // run2();
+
     }
 
     public void run2() {
@@ -81,18 +202,21 @@ public class SolverManager implements RunMode {
 
                 int id = solver.getPossible().getFirstCellIdHavingPossible();
                 int[] list = solver.getPossible().getPossibleValues(id);
+                mark("list???" + list.toString());
 
-                for (int k = 0; k < 10; k++) {
+                for (int k = 1; k <= 9; k++) { // SOLVED why add 0
                     if (list[k] > 0) {
 
                         mark("branch at cell#" + id + ", value is " + list[k]);
                         Sudoku s1 = new Sudoku();
                         s1.setSudokuData(solver.getAnswer().getSudokuData());
                         s1.setMember(id, list[k]);
-                        stack.add(s1.getSudokuData());// 
-                        mark("after adding , size now is " + stack.size());
+                        stack.push(s1.getSudokuData());// 
+                        mark("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@after adding , size now is " + stack.size());
+                        checkStack();
+
                     } else {
-                        break;
+//                        break;
                     }
                 }
 

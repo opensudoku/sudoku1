@@ -30,21 +30,26 @@ public class Main {
 //            str = "530070000_600195000_098000060_800060003_400803001_700020006_060000280_000419005_000080079";
 
 //            http://www.dailysudoku.com/sudoku/archive/2014/02/2014-02-22.shtml
-//            str = "009036040008070310007000060000000050090642030070000000020000400081090600040580900";
+            str = "009036040008070310007000060000000050090642030070000000020000400081090600040580900";
 //http://www.dailysudoku.com/sudoku/archive/2014/02/2014-02-16.shtml
-            str = "000902007006003900200067048900070060805010709060030002710620004002300100600701000";
+//            http://www.dailysudoku.com/sudoku//pdf/2014/02/2014-02-16_S2_N1_X.pdf
+            //TODO
+            //BIG PROBLEM....
+//            str = "000902007006003900200067048900070060805010709060030002710620004002300100600701000";
+//            str = "358942617476183925291567348934275861825416739167839452713628594582394176649751283";
+
         } else {
             str = arg[0]; // just accept the FIRST arguement
         }
         Sudoku question = new Sudoku(str);
         question.show();
         Solver solver = new Solver(question);
-        
-        SolverManager sm=new SolverManager();
-        
+
+        SolverManager sm = new SolverManager();
+
         sm.setSolver(solver);
         sm.run();
         sm.getSolver().getAnswer().show();
-        
+
     }
 }

@@ -11,6 +11,6 @@ package com.livehereandnow.sudoku.util;
  * @author mark
  */
 public interface RunMode {
-    boolean IS_DEBUG=true;
+    boolean IS_DEBUG=false;
  //   void debug(String str);
 }

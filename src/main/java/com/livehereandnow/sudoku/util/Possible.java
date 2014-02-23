@@ -111,10 +111,10 @@ public class Possible implements Basic {
 //        }
 
         int[] list=new int[10];
-        int cnt=0;
+    //    int cnt=0;
           for (int n = 1; n <= 9; n++) {
             if (possible[id][n] > 0) {
-                list[cnt++]=n;
+                list[n]=n;
             }
         }
         return list;
@@ -154,7 +154,8 @@ public class Possible implements Basic {
     }
 
     public int[] getSingleArray() {
-        int[] single = new int[162];
+        int[] single = new int[162]; //***BUG??
+//        int[] single = new int[164]; //***BUG??
         int cnt = 0;
 
         for (int m = 1; m <= 81; m++) {
@@ -163,7 +164,7 @@ public class Possible implements Basic {
 //                    System.out.println("cell#" + m + " has only one possible value "+getFirstPossible(m));
 
                 single[cnt++] = m;// id
-                single[cnt++] = getFirstPossible(m);// id
+                single[cnt++] = getFirstPossible(m);// val
 
             }
         }

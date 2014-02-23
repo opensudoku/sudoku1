@@ -55,7 +55,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.livehereandnow.sudoku.app.Main</mainClass>
+                            <mainClass>com.livehereandnow.sudoku.app.CommandLine</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

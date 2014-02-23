@@ -75,11 +75,11 @@ public class Solver implements RunMode {
     }
 
     public void run() {
-        if (IS_DEBUG) {
-            mark("**************");
-            mark("*   Step 1   *");
-            mark("**************");
-        }
+//        if (IS_DEBUG) {
+//            mark("**************");
+//            mark("*   Step 1   *");
+//            mark("**************");
+//        }
         for (int m = 1; m <= 81; m++) {
             if (question.getMember(m) > 0) { // for known cell, 
                 possible.removePossibleValueByCell(m, question.getMember(m));
@@ -87,18 +87,18 @@ public class Solver implements RunMode {
         }
         answer.setKnownMembers(possible.getSingleArray());
 
-        if (IS_DEBUG) {
-            mark(possible.toString());
-            answer.show(1);
-        }
+//        if (IS_DEBUG) {
+//            mark(possible.toString());
+//            answer.show(1);
+//        }
 //
         // === 2. going for loop ===
-        if (IS_DEBUG) {
-            mark("**************");
-            mark("*   Step 2   *");
-            mark("**************");
+//        if (IS_DEBUG) {
+//            mark("**************");
+//            mark("*   Step 2   *");
+//            mark("**************");
 
-        }
+//        }
         int possibleCnt = possible.getCount();
 
         while (true) {
@@ -117,10 +117,8 @@ public class Solver implements RunMode {
             } else {
                 possibleCnt = possible.getCount();
                 answer.setKnownMembers(possible.getSingleArray());
-                if (IS_DEBUG) {
-                    mark(possible.toString());
-                    answer.show(1);
-                }
+//                mark(possible.toString());
+//                    answer.show(1);
             }
         }
     }
@@ -131,9 +129,8 @@ public class Solver implements RunMode {
         show("*  Question  *");
         show("**************");
         show("question is " + question.toString());
-       
-            question.show();
-        
+
+        question.show();
 
         show("**************");
         show("*   Answer   *");
