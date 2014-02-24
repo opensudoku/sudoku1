@@ -16,15 +16,16 @@ package com.livehereandnow.sudoku.util;
  */
 public class Sudoku implements Coordinate, Cloneable {
 
- 
     private int[] member = new int[82];
     private int[] newlyAdded = new int[82];
 
     //  private final int[] wikiSample;
     /**
-     * To have separate Suodku with its own set values, not to interface each other.  
+     * To have separate Suodku with its own set values, not to interface each
+     * other.
+     *
      * @return Returns a copy of this object with identical data of Sudoku.
-     * @throws CloneNotSupportedException 
+     * @throws CloneNotSupportedException
      */
     @Override
     protected Sudoku clone() throws CloneNotSupportedException {
@@ -40,9 +41,10 @@ public class Sudoku implements Coordinate, Cloneable {
 
     /**
      * Sets Sudoku's values by picking up numbers from 0 to 9 by sequence.
-     * @param s 
+     *
+     * @param s
      */
-    public void  setData(String s){
+    public void setData(String s) {
         int cnt = 0;
 
         for (int k = 0; k < s.length(); k++) {
@@ -59,6 +61,7 @@ public class Sudoku implements Coordinate, Cloneable {
         }
 
     }
+
     public Sudoku(String s) {
         setData(s);
 //        System.out.println("xxxxxxxxxxxxxxxxxxxxinput is " + s);
@@ -106,8 +109,10 @@ public class Sudoku implements Coordinate, Cloneable {
     }
 
     /**
-     * For known cells, must meet basic rule: no repeat numbers within any groups 
-     * @return 
+     * For known cells, must meet basic rule: no repeat numbers within any
+     * groups
+     *
+     * @return
      */
     public boolean isBroken() {
         int cnt;
@@ -172,16 +177,16 @@ public class Sudoku implements Coordinate, Cloneable {
         return member[id];
     }
 
-
     /**
      * When all cells with values and no repeat numbers within any groups
-     * @return 
+     *
+     * @return
      */
     public boolean isSolved() {
-        if (isBroken()){
+        if (isBroken()) {
             return false;
         }
-        if (getCount()  <81) {
+        if (getCount() < 81) {
             return false;
         }
         return true;
@@ -209,7 +214,12 @@ public class Sudoku implements Coordinate, Cloneable {
      * @param id cell md, from 1 to 81
      * @param val cell value, from 0 to 9, 0 ms for empty
      */
-    public void setMember(int id, int val) {
+    public void setData(int id, int val) {
+        this.member[id] = val;
+    }
+
+    public void setData(int row, int seq, int val) {
+        int id=(row-1)*9+seq;
         this.member[id] = val;
     }
 
@@ -223,7 +233,7 @@ public class Sudoku implements Coordinate, Cloneable {
         resetNewlyAdded();
         for (int m = 0; m < temp.length; m = m + 2) {
             if (temp[m] > 0) {
-                this.setMember(temp[m], temp[m + 1]);
+                this.setData(temp[m], temp[m + 1]);
 //                System.out.println("??????????????/ cell#" + temp[m] + " is {" + temp[m + 1] + "}");
                 newlyAdded[temp[m]] = temp[m];
 //                System.out.println("?????????????? newlyAdded" + newlyAdded[temp[m]]);
@@ -295,7 +305,6 @@ public class Sudoku implements Coordinate, Cloneable {
 //        }
 //
 //    }
-
     public void show() {
         //System.out.println(" --- Sudoku 9x9 --- ");
 
@@ -389,7 +398,6 @@ public class Sudoku implements Coordinate, Cloneable {
 //        }
 //
 //    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

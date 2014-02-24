@@ -46,60 +46,64 @@ public class Main {
         while (true) {
             System.out.print(" cmd:");
             String cmd = scan.nextLine();
-            switch (cmd) {
-                case "sample": {
-                    show(" ans:sample question, as follows");
-                    solver.getCore().getQuestion().setData(str);
-                    solver.getCore().getQuestion().show();
-                    break;
-                }
-                case "run": {
-                    show(" ans:run result, as follows");
-                    solver.getCore().run();
-                    solver.getCore().getAnswer().show();
-                    break;
-                }
-                case "possible": {
-                    show(" ans:show possible, as follows");
-//                    solver.getCore();
-                    solver.getCore().getPossible().show();
-                    break;
-                }
-                default:
-                    if (cmd.length() == 4) {
-                        if (cmd.charAt(0) < 'A') {
-                            break;
-                        }
-                        if (cmd.charAt(0) > 'I') {
-                            break;
-                        }
-                        if (cmd.charAt(1) < '1') {
-                            break;
-                        }
-                        if (cmd.charAt(1) >'9') {
-                            break;
-                        }
-                        if (cmd.charAt(2) !='=') {
-                            break;
-                        }
-                        if (cmd.charAt(3) < '0') {
-                            break;
-                        }
-                        if (cmd.charAt(3) >'9') {
-                            break;
-                        }
-                        //
-                        // A1=2
-                        //
-                        
-                        
-                        
-                        
-
-                        show("...debug here,"+cmd+ " is firing...");
-                    }
-
+            if (!solver.runCommand(cmd)){
+                show("ans:"+cmd+", is unknown.");
             }
+            
+//            switch (cmd) {
+//                case "sample": {
+//                    show(" ans:sample question, as follows");
+//                    solver.getCore().getQuestion().setData(str);
+//                    solver.getCore().getQuestion().show();
+//                    break;
+//                }
+//                case "run": {
+//                    show(" ans:run result, as follows");
+//                    solver.getCore().run();
+//                    solver.getCore().getAnswer().show();
+//                    break;
+//                }
+//                case "possible": {
+//                    show(" ans:show possible, as follows");
+////                    solver.getCore();
+//                    solver.getCore().getPossible().show();
+//                    break;
+//                }
+//                default:
+//                    if (cmd.length() == 4) {
+//                        if (cmd.charAt(0) < 'A') {
+//                            break;
+//                        }
+//                        if (cmd.charAt(0) > 'I') {
+//                            break;
+//                        }
+//                        if (cmd.charAt(1) < '1') {
+//                            break;
+//                        }
+//                        if (cmd.charAt(1) >'9') {
+//                            break;
+//                        }
+//                        if (cmd.charAt(2) !='=') {
+//                            break;
+//                        }
+//                        if (cmd.charAt(3) < '0') {
+//                            break;
+//                        }
+//                        if (cmd.charAt(3) >'9') {
+//                            break;
+//                        }
+//                        //
+//                        // A1=2
+//                        //
+//                        
+//                        
+//                        
+//                        
+//
+//                        show("...debug here,"+cmd+ " is firing...");
+//                    }
+//
+//            }
 
         }
     }
