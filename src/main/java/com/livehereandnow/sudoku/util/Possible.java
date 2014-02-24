@@ -9,39 +9,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Provides data storage of possible values for total 81 cells in Sudoku.
  *
  * @author mark
  */
-public final class Possible implements Basic {
+public final class Possible implements Coordinate {
 
     private int[][] possible = new int[82][10];
 
     //  private int[] member;
+    /**
+     * Ready to use with default possible values from 1 to 9
+     */
     public Possible() {
         init();
     }
 
-//    public void setSudokuMembers(int[] m) {
-//        member = m;
-//    }
-    public void removeSinglePossibleValue(int cellId, int val) {
+    /**
+     * Removes single possible value on specified cell
+     *
+     * @param cellId
+     * @param val
+     */
+    public void removePossibleValue(int cellId, int val) {
 //  
         possible[cellId][val] = 0;
     }
 
-    public void setSinglePossibleValue(int cellId, int val) {
+    public void setPossibleValue(int cellId, int val) {
 //      
         resetPossible(cellId);
         possible[cellId][val] = val;
     }
 
     /**
-     * to remove possible value from 9x3 cells
+     * to remove possible value on 3 groups, based on given cell id and assigned
+     * value
      *
      * @param cellId
      * @param val
      */
-    public void removePossibleValueByCell(int cellId, int val) {
+    public void sweepGroups(int cellId, int val) {
 //        System.out.println("id=" + cellId + ", val=" + val);
         //   int val=member[cellId];
         int grp1 = CELL_GROUPS[cellId][1];
@@ -60,15 +68,11 @@ public final class Possible implements Basic {
         }
     }
 
-//    
-//    public int getCount() {
-//        int cnt = 0;
-//        for (int id = 1; id <= 81; id++) {
-//                cnt=cnt+getCount(id);
-//            }
-//        }
-//        return cnt;
-//    }
+    /**
+     * Returns summary of every cell's possible count
+     *
+     * @return
+     */
     public int getCount() {
         int cnt = 0;
         for (int id = 1; id <= 81; id++) {
@@ -78,6 +82,7 @@ public final class Possible implements Basic {
     }
 
     /**
+     * Returns specified cell's possible count
      *
      * @param id
      * @return
@@ -92,7 +97,12 @@ public final class Possible implements Basic {
         return cnt;
     }
 
-    public int getFirstPossible(int id) {
+    /**
+     * Returns first possible value on specified cell.
+     * @param id
+     * @return 
+     */
+    public int getFirstValue(int id) {
         //  int val = 0;
         for (int n = 1; n <= 9; n++) {
             if (possible[id][n] > 0) {
@@ -102,7 +112,12 @@ public final class Possible implements Basic {
         return 0;
     }
 
-    public int[] getPossibleValues(int id) {
+    /**
+     * Returns possible value array of specified cell.
+     * @param id
+     * @return 
+     */
+    public int[] getValues(int id) {
 //        List<Integer> list = new ArrayList<Integer>();
 //        for (int n = 1; n <= 9; n++) {
 //            if (possible[id][n] > 0) {
@@ -120,7 +135,7 @@ public final class Possible implements Basic {
         return list;
     }
 
-    public int getFirstCellIdHavingPossible() {
+    public int getFirstCellIdWithPossible() {
         //  int val = 0;
         for (int n = 1; n <= 81; n++) {
             if (getCount(n) > 0) {
@@ -161,10 +176,10 @@ public final class Possible implements Basic {
         for (int m = 1; m <= 81; m++) {
             // given ce
             if (this.getCount(m) == 1) {
-//                    System.out.println("cell#" + m + " has only one possible value "+getFirstPossible(m));
+//                    System.out.println("cell#" + m + " has only one possible value "+getFirstValue(m));
 
                 single[cnt++] = m;// id
-                single[cnt++] = getFirstPossible(m);// val
+                single[cnt++] = getFirstValue(m);// val
 
             }
         }
@@ -177,7 +192,6 @@ public final class Possible implements Basic {
 //      by Mark , 2/14/2014
         return possible[id].clone();
     }
-
 
     public void setPossible(int id, int[] val) {
         this.possible[id] = val;

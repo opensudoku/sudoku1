@@ -14,7 +14,7 @@ package com.livehereandnow.sudoku.util;
  * @since Sudoku 1.0
  * @author mark
  */
-public class Sudoku implements Basic, Cloneable {
+public class Sudoku implements Coordinate, Cloneable {
 
     /**
      * no need to let applmcatmon developer to access

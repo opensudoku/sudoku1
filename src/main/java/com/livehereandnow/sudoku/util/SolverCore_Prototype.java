@@ -5,8 +5,7 @@
  */
 package com.livehereandnow.sudoku.util;
 
-import static com.livehereandnow.sudoku.app.Terminal.show;
-import static com.livehereandnow.sudoku.util.Solver.show;
+
 
 /**
  * SolverCore_Prototype uses method run to perform very basic rule of Sudoku, which is to
@@ -102,7 +101,7 @@ public class SolverCore_Prototype {
 //        }
         for (int m = 1; m <= 81; m++) {
             if (question.getMember(m) > 0) { // for known cell, 
-                possible.removePossibleValueByCell(m, question.getMember(m));
+                possible.sweepGroups(m, question.getMember(m));
             }//    
         }
         answer.setKnownMembers(possible.getSingleArray());
@@ -124,7 +123,7 @@ public class SolverCore_Prototype {
             int[] newlyAdded = answer.getNewlyAdded();
             for (int m = 1; m <= 81; m++) {
                 if (newlyAdded[m] > 0) { // for known cell, 
-                    possible.removePossibleValueByCell(m, answer.getMember(m));
+                    possible.sweepGroups(m, answer.getMember(m));
                 }//    
             }
 
@@ -191,8 +190,7 @@ public class SolverCore_Prototype {
         show(" *=============*");
         show(" *   Branch   *");
         show(" *=============*");
-        // determine which cell and given value
-        int id = this.getPossible().getFirstCellIdHavingPossible();
+ 
         show(" TODO ... branch info");
 
     }

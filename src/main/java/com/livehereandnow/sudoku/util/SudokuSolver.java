@@ -10,7 +10,7 @@ package com.livehereandnow.sudoku.util;
  *
  * @author mark
  */
-public class SudokuSolver extends Sudoku implements Basic {
+public class SudokuSolver extends Sudoku implements Coordinate {
 
     private int[] member;
 

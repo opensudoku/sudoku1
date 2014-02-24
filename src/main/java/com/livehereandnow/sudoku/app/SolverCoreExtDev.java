@@ -54,6 +54,13 @@ public class SolverCoreExtDev {
 
         sce.getSolverCore().getAnswer().show();
         show("");
+        
+        show("");
+        show(" *===============*");
+        show(" *    TODO       *");
+        show(" *===============*");
+        show(" ...interactive mode");
+
 
     }
 }

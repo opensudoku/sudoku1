@@ -5,8 +5,6 @@
  */
 package com.livehereandnow.sudoku.util;
 
-import static com.livehereandnow.sudoku.app.Terminal.show;
-import static com.livehereandnow.sudoku.util.Solver.show;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,14 +43,14 @@ public class SolverCore {
     }
 
     public int getBranchCellId() {
-        return this.getPossible().getFirstCellIdHavingPossible();
+        return this.getPossible().getFirstCellIdWithPossible();
 
     }
 
     public List<Integer> getBranch() {
         List list = new ArrayList<Integer>();
 
-        int id = this.getPossible().getFirstCellIdHavingPossible();
+        int id = this.getPossible().getFirstCellIdWithPossible();
         int[] val = this.getPossible().getPossible(id);
         for (int k = 1; k <= 9; k++) {
             if (val[k] > 0) {
@@ -132,7 +130,7 @@ public class SolverCore {
 //        }
         for (int m = 1; m <= 81; m++) {
             if (question.getMember(m) > 0) { // for known cell, 
-                possible.removePossibleValueByCell(m, question.getMember(m));
+                possible.sweepGroups(m, question.getMember(m));
             }//    
         }
         answer.setKnownMembers(possible.getSingleArray());
@@ -154,7 +152,7 @@ public class SolverCore {
             int[] newlyAdded = answer.getNewlyAdded();
             for (int m = 1; m <= 81; m++) {
                 if (newlyAdded[m] > 0) { // for known cell, 
-                    possible.removePossibleValueByCell(m, answer.getMember(m));
+                    possible.sweepGroups(m, answer.getMember(m));
                 }//    
             }
 
@@ -223,7 +221,8 @@ public class SolverCore {
         show(" *   Branch    *");
         show(" *=============*");
         // determine which cell and given value
-        int id = this.getPossible().getFirstCellIdHavingPossible();
+        
+        int id = this.getPossible().getFirstCellIdWithPossible();
         int[] val = this.getPossible().getPossible(id);
         for (int k = 1; k <= 9; k++) {
             if (val[k] > 0) {
