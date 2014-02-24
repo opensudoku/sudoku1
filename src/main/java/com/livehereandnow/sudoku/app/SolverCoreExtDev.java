@@ -6,7 +6,7 @@
 package com.livehereandnow.sudoku.app;
 
 import com.livehereandnow.sudoku.util.SolverCore;
-import com.livehereandnow.sudoku.util.SolverCoreExt;
+import com.livehereandnow.sudoku.util.Solver;
 import com.livehereandnow.sudoku.util.Sudoku;
 
 /**
@@ -37,7 +37,7 @@ public class SolverCoreExtDev {
             str = arg[0];
         }
         Sudoku s = new Sudoku(str);
-        SolverCoreExt sce = new SolverCoreExt();
+        Solver sce = new Solver();
         show("");
         show(" *===============*");
         show(" *    Question   *");
@@ -54,13 +54,24 @@ public class SolverCoreExtDev {
 
         sce.getSolverCore().getAnswer().show();
         show("");
-        
+
         show("");
         show(" *===============*");
         show(" *    TODO       *");
         show(" *===============*");
         show(" ...interactive mode");
 
+        show("");
+        show(" *===============*");
+        show(" *    Command    *");
+        show(" *===============*");
+        show(" new, to start a new game ");
+        show(" run, to perform auto solving ");
+        show(" show, to display current Sudoku ");
+        
+        show(" a123456789, to assign value 123456789 to row a ");
+        show(" a1=9, to assign value 9 to cell a1 ");
+        
 
     }
 }

@@ -12,19 +12,19 @@ import java.util.Stack;
  *
  * @author mark
  */
-public class SolverCoreExt {
+public class Solver {
 
     private Stack<Sudoku> stack;
     private final SolverCore sc;
 
-    public SolverCoreExt() throws CloneNotSupportedException {
+    public Solver() throws CloneNotSupportedException {
         Sudoku question = new Sudoku();
 
         sc = new SolverCore(question);
     }
 
 //
-//    public SolverCoreExt(SolverCore sc) {
+//    public Solver(SolverCore sc) {
 //        this.sc = sc;
 //    }
     static void show(String str) {
