@@ -99,8 +99,9 @@ public final class Possible implements Coordinate {
 
     /**
      * Returns first possible value on specified cell.
+     *
      * @param id
-     * @return 
+     * @return
      */
     public int getFirstValue(int id) {
         //  int val = 0;
@@ -114,8 +115,9 @@ public final class Possible implements Coordinate {
 
     /**
      * Returns possible value array of specified cell.
+     *
      * @param id
-     * @return 
+     * @return
      */
     public int[] getValues(int id) {
 //        List<Integer> list = new ArrayList<Integer>();
@@ -258,14 +260,74 @@ public final class Possible implements Coordinate {
         return "--- not yet define ---";
     }
 
-    public void show() {
-
+    /**
+     * Shows designed output for command line process.
+     */
+    public void showCmd() {
+        String rowHead = "0ABCDEFGHI";
         StringBuilder sb = new StringBuilder();
         sb.append(" --- Sudoku 9x9 possible --- (start)\n");
         int id = 0;
         int cellCnt = 0;
         for (int m = 1; m <= 9; m++) {
             sb.append(" row#").append(m).append(":");
+
+            for (int n = 1; n <= 9; n++) {
+                id = (m - 1) * 9 + n;
+                boolean anyPossible = false;
+                sb.append(rowHead.charAt(m)).append(n).append("=");
+                sb.append("{");
+                for (int i = 1; i <= 9; i++) {
+                    if (possible[id][i] > 0) {
+                        sb.append(possible[id][i]);
+                        anyPossible = true;
+                    }
+                }
+                sb.append("}");
+                if (anyPossible) {
+                    cellCnt++;
+                }
+
+                if (n < 9) {
+                    sb.append(",");
+                }
+            }// end of id
+            sb.append("\n");
+
+        }// end of m
+
+//
+//          sb.append("single possible value: ");
+//
+//        int[] temp = getSingleArray();
+//        for (int m = 0; m < 81; m = m + 2) {
+//            if (temp[m] > 0) {
+//                //answer.setMember(temp[m], temp[m + 1]);
+//                //  System.out.println("cell#" + temp[m] + " is {" + temp[m + 1] + "}");
+//                sb.append("\n  cell[").append(temp[m]).append("]=").append(temp[m + 1]).append(" " );
+//
+//            } else {
+//                break;
+//            }
+//
+//        }
+        sb.append(" --- Sudoku 9x9 possible --- (end)");
+        sb.append("  possible count:").append(this.getCount()).append("\n");
+        sb.append("                                       cells count:").append(cellCnt).append("\n");
+        System.out.println(sb.toString());
+    }
+
+    public void show() {
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(" --- Sudoku 9x9 possible --- (start)\n");
+        int id = 0;
+        int cellCnt = 0;
+        String rowHead = "0ABCDEFGHI";
+
+        for (int m = 1; m <= 9; m++) {
+//            sb.append(" row#").append(m).append(":");
+    sb.append(" (").append(m).append(")").append(rowHead.charAt(m)).append(":");
 
             for (int n = 1; n <= 9; n++) {
                 id = (m - 1) * 9 + n;

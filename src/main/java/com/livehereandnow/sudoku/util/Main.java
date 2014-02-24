@@ -31,7 +31,7 @@ public class Main {
 //        Core has some finding but not complete, better sample
         str = "009036040008070310007000060000000050090642030070000000020000400081090600040580900";
 
-       // Sudoku s = new Sudoku(str);
+        // Sudoku s = new Sudoku(str);
         Solver solver = new Solver();
         show("");
         show(" *====================================*");
@@ -46,21 +46,61 @@ public class Main {
         while (true) {
             System.out.print(" cmd:");
             String cmd = scan.nextLine();
-            switch(cmd){
-                case "sample":{
+            switch (cmd) {
+                case "sample": {
                     show(" ans:sample question, as follows");
                     solver.getCore().getQuestion().setData(str);
                     solver.getCore().getQuestion().show();
                     break;
                 }
-                case "run":{
-                    show(" ans:run result, as follows");                    
-                    solver.run();
+                case "run": {
+                    show(" ans:run result, as follows");
+                    solver.getCore().run();
                     solver.getCore().getAnswer().show();
+                    break;
                 }
+                case "possible": {
+                    show(" ans:show possible, as follows");
+//                    solver.getCore();
+                    solver.getCore().getPossible().show();
+                    break;
+                }
+                default:
+                    if (cmd.length() == 4) {
+                        if (cmd.charAt(0) < 'A') {
+                            break;
+                        }
+                        if (cmd.charAt(0) > 'I') {
+                            break;
+                        }
+                        if (cmd.charAt(1) < '1') {
+                            break;
+                        }
+                        if (cmd.charAt(1) >'9') {
+                            break;
+                        }
+                        if (cmd.charAt(2) !='=') {
+                            break;
+                        }
+                        if (cmd.charAt(3) < '0') {
+                            break;
+                        }
+                        if (cmd.charAt(3) >'9') {
+                            break;
+                        }
+                        //
+                        // A1=2
+                        //
+                        
+                        
+                        
+                        
+
+                        show("...debug here,"+cmd+ " is firing...");
+                    }
+
             }
-            
-            
+
         }
     }
 }
