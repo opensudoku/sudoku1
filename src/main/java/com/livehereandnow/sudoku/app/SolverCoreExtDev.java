@@ -5,7 +5,7 @@
  */
 package com.livehereandnow.sudoku.app;
 
-import com.livehereandnow.sudoku.util.SolverCore;
+import com.livehereandnow.sudoku.util.Core;
 import com.livehereandnow.sudoku.util.Solver;
 import com.livehereandnow.sudoku.util.Sudoku;
 
@@ -23,15 +23,15 @@ public class SolverCoreExtDev {
 
     public static void main(String[] arg) throws CloneNotSupportedException {
         String str = null;
-//        SolverCore solves following in one shot, not a good example for this needs
+//        Core solves following in one shot, not a good example for this needs
 //        str = "530070000_600195000_098000060_800060003_400803001_700020006_060000280_000419005_000080079";//SolverCore done
 
         //broken case
 //        str = "535070000_600195000_098000060_800060003_400803001_700020006_060000280_000419005_000080079";//SolverCore done
-//        SolverCore has no finding at first try, easily confused
+//        Core has no finding at first try, easily confused
 //        str = "000902007006003900200067048900070060805010709060030002710620004002300100600701000";//SolverCore no first move
 //   
-//        SolverCore has some finding but not complete, better sample
+//        Core has some finding but not complete, better sample
         str = "009036040008070310007000060000000050090642030070000000020000400081090600040580900";
         if (arg.length > 0) {
             str = arg[0];
@@ -44,7 +44,7 @@ public class SolverCoreExtDev {
         show(" *===============*");
         s.show();
 
-        sce.getSolverCore().getQuestion().setSudoku(s);
+        sce.getCore().getQuestion().setSudoku(s);
         sce.run();
 
         show("");
@@ -52,7 +52,7 @@ public class SolverCoreExtDev {
         show(" *    Answer     *");
         show(" *===============*");
 
-        sce.getSolverCore().getAnswer().show();
+        sce.getCore().getAnswer().show();
         show("");
 
         show("");
@@ -72,6 +72,16 @@ public class SolverCoreExtDev {
         show(" a123456789, to assign value 123456789 to row a ");
         show(" a1=9, to assign value 9 to cell a1 ");
         
-
+    show("");
+        show(" *===============*");
+        show(" *    DOING      *");
+        show(" *===============*");
+        show(" final 5 classes: ");
+        show(" 1. Sudoku: data ");
+        show(" 2. Solver: run ");
+        show(" 3. Core: for Solver ");
+        show(" 4. Possible: for Solver ");
+        show(" 5. Coordinate: coordination system, for Sudoku, Core and Possible ");
+        
     }
 }

@@ -9,16 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * SolverCore uses method run to perform very basic rule of Sudoku, which is to
- * eliminate possible value from each cell's possible list then to reveal single
- * value. It stops when no more improvement. Programmer can use isBroken to
+ * Core uses method run to perform very basic rule of Sudoku, which is to
+ eliminate possible value from each cell's possible list then to reveal single
+ value. It stops when no more improvement. Programmer can use isBroken to
  * determine current answer is useful or now. There are 3 private fields: Sudoku
  * question, Sudoku answer and Possible possible. Currently use setter and
  * getter on data, not using clone method yet (and to evaluate it).
  *
  * @author mark
  */
-public class SolverCore {
+public class Core {
 
     //
     // my basic setup to dev
@@ -75,14 +75,14 @@ public class SolverCore {
      *
      * @param problem
      */
-    public SolverCore(Sudoku s) throws CloneNotSupportedException {
+    public Core(Sudoku s) throws CloneNotSupportedException {
         question = s.clone();
         answer = s.clone();
 
 //        following is the style without clone method,
 //        --------------------------------------------
-//        question.setSudokuData(s.getSudokuData());
-//        answer.setSudokuData(s.getSudokuData());
+//        question.setSudokuData(s.getData());
+//        answer.setSudokuData(s.getData());
     }
 
     public boolean isDone() {
@@ -109,7 +109,7 @@ public class SolverCore {
 
         // Sudoku and Possible level
         for (int k = 1; k <= 81; k++) {
-            if (answer.getMember(k) == 0) {
+            if (answer.getData(k) == 0) {
                 if (possible.getCount(k) == 0) {
                     return true;
                 }
@@ -129,8 +129,8 @@ public class SolverCore {
 //            mark("**************");
 //        }
         for (int m = 1; m <= 81; m++) {
-            if (question.getMember(m) > 0) { // for known cell, 
-                possible.sweepGroups(m, question.getMember(m));
+            if (question.getData(m) > 0) { // for known cell, 
+                possible.sweepGroups(m, question.getData(m));
             }//    
         }
         answer.setKnownMembers(possible.getSingleArray());
@@ -152,7 +152,7 @@ public class SolverCore {
             int[] newlyAdded = answer.getNewlyAdded();
             for (int m = 1; m <= 81; m++) {
                 if (newlyAdded[m] > 0) { // for known cell, 
-                    possible.sweepGroups(m, answer.getMember(m));
+                    possible.sweepGroups(m, answer.getData(m));
                 }//    
             }
 

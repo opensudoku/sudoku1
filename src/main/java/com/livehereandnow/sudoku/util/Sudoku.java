@@ -16,13 +16,16 @@ package com.livehereandnow.sudoku.util;
  */
 public class Sudoku implements Coordinate, Cloneable {
 
-    /**
-     * no need to let applmcatmon developer to access
-     */
+ 
     private int[] member = new int[82];
     private int[] newlyAdded = new int[82];
 
     //  private final int[] wikiSample;
+    /**
+     * To have separate Suodku with its own set values, not to interface each other.  
+     * @return Returns a copy of this object with identical data of Sudoku.
+     * @throws CloneNotSupportedException 
+     */
     @Override
     protected Sudoku clone() throws CloneNotSupportedException {
         Sudoku s = new Sudoku();
@@ -35,7 +38,11 @@ public class Sudoku implements Coordinate, Cloneable {
         return newlyAdded;
     }
 
-    public void  setMembers(String s){
+    /**
+     * Sets Sudoku's values by picking up numbers from 0 to 9 by sequence.
+     * @param s 
+     */
+    public void  setData(String s){
         int cnt = 0;
 
         for (int k = 0; k < s.length(); k++) {
@@ -53,21 +60,22 @@ public class Sudoku implements Coordinate, Cloneable {
 
     }
     public Sudoku(String s) {
+        setData(s);
 //        System.out.println("xxxxxxxxxxxxxxxxxxxxinput is " + s);
-        int cnt = 0;
-
-        for (int k = 0; k < s.length(); k++) {
-
-            //   System.out.println(" this one is "+s.charAt(k));
-            if ((s.charAt(k) >= '0') && (s.charAt(k) <= '9')) {
-//                System.out.printf(" ... get %s\n",  s.charAt(k));
-                member[++cnt] = s.charAt(k) - '0'; // '0' is base
-                if (cnt == 81) {
-                    return;
-                }
-            }
-
-        }
+//        int cnt = 0;
+//
+//        for (int k = 0; k < s.length(); k++) {
+//
+//            //   System.out.println(" this one is "+s.charAt(k));
+//            if ((s.charAt(k) >= '0') && (s.charAt(k) <= '9')) {
+////                System.out.printf(" ... get %s\n",  s.charAt(k));
+//                member[++cnt] = s.charAt(k) - '0'; // '0' is base
+//                if (cnt == 81) {
+//                    return;
+//                }
+//            }
+//
+//        }
 
     }
 
@@ -94,26 +102,43 @@ public class Sudoku implements Coordinate, Cloneable {
     }
 
     public void setSudoku(Sudoku s) {
-        this.member = s.getSudokuData();
+        this.member = s.getData();
     }
 
+    /**
+     * For known cells, must meet basic rule: no repeat numbers within any groups 
+     * @return 
+     */
     public boolean isBroken() {
         int cnt;
         int[] val;
+        //
+        // loop 27 groups
+        //
         for (int grp = 1; grp <= 27; grp++) {
             val = new int[10];
+            //
+            // check value 1 to 9
+            //
             for (int k = 1; k <= 9; k++) {
 //                System.out.print(GROUP_MEMBERS[grp][k]);
                 val[member[GROUP_MEMBERS[grp][k]]]++;
 
             }
+            //
+            // if any value shows more than one time,
+            //    it's broken
+            //
             for (int k = 1; k <= 9; k++) {
                 if (val[k] > 1) {
                     return true;
                 }
             }
-
         }
+        //
+        // when 27 groups passed,
+        //    it's not broken
+        //    but no guarantee it must have solution
         return false;
     }
 
@@ -122,7 +147,7 @@ public class Sudoku implements Coordinate, Cloneable {
      *
      * @return mnt array
      */
-    public int[] getSudokuData() {
+    public int[] getData() {
 //        int[] temp = new int[82];
 //        for (int k = 1; k <= 81; k++) {
 //            temp[k] = member[k];
@@ -143,22 +168,27 @@ public class Sudoku implements Coordinate, Cloneable {
      * @param id cell md, from 1 to 81
      * @return cell value
      */
-    public int getMember(int id) {
+    public int getData(int id) {
         return member[id];
     }
 
-//    public Sudoku getSudoku() {
-//        return this;  // ??? need to verify
-//    }
+
+    /**
+     * When all cells with values and no repeat numbers within any groups
+     * @return 
+     */
     public boolean isSolved() {
-        if (getCount() == 81) {
-            return true;
+        if (isBroken()){
+            return false;
         }
-        return false;
+        if (getCount()  <81) {
+            return false;
+        }
+        return true;
     }
 
     /**
-     * Returns the count of cells wmth know values
+     * Returns the count of cells with known value
      *
      * @return 0 to 81
      */
@@ -242,7 +272,7 @@ public class Sudoku implements Coordinate, Cloneable {
         this.member[k + 9] = v9;
     }
 
-    public void setMembersByGroup(int grpId, int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9) {
+    public void setData(int grpId, int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9) {
 
         this.member[GROUP_MEMBERS[grpId][1]] = v1;
         this.member[GROUP_MEMBERS[grpId][2]] = v2;
@@ -255,16 +285,16 @@ public class Sudoku implements Coordinate, Cloneable {
         this.member[GROUP_MEMBERS[grpId][9]] = v9;
     }
 
-    public void debug() {
-        System.out.println("--- index ---");
-        for (int i = 1; i < member.length; i++) {
-            System.out.printf("%2d ", i);
-            if (i % 9 == 0) {
-                System.out.println();
-            }
-        }
-
-    }
+//    public void debug() {
+//        System.out.println("--- index ---");
+//        for (int i = 1; i < member.length; i++) {
+//            System.out.printf("%2d ", i);
+//            if (i % 9 == 0) {
+//                System.out.println();
+//            }
+//        }
+//
+//    }
 
     public void show() {
         //System.out.println(" --- Sudoku 9x9 --- ");
@@ -326,39 +356,39 @@ public class Sudoku implements Coordinate, Cloneable {
         System.out.println();
     }
 
-    public void show(int style) {
-        System.out.println(" --- Sudoku 9x9 --- (start)");
-
-        for (int m = 1; m < member.length; m++) {
-            if (member[m] == 0) {
-                System.out.printf(" .");
-
-            } else {
-                if (newlyAdded[m] > 0) {
-                    System.out.printf("*%d", member[m]);
-
-                } else {
-                    System.out.printf(" %d", member[m]);
-                }
-            }
-
-            if (m % 9 == 0) {
-                System.out.println();
-            }
-        }
-        System.out.print(" --- Sudoku 9x9 --- (end)");
-
-        System.out.print(" known cells count: " + this.getCount());
-        System.out.println("note: * is newly added");
-        for (int k = 1; k <= 81; k++) {
-            if (newlyAdded[k] > 0) {
-                //TODO
-                // WHY  cell[81]=0 is newly added ???
-                System.out.println("  cell[" + newlyAdded[k] + "]=" + member[newlyAdded[k]] + " is newly added");
-            }
-        }
-
-    }
+//    public void show(int style) {
+//        System.out.println(" --- Sudoku 9x9 --- (start)");
+//
+//        for (int m = 1; m < member.length; m++) {
+//            if (member[m] == 0) {
+//                System.out.printf(" .");
+//
+//            } else {
+//                if (newlyAdded[m] > 0) {
+//                    System.out.printf("*%d", member[m]);
+//
+//                } else {
+//                    System.out.printf(" %d", member[m]);
+//                }
+//            }
+//
+//            if (m % 9 == 0) {
+//                System.out.println();
+//            }
+//        }
+//        System.out.print(" --- Sudoku 9x9 --- (end)");
+//
+//        System.out.print(" known cells count: " + this.getCount());
+//        System.out.println("note: * is newly added");
+//        for (int k = 1; k <= 81; k++) {
+//            if (newlyAdded[k] > 0) {
+//                //TODO
+//                // WHY  cell[81]=0 is newly added ???
+//                System.out.println("  cell[" + newlyAdded[k] + "]=" + member[newlyAdded[k]] + " is newly added");
+//            }
+//        }
+//
+//    }
 
     @Override
     public String toString() {

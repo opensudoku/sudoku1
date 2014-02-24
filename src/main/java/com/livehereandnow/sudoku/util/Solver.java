@@ -9,42 +9,43 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- *
+ * Solver has a Core to perform basic solving technique.
+ * Solver provides branching features to automatically create game tree. 
  * @author mark
  */
 public class Solver {
 
     private Stack<Sudoku> stack;
-    private final SolverCore sc;
+    private final Core core;
 
     public Solver() throws CloneNotSupportedException {
         Sudoku question = new Sudoku();
 
-        sc = new SolverCore(question);
+        core = new Core(question);
     }
 
 //
-//    public Solver(SolverCore sc) {
-//        this.sc = sc;
+//    public Solver(Core core) {
+//        this.core = core;
 //    }
     static void show(String str) {
         System.out.println(str);
     }
 
-    public SolverCore getSolverCore() {
-        return sc;
+    public Core getCore() {
+        return core;
     }
 
     public void run() throws CloneNotSupportedException {
-        sc.run();
-//        sc.show();
+        core.run();
+//        core.show();
 
-        if (sc.getAnswer().isSolved()) {
+        if (core.getAnswer().isSolved()) {
 //            show(" *** Game Over  ***");
 //            show(" *** Solved!!!  ***");
             return;
         }
-        if (sc.getAnswer().isBroken()) {
+        if (core.getAnswer().isBroken()) {
 //            show(" *** Game Over  ***");
 //            show(" *** xxx broken xxx  ***");
             return;
@@ -54,42 +55,42 @@ public class Solver {
         // new Stack
         //
         stack = new Stack<Sudoku>();
-        List<Integer> branch = sc.getBranch();
-        int id = sc.getBranchCellId();
-        //      show(" ...after SolverCore's run \n show List: " + branch.toString());
+        List<Integer> branch = core.getBranch();
+        int id = core.getBranchCellId();
+        //      show(" ...after Core's run \n show List: " + branch.toString());
         for (Integer val : branch) {
             Sudoku newQuestion = new Sudoku();
-            newQuestion = sc.getAnswer().clone();
+            newQuestion = core.getAnswer().clone();
 //            show(" ... cell#" + id + " with assigned value " + val.toString());
             newQuestion.setMember(id, val);
 //            newQuestion.show();
             stack.push(newQuestion);
-//            sc.getQuestion().setSudoku(newQuestion);
-//            sc.run();
-//            sc.show();
+//            core.getQuestion().setSudoku(newQuestion);
+//            core.run();
+//            core.show();
 
         }
         run2();
 
 //        show(" just show last try");
-//        sc.getAnswer().show();
+//        core.getAnswer().show();
     }
 
-    public int run2() throws CloneNotSupportedException {
+    private int run2() throws CloneNotSupportedException {
         int result = 0;
         Sudoku s = new Sudoku();
         while (!stack.isEmpty()) {
             s = stack.pop();
-            sc.getQuestion().setSudoku(s);
-            sc.run();
-//            sc.show();
+            core.getQuestion().setSudoku(s);
+            core.run();
+//            core.show();
 
-            if (sc.getAnswer().isSolved()) {
+            if (core.getAnswer().isSolved()) {
 //                show(" *** Game Over  ***");
 //                show(" *** Solved!!!  ***");
                 return 1;
             }
-            if (sc.getAnswer().isBroken()) {
+            if (core.getAnswer().isBroken()) {
 //                show(" *** Game Over  ***");
 //                show(" *** xxx broken xxx  ***");
                 continue;
@@ -98,12 +99,12 @@ public class Solver {
             //
             // next level branch
             //
-            List<Integer> branch = sc.getBranch();
-            int id = sc.getBranchCellId();
-            //      show(" ...after SolverCore's run \n show List: " + branch.toString());
+            List<Integer> branch = core.getBranch();
+            int id = core.getBranchCellId();
+            //      show(" ...after Core's run \n show List: " + branch.toString());
             for (Integer val : branch) {
                 Sudoku newQuestion = new Sudoku();
-                newQuestion = sc.getAnswer().clone();
+                newQuestion = core.getAnswer().clone();
 //                show(" ... cell#" + id + " with assigned value " + val.toString());
                 newQuestion.setMember(id, val);
 //            newQuestion.show();
@@ -117,7 +118,7 @@ public class Solver {
     }
 
     public void show() {
-        // sc.run();
+        // core.run();
 //        show(" ...DOING show");
     }
 }
