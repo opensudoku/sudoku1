@@ -323,7 +323,7 @@ public final class Possible implements Coordinate {
         sb.append(" --- Sudoku 9x9 possible --- (start)\n");
         int id = 0;
         int cellCnt = 0;
-        String rowHead = "0ABCDEFGHI";
+        String rowHead = "0abcdefghi";
 
         for (int m = 1; m <= 9; m++) {
 //            sb.append(" row#").append(m).append(":");

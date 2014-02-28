@@ -219,7 +219,7 @@ public class Sudoku implements Coordinate, Cloneable {
     }
 
     public void setData(int row, int seq, int val) {
-        int id=(row-1)*9+seq;
+        int id = (row - 1) * 9 + seq;
         this.member[id] = val;
     }
 
@@ -281,6 +281,27 @@ public class Sudoku implements Coordinate, Cloneable {
         this.member[k + 8] = v8;
         this.member[k + 9] = v9;
     }
+
+    public void setData(int grpId, int[] v) {
+
+        this.member[GROUP_MEMBERS[grpId][1]] = v[1];
+        this.member[GROUP_MEMBERS[grpId][2]] = v[2];
+        this.member[GROUP_MEMBERS[grpId][3]] = v[3];
+        this.member[GROUP_MEMBERS[grpId][4]] = v[4];
+        this.member[GROUP_MEMBERS[grpId][5]] = v[5];
+        this.member[GROUP_MEMBERS[grpId][6]] = v[6];
+        this.member[GROUP_MEMBERS[grpId][7]] = v[7];
+        this.member[GROUP_MEMBERS[grpId][8]] = v[8];
+        this.member[GROUP_MEMBERS[grpId][9]] = v[9];
+    }
+
+//    public void setData(int grpId, String str) {
+//        System.out.println("???DEBUG...what is the lenght?" + str.length());
+//        for (int k = 1; k <= 9; k++) {
+//            this.member[GROUP_MEMBERS[grpId][k]] = str.charAt(k) - '0';// '0'=48, '1'=49,
+//            System.out.println("DEBUG..." + str.charAt(k));
+//        }
+//    }
 
     public void setData(int grpId, int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9) {
 

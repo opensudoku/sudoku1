@@ -11,7 +11,13 @@ package com.livehereandnow.sudoku.util;
  * @author mark
  */
 public interface Coordinate {
-
+    // for status
+    
+    int THIS_SUDOKU_IS_SOLVED=0;
+    int THIS_SUDOKU_IS_BROKEN=1;
+    int THIS_SUDOKU_IS_UNKNOWN=2;
+    
+    
     /**
      * There are total 27 groups, 9 for rows, 9 for columns and 9 for boxes.
      * Each group contains 9 cells. All index for application programming is 1

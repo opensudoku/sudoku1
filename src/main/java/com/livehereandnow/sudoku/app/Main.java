@@ -45,10 +45,10 @@ public class Main {
         //   scan.nextLine();
 
         while (true) {
-            System.out.print(" cmd:");
+            System.out.print("\n cmd:");
             String cmd = scan.nextLine();
             if (!solver.runCommand(cmd)){
-                show("ans:"+cmd+", is unknown.");
+                show(" ans:command \""+cmd+"\", is unknown.");
             }
             
 //            switch (cmd) {

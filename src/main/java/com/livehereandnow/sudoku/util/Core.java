@@ -10,8 +10,8 @@ import java.util.List;
 
 /**
  * Core uses method run to perform very basic rule of Sudoku, which is to
- eliminate possible value from each cell's possible list then to reveal single
- value. It stops when no more improvement. Programmer can use isBroken to
+ * eliminate possible value from each cell's possible list then to reveal single
+ * value. It stops when no more improvement. Programmer can use isBroken to
  * determine current answer is useful or now. There are 3 private fields: Sudoku
  * question, Sudoku answer and Possible possible. Currently use setter and
  * getter on data, not using clone method yet (and to evaluate it).
@@ -85,6 +85,11 @@ public class Core {
 //        answer.setSudokuData(s.getData());
     }
 
+    /**
+     * When current Sudoku is not broken
+     *
+     * @return
+     */
     public boolean isDone() {
         if (isBroken()) {
             return true;
@@ -97,7 +102,9 @@ public class Core {
     }
 
     /**
-     * for any unknown cell having no any possible values
+     * There are two levels of broken: 1. on the surface, for any group, there
+     * are repeat numbers 2. not on the surface, for any unknown cell having no
+     * any possible values
      *
      * @return true: it's broken
      */
@@ -170,6 +177,22 @@ public class Core {
         }
     }
 
+    public String getStatus() {
+     String[] STATUS_MSG={"solved","broken","unknown"};
+        return STATUS_MSG[getStatusId()];
+
+    }
+
+    public int getStatusId() {
+        if (getAnswer().isSolved()) {
+            return Coordinate.THIS_SUDOKU_IS_SOLVED;
+        }
+        if (this.isBroken()) {
+            return Coordinate.THIS_SUDOKU_IS_BROKEN;
+        }
+        return Coordinate.THIS_SUDOKU_IS_UNKNOWN;
+    }
+
     public void show() {
         show("");
         show(" *=============*");
@@ -221,7 +244,7 @@ public class Core {
         show(" *   Branch    *");
         show(" *=============*");
         // determine which cell and given value
-        
+
         int id = this.getPossible().getFirstCellIdWithPossible();
         int[] val = this.getPossible().getPossible(id);
         for (int k = 1; k <= 9; k++) {

@@ -8,6 +8,8 @@ package com.livehereandnow.sudoku.util;
 //import static com.livehereandnow.sudoku.app.Main.show;
 import java.util.List;
 import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Solver has a Core to perform basic solving technique. Solver provides
@@ -15,11 +17,11 @@ import java.util.Stack;
  *
  * @author mark
  */
-public class Solver {
+public class Solver implements Coordinate {
 
     private Stack<Sudoku> stack;
     private final Core core;
-    private final String ABCEDFGHI = "@ABCDEFGHI";
+    private final String ABCEDFGHI = "@abcdefghi";
 
     public Solver() throws CloneNotSupportedException {
         Sudoku question = new Sudoku();
@@ -53,6 +55,12 @@ public class Solver {
                 return true;
             }
 
+            case "status": {
+                show(" ans:" + core.getStatus());
+
+                return true;
+            }
+
             case "sample": {
                 show(" ans:sample question, as follows");
                 getCore().getQuestion().setData(str);
@@ -60,9 +68,15 @@ public class Solver {
                 return true;
             }
             case "question": {
-                show(" ans:question, as follows");
+                show(" ans:show question, as follows");
                 //   getCore().getQuestion().setData(str);
                 getCore().getQuestion().show();
+                return true;
+            }
+            case "answer": {
+                show(" ans:show answer, as follows");
+                //   getCore().getQuestion().setData(str);
+                getCore().getAnswer().show();
                 return true;
             }
             case "clean": {
@@ -73,9 +87,9 @@ public class Solver {
             }
 
             case "run": {
-                show(" ans:run result, as follows");
+                show(" ans:run answer as it can, done!");
                 getCore().run();
-                getCore().getAnswer().show();
+//                getCore().getAnswer().show();
                 return true;
             }
             case "possible": {
@@ -84,15 +98,25 @@ public class Solver {
                 getCore().getPossible().show();
                 return true;
             }
+            case "question=answer": {
+                show(" ans:assign question as answer, done!");
+//                    solver.getCore();
+                getCore().getQuestion().setSudoku(getCore().getAnswer().clone());
+                getCore().getPossible().init();
+
+                return true;
+            }
+
             default:
+                // A1=2
                 if (cmd.length() == 4) {
-                    if (cmd.charAt(0) < 'A') {
+                    if (cmd.charAt(0) < 'a') {
                         break;
                     }
-                    if (cmd.charAt(0) > 'I') {
+                    if (cmd.charAt(0) > 'i') {
                         break;
                     }
-                    if (cmd.charAt(1) < '1') {
+                    if (cmd.charAt(1) < '0') {
                         break;
                     }
                     if (cmd.charAt(1) > '9') {
@@ -117,16 +141,14 @@ public class Solver {
 
 //                    show("...debug here," + cmd + " row#" + row + ", seq=" + seq + ", val=" + val);
                     //   show(seq+" ans:Set cell("  + ")=" + val);
-                    show(" ans:Set cell(" + ABCEDFGHI.charAt(row) + "," + seq + ")=" + val);
-                    show("     updated question as follows,");
+                    show(" ans:assign value " + val + " to answer's cell " + ABCEDFGHI.charAt(row) + seq + " , done!");
 
                     getCore().getAnswer().setData(row, seq, val);
-                    getCore().getQuestion().setSudoku(getCore().getAnswer().clone());
-                    getCore().getPossible().init();
+               //     getCore().getQuestion().setSudoku(getCore().getAnswer().clone());
+                    //   getCore().getPossible().init();
 
 //                    show("...we assume question is ");
-                    getCore().getQuestion().show();
-
+                    //   getCore().getQuestion().show();
 //                    
 //                    
 //                    getCore().run();
@@ -146,6 +168,27 @@ public class Solver {
 //                    }
 //                    show("...still ok, continue ");
 //                    getCore().getAnswer().show();
+                    return true;
+                }
+
+                // A=123456789, 
+                if (cmd.length() == 11) {
+                    Pattern p = Pattern.compile("[a-i]=\\d\\d\\d\\d\\d\\d\\d\\d\\d");
+                    Matcher m = p.matcher(cmd);
+                    if (m.matches()) {
+                        int row = ABCEDFGHI.indexOf(cmd.charAt(0));
+                        int v1 = cmd.charAt(2)-'0';
+                        int v2 = cmd.charAt(3)-'0';
+                        int v3 = cmd.charAt(4)-'0';
+                        int v4 = cmd.charAt(5)-'0';
+                        int v5 = cmd.charAt(6)-'0';
+                        int v6 = cmd.charAt(7)-'0';
+                        int v7 = cmd.charAt(8)-'0';
+                        int v8 = cmd.charAt(9)-'0';
+                        int v9 = cmd.charAt(10)-'0';
+                        core.getAnswer().setData(row, v1, v2, v3, v4, v5, v6, v7, v8, v9);
+                    }
+                    show(" ans:assign " + cmd.substring(2) + " to answer's row " + cmd.charAt(0) + ", done!");
                     return true;
                 }
         }
