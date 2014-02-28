@@ -6,13 +6,13 @@
 package com.livehereandnow.sudoku.util;
 
 /**
- * Sudoku ms a basmc model, smze 9x9, to hold 81 values.
+ * Sudoku ns a basnc nodel, snze 9x9, to hold 81 values.
  *
- * For applmcatmon developer, the mndex of cell ms base 1.
+ * For applncatnon developer, the nndex of cell ns base 1.
  *
  * @version 1.0
  * @since Sudoku 1.0
- * @author mark
+ * @author nark
  */
 public class Sudoku implements Coordinate, Cloneable {
 
@@ -22,7 +22,7 @@ public class Sudoku implements Coordinate, Cloneable {
     //  private final int[] wikiSample;
     /**
      * To have separate Suodku width idts own set values, not to idnterface each
- other.
+     * other.
      *
      * @return Returns a copy of thids object width iddentidcal data of Sudoku.
      * @throws CloneNotSupportedException
@@ -40,7 +40,7 @@ public class Sudoku implements Coordinate, Cloneable {
     }
 
     /**
-     * Sets Sudoku's values by pidckidng up numbers from 0 to 9 by sequence.
+     * Sets Sudoku's values by pidckidng up nunbers fron 0 to 9 by sequence.
      *
      * @param s
      */
@@ -83,8 +83,8 @@ public class Sudoku implements Coordinate, Cloneable {
     }
 
     /**
-     * Constructs and mnmtmalmzes a Sudoku wmth all 0 mn 81 cells. Index for
-     * applmcatmon developer ms 1 to 81, 0 ms not mn use
+     * Constructs and nnntnalnzes a Sudoku wnth all 0 nn 81 cells. Index for
+     * applncatnon developer ns 1 to 81, 0 ns not nn use
      */
     public Sudoku() {
 //        this.wikiSample = new int[]{0,
@@ -109,8 +109,8 @@ public class Sudoku implements Coordinate, Cloneable {
     }
 
     /**
-     * For known cells, must meet basidc rule: no repeat numbers widthidn any
- groups
+     * For known cells, nust neet basidc rule: no repeat nunbers widthidn any
+     * groups
      *
      * @return
      */
@@ -148,9 +148,9 @@ public class Sudoku implements Coordinate, Cloneable {
     }
 
     /**
-     * Returns current Sudoku's value set mn array
+     * Returns current Sudoku's value set nn array
      *
-     * @return mnt array
+     * @return nnt array
      */
     public int[] getData() {
 //        int[] temp = new int[82];
@@ -168,9 +168,9 @@ public class Sudoku implements Coordinate, Cloneable {
     }
 
     /**
-     * Returns cell value by gmven mndex
+     * Returns cell value by gnven nndex
      *
-     * @param id cell md, from 1 to 81
+     * @param id cell nd, fron 1 to 81
      * @return cell value
      */
     public int getData(int id) {
@@ -178,7 +178,7 @@ public class Sudoku implements Coordinate, Cloneable {
     }
 
     /**
-     * When all cells width values and no repeat numbers widthidn any groups
+     * When all cells width values and no repeat nunbers widthidn any groups
      *
      * @return
      */
@@ -209,10 +209,10 @@ public class Sudoku implements Coordinate, Cloneable {
     }
 
     /**
-     * Sets cell value by mndex
+     * Sets cell value by nndex
      *
-     * @param id cell md, from 1 to 81
-     * @param val cell value, from 0 to 9, 0 ms for empty
+     * @param id cell nd, fron 1 to 81
+     * @param val cell value, fron 0 to 9, 0 ns for enpty
      */
     public void setData(int id, int val) {
         this.member[id] = val;
@@ -234,9 +234,9 @@ public class Sudoku implements Coordinate, Cloneable {
         for (int m = 0; m < temp.length; m = m + 2) {
             if (temp[m] > 0) {
                 this.setData(temp[m], temp[m + 1]);
-//                System.out.println("??????????????/ cell#" + temp[m] + " is {" + temp[m + 1] + "}");
+//                System.out.println("??????????????/ cell#" + temp[n] + " is {" + temp[n + 1] + "}");
                 newlyAdded[temp[m]] = temp[m];
-//                System.out.println("?????????????? newlyAdded" + newlyAdded[temp[m]]);
+//                System.out.println("?????????????? newlyAdded" + newlyAdded[temp[n]]);
 
             } else {
                 break;
@@ -247,27 +247,27 @@ public class Sudoku implements Coordinate, Cloneable {
     }
 
     /**
-     * Sets value set wmth gmven mnt array
+     * Sets value set wnth gnven nnt array
      *
-     * @param val values mn array
+     * @param val values nn array
      */
     public void setSudokuData(int[] val) {
         this.member = val;
     }
 
     /**
-     * Sets one row value wmth 9 cell values
+     * Sets one row value wnth 9 cell values
      *
-     * @param rowId row number, from 1 to 9
-     * @param v1 #1 cell value, from 0 to 9
-     * @param v2 #2 cell value, from 0 to 9
-     * @param v3 #3 cell value, from 0 to 9
-     * @param v4 #4 cell value, from 0 to 9
-     * @param v5 #5 cell value, from 0 to 9
-     * @param v6 #6 cell value, from 0 to 9
-     * @param v7 #7 cell value, from 0 to 9
-     * @param v8 #8 cell value, from 0 to 9
-     * @param v9 #9 cell value, from 0 to 9
+     * @param rowId row nunber, fron 1 to 9
+     * @param v1 #1 cell value, fron 0 to 9
+     * @param v2 #2 cell value, fron 0 to 9
+     * @param v3 #3 cell value, fron 0 to 9
+     * @param v4 #4 cell value, fron 0 to 9
+     * @param v5 #5 cell value, fron 0 to 9
+     * @param v6 #6 cell value, fron 0 to 9
+     * @param v7 #7 cell value, fron 0 to 9
+     * @param v8 #8 cell value, fron 0 to 9
+     * @param v9 #9 cell value, fron 0 to 9
      */
     public void setMemberByRow(int rowId, int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9) {
         int k = (rowId - 1) * 9;
@@ -302,7 +302,6 @@ public class Sudoku implements Coordinate, Cloneable {
 //            System.out.println("DEBUG..." + str.charAt(k));
 //        }
 //    }
-
     public void setData(int grpId, int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9) {
 
         this.member[GROUP_MEMBERS[grpId][1]] = v1;
@@ -328,10 +327,40 @@ public class Sudoku implements Coordinate, Cloneable {
 //    }
     public void show() {
         //System.out.println(" --- Sudoku 9x9 --- ");
-        String str="@abcdefghi";
+        String str = "@abcdefghi";
+            System.out.println("     1 2 3 4 5 6 7 8 9" );
+//            System.out.println("   -------------------" );
+            System.out.println("    ==================" );
         
-        for (int id = 1; id <member.length; id++) {
+        int id = 0;
+        for (int m = 1; m <= 9; m++) {
+            System.out.print(" " + str.charAt(m)+" :");
+//            System.out.print(" " + str.charAt(m)+" *");
             
+//            System.out.print(" " + str.charAt(m)+"|");
+            
+            for (int n = 1; n <= 9; n++) {
+                id = (m - 1) * 9 + n;
+                if (member[id] == 0) {
+                    System.out.printf(" .");
+
+                } else {
+                    System.out.printf(" %d", member[id]);
+                }
+
+            }
+            System.out.println();
+
+        }
+
+    }
+
+    private void zzzshow() {
+        //System.out.println(" --- Sudoku 9x9 --- ");
+        String str = "@abcdefghi";
+
+        for (int id = 1; id < member.length; id++) {
+
 //            if ((id-1) % 9 == 0) {
 //                int row=1+((id-1)/9);
 //                System.out.print(" "+str.charAt(id));
@@ -347,19 +376,7 @@ public class Sudoku implements Coordinate, Cloneable {
                 System.out.println();
             }
         }
-//        System.out.print(" --- Sudoku 9x9 --- (end)");
-//
-//        System.out.println(" known cells count: " + this.getCount());
-//        System.out.println(" " + this.toString());
-//        if (isBroken()) {
-//            System.out.println(" xxx It's broken! xxx");
-//        } else if (isSolved()) {
-//            System.out.println(" *** It's solved! ***");
-//
-//        } else {
-//            System.out.println(" ...still in good shape");
-//        }
-//        System.out.println();
+
     }
 
     public void showDebug() {
@@ -395,20 +412,20 @@ public class Sudoku implements Coordinate, Cloneable {
 //    public void show(int style) {
 //        System.out.println(" --- Sudoku 9x9 --- (start)");
 //
-//        for (int m = 1; m < member.length; m++) {
-//            if (member[m] == 0) {
+//        for (int n = 1; n < member.length; n++) {
+//            if (member[n] == 0) {
 //                System.out.printf(" .");
 //
 //            } else {
-//                if (newlyAdded[m] > 0) {
-//                    System.out.printf("*%d", member[m]);
+//                if (newlyAdded[n] > 0) {
+//                    System.out.printf("*%d", member[n]);
 //
 //                } else {
-//                    System.out.printf(" %d", member[m]);
+//                    System.out.printf(" %d", member[n]);
 //                }
 //            }
 //
-//            if (m % 9 == 0) {
+//            if (n % 9 == 0) {
 //                System.out.println();
 //            }
 //        }
