@@ -43,6 +43,16 @@ public class Solver {
         String str = "009036040008070310007000060000000050090642030070000000020000400081090600040580900";
 
         switch (cmd) {
+            case "quit": {
+                show(" ans:to end this application.");
+                show(" *====================================*");
+                show(" *   Thank You! See You Next Time!    *");
+                show(" *====================================*\n");
+
+                System.exit(0);
+                return true;
+            }
+
             case "sample": {
                 show(" ans:sample question, as follows");
                 getCore().getQuestion().setData(str);
@@ -105,31 +115,37 @@ public class Solver {
                     int seq = Integer.parseInt(cmd.substring(1, 2));
                     int val = Integer.parseInt(cmd.substring(3, 4));
 
-                    show("...debug here," + cmd + " row#" + row + ", seq=" + seq + ", val=" + val);
+//                    show("...debug here," + cmd + " row#" + row + ", seq=" + seq + ", val=" + val);
+                    //   show(seq+" ans:Set cell("  + ")=" + val);
+                    show(" ans:Set cell(" + ABCEDFGHI.charAt(row) + "," + seq + ")=" + val);
+                    show("     updated question as follows,");
+
                     getCore().getAnswer().setData(row, seq, val);
                     getCore().getQuestion().setSudoku(getCore().getAnswer().clone());
                     getCore().getPossible().init();
 
-                    show("...we assume question is ");
+//                    show("...we assume question is ");
                     getCore().getQuestion().show();
-                    getCore().run();
-                    show("...and get answer ");
-                    if (getCore().isBroken()) {
-                        show("...it's broken ");
-                        getCore().getAnswer().show();
-                        getCore().getPossible().show();
-                        return true;
-                    }
 
-                    if (getCore().getAnswer().isSolved()) {
-                        show("ans:auto-run result, as follows ");
-                        getCore().getAnswer().show();
-                        show("ans:This Sudoku is solved!");
-                        return true;
-                    }
-                    show("...still ok, continue ");
-                    getCore().getAnswer().show();
-
+//                    
+//                    
+//                    getCore().run();
+//                    show("...and get answer ");
+//                    if (getCore().isBroken()) {
+//                        show("...it's broken ");
+//                        getCore().getAnswer().show();
+//                        getCore().getPossible().show();
+//                        return true;
+//                    }
+//
+//                    if (getCore().getAnswer().isSolved()) {
+//                        show("ans:auto-run result, as follows ");
+//                        getCore().getAnswer().show();
+//                        show("ans:This Sudoku is solved!");
+//                        return true;
+//                    }
+//                    show("...still ok, continue ");
+//                    getCore().getAnswer().show();
                     return true;
                 }
         }

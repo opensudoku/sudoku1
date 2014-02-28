@@ -36,7 +36,7 @@ public class Main {
         Solver solver = new Solver();
         show("");
         show(" *====================================*");
-        show(" *    Welcome to Taijimark's Sudoku   *");
+        show(" *   Welcome to Taijimark's Sudoku!   *");
         show(" *====================================*");
         show("");
 
