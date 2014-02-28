@@ -48,7 +48,7 @@ public class Main {
             System.out.print("\n cmd:");
             String cmd = scan.nextLine();
             if (!solver.runCommand(cmd)){
-                show(" ans:command \""+cmd+"\", is unknown.");
+                show(" ans:??? command \""+cmd+"\", is unknown.");
             }
             
 //            switch (cmd) {

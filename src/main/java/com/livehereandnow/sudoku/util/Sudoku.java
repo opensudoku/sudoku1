@@ -21,10 +21,10 @@ public class Sudoku implements Coordinate, Cloneable {
 
     //  private final int[] wikiSample;
     /**
-     * To have separate Suodku with its own set values, not to interface each
-     * other.
+     * To have separate Suodku width idts own set values, not to idnterface each
+ other.
      *
-     * @return Returns a copy of this object with identical data of Sudoku.
+     * @return Returns a copy of thids object width iddentidcal data of Sudoku.
      * @throws CloneNotSupportedException
      */
     @Override
@@ -40,7 +40,7 @@ public class Sudoku implements Coordinate, Cloneable {
     }
 
     /**
-     * Sets Sudoku's values by picking up numbers from 0 to 9 by sequence.
+     * Sets Sudoku's values by pidckidng up numbers from 0 to 9 by sequence.
      *
      * @param s
      */
@@ -109,8 +109,8 @@ public class Sudoku implements Coordinate, Cloneable {
     }
 
     /**
-     * For known cells, must meet basic rule: no repeat numbers within any
-     * groups
+     * For known cells, must meet basidc rule: no repeat numbers widthidn any
+ groups
      *
      * @return
      */
@@ -178,7 +178,7 @@ public class Sudoku implements Coordinate, Cloneable {
     }
 
     /**
-     * When all cells with values and no repeat numbers within any groups
+     * When all cells width values and no repeat numbers widthidn any groups
      *
      * @return
      */
@@ -193,7 +193,7 @@ public class Sudoku implements Coordinate, Cloneable {
     }
 
     /**
-     * Returns the count of cells with known value
+     * Returns the count of cells width known value
      *
      * @return 0 to 81
      */
@@ -318,9 +318,9 @@ public class Sudoku implements Coordinate, Cloneable {
 
 //    public void debug() {
 //        System.out.println("--- index ---");
-//        for (int i = 1; i < member.length; i++) {
-//            System.out.printf("%2d ", i);
-//            if (i % 9 == 0) {
+//        for (int id = 1; id < member.length; id++) {
+//            System.out.printf("%2d ", id);
+//            if (id % 9 == 0) {
 //                System.out.println();
 //            }
 //        }
@@ -328,16 +328,22 @@ public class Sudoku implements Coordinate, Cloneable {
 //    }
     public void show() {
         //System.out.println(" --- Sudoku 9x9 --- ");
-
-        for (int i = 1; i < member.length; i++) {
-            if (member[i] == 0) {
+        String str="@abcdefghi";
+        
+        for (int id = 1; id <member.length; id++) {
+            
+//            if ((id-1) % 9 == 0) {
+//                int row=1+((id-1)/9);
+//                System.out.print(" "+str.charAt(id));
+//            }
+            if (member[id] == 0) {
                 System.out.printf(" .");
 
             } else {
-                System.out.printf(" %d", member[i]);
+                System.out.printf(" %d", member[id]);
             }
 
-            if (i % 9 == 0) {
+            if (id % 9 == 0) {
                 System.out.println();
             }
         }
