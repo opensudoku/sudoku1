@@ -45,6 +45,23 @@ public class Solver implements Coordinate {
         String str = "009036040008070310007000060000000050090642030070000000020000400081090600040580900";
 
         switch (cmd) {
+            case "help": {
+                show(" ans:show command reference as follows,");
+                show(" *====================================*");
+                show(" sample: to assign question with default sample");
+                show(" question: to show question ");
+                show(" answer: to show answer ");
+                show(" possible : to show possible ");
+                show(" answer=possible : to assign asnwer with possible ");
+                show(" possible=answer : to assign possible with answer ");
+                show(" a1=2 : to assign cell a1 with value 2 ");
+                show(" a=123456789: to assign row a with 123456789");
+                show(" *====================================*\n");
+
+               
+                return true;
+            }
+
             case "quit": {
                 show(" ans:to end this application.");
                 show(" *====================================*");
@@ -99,9 +116,17 @@ public class Solver implements Coordinate {
                 return true;
             }
             case "question=answer": {
-                show(" ans:assign question as answer, done!");
+                show(" ans:assign question with answer, done!");
 //                    solver.getCore();
                 getCore().getQuestion().setSudoku(getCore().getAnswer().clone());
+                getCore().getPossible().init();
+
+                return true;
+            }
+            case "answer=question": {
+                show(" ans:assign answer with question, done!");
+//                    solver.getCore();
+                getCore().getAnswer().setSudoku(getCore().getQuestion().clone());
                 getCore().getPossible().init();
 
                 return true;
@@ -144,7 +169,7 @@ public class Solver implements Coordinate {
                     show(" ans:assign value " + val + " to answer's cell " + ABCEDFGHI.charAt(row) + seq + " , done!");
 
                     getCore().getAnswer().setData(row, seq, val);
-               //     getCore().getQuestion().setSudoku(getCore().getAnswer().clone());
+                    //     getCore().getQuestion().setSudoku(getCore().getAnswer().clone());
                     //   getCore().getPossible().init();
 
 //                    show("...we assume question is ");
@@ -177,15 +202,15 @@ public class Solver implements Coordinate {
                     Matcher m = p.matcher(cmd);
                     if (m.matches()) {
                         int row = ABCEDFGHI.indexOf(cmd.charAt(0));
-                        int v1 = cmd.charAt(2)-'0';
-                        int v2 = cmd.charAt(3)-'0';
-                        int v3 = cmd.charAt(4)-'0';
-                        int v4 = cmd.charAt(5)-'0';
-                        int v5 = cmd.charAt(6)-'0';
-                        int v6 = cmd.charAt(7)-'0';
-                        int v7 = cmd.charAt(8)-'0';
-                        int v8 = cmd.charAt(9)-'0';
-                        int v9 = cmd.charAt(10)-'0';
+                        int v1 = cmd.charAt(2) - '0';
+                        int v2 = cmd.charAt(3) - '0';
+                        int v3 = cmd.charAt(4) - '0';
+                        int v4 = cmd.charAt(5) - '0';
+                        int v5 = cmd.charAt(6) - '0';
+                        int v6 = cmd.charAt(7) - '0';
+                        int v7 = cmd.charAt(8) - '0';
+                        int v8 = cmd.charAt(9) - '0';
+                        int v9 = cmd.charAt(10) - '0';
                         core.getAnswer().setData(row, v1, v2, v3, v4, v5, v6, v7, v8, v9);
                     }
                     show(" ans:assign " + cmd.substring(2) + " to answer's row " + cmd.charAt(0) + ", done!");
