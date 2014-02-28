@@ -5,7 +5,7 @@
  */
 package com.livehereandnow.sudoku.util;
 
-import static com.livehereandnow.sudoku.util.Main.show;
+//import static com.livehereandnow.sudoku.app.Main.show;
 import java.util.List;
 import java.util.Stack;
 
