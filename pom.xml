@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.livehereandnow.sudoku.util</groupId>
-    <artifactId>sudoku1</artifactId>
-    <version>1.0</version>
+    <artifactId>sudoku</artifactId>
+    <version>1.1</version>
     <packaging>jar</packaging>
 
     <name>sudoku1</name>

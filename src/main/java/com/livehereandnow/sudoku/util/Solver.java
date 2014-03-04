@@ -109,6 +109,13 @@ public class Solver implements Coordinate {
 //                getCore().getAnswer().show();
                 return true;
             }
+            case "autorun": {
+                show(" ans:autorun, done!");
+                run();
+//                getCore().getAnswer().show();
+                return true;
+            }
+            
             case "possible": {
                 show(" ans:show possible, as follows");
 //                    solver.getCore();
