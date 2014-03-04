@@ -36,7 +36,7 @@ public class Main {
         Solver solver = new Solver();
         show("");
         show(" *====================================*");
-        show(" *   Welcome to OpenSudoku ver 1.0    *");
+        show(" *   Welcome to OpenSudoku ver 1.0.1  *");
         show(" *====================================*");
         show("");
 
