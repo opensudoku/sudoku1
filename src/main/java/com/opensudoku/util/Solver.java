@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.livehereandnow.sudoku.util;
+package com.opensudoku.util;
 
 //import static com.livehereandnow.sudoku.app.Main.show;
 import java.util.List;
@@ -43,6 +43,12 @@ public class Solver implements Coordinate {
 
     public boolean runCommand(String cmd) throws CloneNotSupportedException {
         String str = "009036040008070310007000060000000050090642030070000000020000400081090600040580900";
+//http://www.dailysudoku.com/sudoku//pdf/2014/01/2014-01-5_S2_N1_X.pdf
+        String str1 = "000120000#710000920#003005008#109006080#060207040#040900603#400700800#031000064#000083000";
+
+        // change row h from 031 to be 035, then it's broken
+        String str2 = "000120000#710000920#003005008#109006080#060207040#040900603#400700800#035000064#000083000";
+
 
         switch (cmd) {
             case "help": {
@@ -79,11 +85,28 @@ public class Solver implements Coordinate {
             }
 
             case "sample": {
-                show(" ans:sample question, as follows");
+                show(" ans:sample question is set, as follows");
                 getCore().getQuestion().setData(str);
                 getCore().getQuestion().show();
                 return true;
             }
+            case "sample1": {
+                show(" ans:sample1 question is set, as follows");
+                getCore().getQuestion().setData(str1);
+                getCore().getQuestion().show();
+                getCore().getAnswer().init();
+                getCore().getPossible().init();
+                return true;
+            }
+            case "sample2": {
+                show(" ans:sample1 question is set, as follows");
+                getCore().getQuestion().setData(str2);
+                getCore().getQuestion().show();
+                getCore().getAnswer().init();
+                getCore().getPossible().init();
+                return true;
+            }
+
             case "question": {
                 show(" ans:show question, as follows");
                 //   getCore().getQuestion().setData(str);
@@ -112,7 +135,10 @@ public class Solver implements Coordinate {
             case "autorun": {
                 show(" ans:autorun, done!");
                 run();
-//                getCore().getAnswer().show();
+                show(" ans:" + core.getStatus());
+                if (core.getStatusId() == Coordinate.THIS_SUDOKU_IS_SOLVED) {
+                    getCore().getAnswer().show();
+                }
                 return true;
             }
             

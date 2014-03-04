@@ -5,6 +5,7 @@
  */
 package com.livehereandnow.sudoku.util;
 
+import com.opensudoku.util.Possible;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

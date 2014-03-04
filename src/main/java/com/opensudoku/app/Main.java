@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.livehereandnow.sudoku.app;
+package com.opensudoku.app;
 
 //import static com.livehereandnow.sudoku.app.SolverCoreExtDev.show;
-import com.livehereandnow.sudoku.util.Solver;
+import com.opensudoku.util.Solver;
 import java.util.Scanner;
 
 /**

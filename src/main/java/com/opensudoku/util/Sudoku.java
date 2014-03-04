@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.livehereandnow.sudoku.util;
+package com.opensudoku.util;
 
 /**
  * Sudoku ns a basnc nodel, snze 9x9, to hold 81 values.
@@ -40,6 +40,17 @@ public class Sudoku implements Coordinate, Cloneable {
     }
 
     /**
+     * Sets all cells with 0
+     */
+    public void init() {
+
+        for (int k = 0; k < member.length; k++) {
+            member[k] = 0;
+        }
+
+    }
+
+/**
      * Sets Sudoku's values by pidckidng up nunbers fron 0 to 9 by sequence.
      *
      * @param s

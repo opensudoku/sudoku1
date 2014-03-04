@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.livehereandnow.sudoku.util;
+package com.opensudoku.util;
 
 /**
  * Provides basic coordinate to identify Sudoku's cells and groups.

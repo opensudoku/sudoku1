@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.livehereandnow.sudoku.app;
+package com.opensudoku.app;
 
-import com.livehereandnow.sudoku.util.Core;
-import com.livehereandnow.sudoku.util.Sudoku;
+import com.opensudoku.util.Core;
+import com.opensudoku.util.Sudoku;
 
 /**
  * For Linux's term, name it as Terminal. Use this to test SudokuCore class.
