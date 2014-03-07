@@ -5,45 +5,48 @@
  */
 package com.opensudoku.util;
 
-//import static com.livehereandnow.sudoku.app.Main.show;
+import static com.opensudoku.util.Solver.show;
 import java.util.List;
 import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Solver has a Core to perform basic solving technique. Solver provides
- * branching features to automatically create game tree.
+ * Solver can determine question is solvable or unsolvable, and only provide
+ * first available answer only. SolverExt is designed to determine solvable
+ * question has how many answers. We will focus on: (0)no answer (1) one answer
+ * (2) two answers (3) more than 3 answers
  *
  * @author mark
  */
-public class Solver implements Coordinate {
+public class SolverExt extends Solver {
 
-    protected Stack<Sudoku> stack;
-    protected final Core core;
-    protected final String ABCEDFGHI = "@abcdefghi";
+    private int answerCnt;
+    private Sudoku[] max3Answers = new Sudoku[3];
+
+    public Sudoku getAnswer(int k) {
+        return max3Answers[k];
+    }
+
+    public int getAnswerCnt() {
+        return answerCnt;
+    }
+
+    public void setAnswerCnt(int answerCnt) {
+        this.answerCnt = answerCnt;
+    }
+
+    public SolverExt() throws CloneNotSupportedException {
+        //  super.
+    }
 
     /**
-     *
+     * autorun is rewritten, able to provide first 3 answers
+     * @param cmd
+     * @return
+     * @throws CloneNotSupportedException 
      */
-    public Solver() throws CloneNotSupportedException {
-        Sudoku question = new Sudoku();
-
-        core = new Core(question);
-    }
-
-//
-//    public Solver(Core core) {
-//        this.core = core;
-//    }
-    static void show(String str) {
-        System.out.println(str);
-    }
-
-    public Core getCore() {
-        return core;
-    }
-
+    @Override
     public boolean runCommand(String cmd) throws CloneNotSupportedException {
         String str = "009036040008070310007000060000000050090642030070000000020000400081090600040580900";
 //http://www.dailysudoku.com/sudoku//pdf/2014/01/2014-01-5_S2_N1_X.pdf
@@ -143,11 +146,28 @@ public class Solver implements Coordinate {
                 return true;
             }
             case "autorun": {
-                show(" ans:autorun, done!");
+                show(" ans:autorun, done!   DEBUG... BY SOLVEREXT");
                 run();
-                show(" ans:" + core.getStatus());
-                if (core.getStatusId() == Coordinate.THIS_SUDOKU_IS_SOLVED) {
-                    getCore().getAnswer().show();
+                switch (getAnswerCnt()) {
+                    case 0:
+                        show("   this question has no answer!");
+                        break;
+                    case 1:
+                        show("   this question has 1 answer!");
+                        getAnswer(0).show();
+                        break;
+                    case 2:
+                        show("   this question has 2 answers!");
+                        getAnswer(0).show();
+                        getAnswer(1).show();
+                        break;
+                    case 3:
+                        show("   this question has 3 or more answers!");
+                        getAnswer(0).show();
+                        getAnswer(1).show();
+                        getAnswer(2).show();
+                        break;
+
                 }
                 return true;
 
@@ -264,21 +284,20 @@ public class Solver implements Coordinate {
         return false;
     }
 
+    @Override
     public void run() throws CloneNotSupportedException {
         core.run();
 //        core.show();
 
         // only one answer
         if (core.getAnswer().isSolved()) {
-//            show(" *** Game Over  ***");
-//            show(" *** Solved!!!  ***");
+            setAnswerCnt(ANSWER_COUNT_IS_1);
             return;
         }
 
         // broken on appearance
         if (core.getAnswer().isBroken()) {
-//            show(" *** Game Over  ***");
-//            show(" *** xxx broken xxx  ***");
+            setAnswerCnt(ANSWER_COUNT_IS_0);
             return;
         }
 
@@ -303,10 +322,17 @@ public class Solver implements Coordinate {
         }
         run2();
 
-//        show(" just show last try");
+//        show("??? WHAT IS ANSWER COUNT???"+getAnswerCnt());
 //        core.getAnswer().show();
     }
 
+    /**
+     * Purpose is to use run2 to get max 3 answers
+     *
+     * @return (1:got answer , 0:given question is broken ??? TODO )-1:out of
+     * stack
+     * @throws CloneNotSupportedException
+     */
     private int run2() throws CloneNotSupportedException {
         int result = 0;
         Sudoku s = new Sudoku();
@@ -319,7 +345,12 @@ public class Solver implements Coordinate {
             if (core.getAnswer().isSolved()) {
 //                show(" *** Game Over  ***");
 //                show(" *** Solved!!!  ***");
-                return 1;
+                max3Answers[answerCnt++] = core.getAnswer().copy();
+                if (answerCnt == 3) {
+                    return 3;
+                }
+                continue;
+//                return 1;
             }
             if (core.getAnswer().isBroken()) {
 //                show(" *** Game Over  ***");
@@ -336,20 +367,15 @@ public class Solver implements Coordinate {
             for (Integer val : branch) {
                 Sudoku newQuestion = new Sudoku();
                 newQuestion = core.getAnswer().clone();
-//                show(" ... cell#" + id + " with assigned value " + val.toString());
                 newQuestion.setData(id, val);
-//            newQuestion.show();
 
+                // since going to get max3 answers only, no concern of StackOverflow
                 stack.push(newQuestion);
             }
 
             // return result;
         }
-        return -1;// no solution
+        return -1;// no solution, out of stack
     }
 
-    public void show() {
-        // core.run();
-//        show(" ...DOING show");
-    }
 }

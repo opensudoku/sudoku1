@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.opensudoku</groupId>
-    <artifactId>sudoku</artifactId>
-    <version>1.0.1</version>
+    <artifactId>sudoku1</artifactId>
+    <version>1.2</version>
     <packaging>jar</packaging>
 
     <name>sudoku1</name>
@@ -58,7 +58,7 @@
                     </descriptorRefs>-->
                     <archive>
                         <manifest>
-                            <mainClass>com.opensudoku.app.Main</mainClass>
+                            <mainClass>com.opensudoku.app.MainExt</mainClass>
                         </manifest>
                     </archive>
                   

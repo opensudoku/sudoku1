@@ -29,10 +29,23 @@ public class Sudoku implements Coordinate, Cloneable {
      */
     @Override
     protected Sudoku clone() throws CloneNotSupportedException {
+        super.clone();
         Sudoku s = new Sudoku();
         s.member = member.clone();
 
         return s; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * For this case, copy is easier than clone.
+     * by Mark 3/7/2014
+     * @return
+     * @throws CloneNotSupportedException 
+     */
+    public Sudoku copy() throws CloneNotSupportedException {
+        Sudoku s = new Sudoku();
+        s.member = member.clone();
+        return s; 
     }
 
     public int[] getNewlyAdded() {
@@ -50,12 +63,16 @@ public class Sudoku implements Coordinate, Cloneable {
 
     }
 
-/**
+    /**
      * Sets Sudoku's values by pidckidng up nunbers fron 0 to 9 by sequence.
      *
      * @param s
      */
     public void setData(String s) {
+        // 3/4/2014, by Mark
+        // need to init before accept new content
+        this.init();
+
         int cnt = 0;
 
         for (int k = 0; k < s.length(); k++) {
@@ -339,17 +356,16 @@ public class Sudoku implements Coordinate, Cloneable {
     public void show() {
         //System.out.println(" --- Sudoku 9x9 --- ");
         String str = "@abcdefghi";
-            System.out.println("     1 2 3 4 5 6 7 8 9" );
+        System.out.println("     1 2 3 4 5 6 7 8 9");
 //            System.out.println("   -------------------" );
-            System.out.println("    ==================" );
-        
+        System.out.println("    ==================");
+
         int id = 0;
         for (int m = 1; m <= 9; m++) {
-            System.out.print(" " + str.charAt(m)+" :");
+            System.out.print(" " + str.charAt(m) + " :");
 //            System.out.print(" " + str.charAt(m)+" *");
-            
+
 //            System.out.print(" " + str.charAt(m)+"|");
-            
             for (int n = 1; n <= 9; n++) {
                 id = (m - 1) * 9 + n;
                 if (member[id] == 0) {
@@ -363,6 +379,7 @@ public class Sudoku implements Coordinate, Cloneable {
             System.out.println();
 
         }
+     System.out.println();
 
     }
 

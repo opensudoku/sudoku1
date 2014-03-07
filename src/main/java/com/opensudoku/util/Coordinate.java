@@ -16,6 +16,11 @@ public interface Coordinate {
     int THIS_SUDOKU_IS_SOLVED=0;
     int THIS_SUDOKU_IS_BROKEN=1;
     int THIS_SUDOKU_IS_UNKNOWN=2;
+    int ANSWER_COUNT_IS_0=0;
+    int ANSWER_COUNT_IS_1=1;
+    int ANSWER_COUNT_IS_2=2;
+    int ANSWER_COUNT_IS_3_OR_MORE=3;
+    
     
     
     /**
