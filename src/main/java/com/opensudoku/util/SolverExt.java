@@ -21,8 +21,9 @@ import java.util.regex.Pattern;
  */
 public class SolverExt extends Solver {
 
+    private int MAX_ANSWER_COUNT = 12;
     private int answerCnt;
-    private Sudoku[] max3Answers = new Sudoku[3];
+    private Sudoku[] max3Answers = new Sudoku[MAX_ANSWER_COUNT + 1];
 
     public Sudoku getAnswer(int k) {
         return max3Answers[k];
@@ -42,9 +43,10 @@ public class SolverExt extends Solver {
 
     /**
      * autorun is rewritten, able to provide first 3 answers
+     *
      * @param cmd
      * @return
-     * @throws CloneNotSupportedException 
+     * @throws CloneNotSupportedException
      */
     @Override
     public boolean runCommand(String cmd) throws CloneNotSupportedException {
@@ -54,7 +56,7 @@ public class SolverExt extends Solver {
 
         // change row h from 031 to be 035, then it's broken
         String str2 = "000120000#710000920#003005008#109006080#060207040#040900603#400700800#035000064#000083000";
-        String str3 = "";
+        String str3 = "500304000306020040100000000003100080008506400070002300000000004020050709000701000";
 
         switch (cmd) {
             case "help": {
@@ -149,24 +151,37 @@ public class SolverExt extends Solver {
                 show(" ans:autorun, done!   DEBUG... BY SOLVEREXT");
                 run();
                 switch (getAnswerCnt()) {
-                    case 0:
-                        show("   this question has no answer!");
-                        break;
-                    case 1:
-                        show("   this question has 1 answer!");
-                        getAnswer(0).show();
-                        break;
-                    case 2:
-                        show("   this question has 2 answers!");
-                        getAnswer(0).show();
-                        getAnswer(1).show();
-                        break;
-                    case 3:
-                        show("   this question has 3 or more answers!");
-                        getAnswer(0).show();
-                        getAnswer(1).show();
-                        getAnswer(2).show();
-                        break;
+//                    case 0:
+//                        show("   this question has no answer!");
+//                        break;
+//                    case 1:
+//                        show("   this question has 1 answer!");
+//                        getAnswer(0).show();
+//                        break;
+//                    case 2:
+//                        show("   this question has 2 answers!");
+//                        getAnswer(0).show();
+//                        getAnswer(1).show();
+//                        break;
+//                    case 3:
+//                        show("   this question has 3 or more answers!");
+//                        getAnswer(0).show();
+//                        getAnswer(1).show();
+//                        getAnswer(2).show();
+//                        break;
+                    default:
+                        if (getAnswerCnt()==MAX_ANSWER_COUNT){
+                        show("ans:this question has " + getAnswerCnt() + " or more answers!");
+                            
+                        }else{
+                        show("   this question has " + getAnswerCnt() + " answers!");
+                        }
+                        for (int k = 0; k < getAnswerCnt(); k++) {
+                        show("\n   #"+(1+k)+" answer:");
+                            
+                            getAnswer(k).show();
+
+                        }
 
                 }
                 return true;
@@ -280,6 +295,16 @@ public class SolverExt extends Solver {
                     show(" ans:assign " + cmd.substring(2) + " to answer's row " + cmd.charAt(0) + ", done!");
                     return true;
                 }
+                if (cmd.startsWith("set question=")) {
+                    getCore().getQuestion().setData(cmd);
+                    //show(" ans:set question="+getCore.getQuestion(). done! ");
+                    show(" ans:set question="+getCore().getQuestion().toString()+", done!");
+                    show(" ans:show question, as follows");
+                    //   getCore().getQuestion().setData(str);
+                    getCore().getQuestion().show();
+                    return true;
+                    
+                }
         }
         return false;
     }
@@ -346,8 +371,8 @@ public class SolverExt extends Solver {
 //                show(" *** Game Over  ***");
 //                show(" *** Solved!!!  ***");
                 max3Answers[answerCnt++] = core.getAnswer().copy();
-                if (answerCnt == 3) {
-                    return 3;
+                if (answerCnt == MAX_ANSWER_COUNT) {
+                    return MAX_ANSWER_COUNT;
                 }
                 continue;
 //                return 1;

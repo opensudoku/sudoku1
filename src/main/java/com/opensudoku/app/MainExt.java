@@ -44,6 +44,7 @@ public class MainExt {
         show(" new feature:");
         show("   1. provide answer count");
         show("   2. provide first 3 answers");
+        show(" TRY MAX IS 1000  2. provide first 3 answers");
         show("");
 
 //        s.show();
