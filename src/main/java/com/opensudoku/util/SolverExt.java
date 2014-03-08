@@ -23,7 +23,7 @@ public class SolverExt extends Solver {
 
     private final int MAX_ANSWER_COUNT = 12;
     private int answerCnt;
-    private Sudoku[] max3Answers = new Sudoku[MAX_ANSWER_COUNT + 1];
+    private final Sudoku[] max3Answers = new Sudoku[MAX_ANSWER_COUNT + 1];
 
     public Sudoku getAnswer(int k) {
         return max3Answers[k];
@@ -356,9 +356,7 @@ public class SolverExt extends Solver {
             core.getAnswer().init();
         }
         
-        
-//        show("??? WHAT IS ANSWER COUNT???"+getAnswerCnt());
-//        core.getAnswer().show();
+
     }
 
     /**
