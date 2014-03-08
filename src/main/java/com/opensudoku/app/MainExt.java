@@ -37,14 +37,16 @@ public class MainExt {
         SolverExt solver = new SolverExt();
         show("");
         show(" *====================================*");
-        show(" *   Welcome to OpenSudoku ver 1.2    *");
+        show(" *   Welcome to OpenSudoku ver 1.3    *");
         show(" *====================================*");
         show(" releated date: ");
         show("   3/7/2014 by Mark\n");
-        show(" new feature:");
+        show(" new features:");
         show("   1. provide answer count");
-        show("   2. provide first 3 answers");
-        show(" TRY MAX IS 1000  2. provide first 3 answers");
+        show("   2. provide MAX_ANSWER_COUNT=12");
+        show("   3. show first 12 answers");
+        show("   4. new cmd, set question=1234567890");
+        show("   5. provide Sudoku.copy instead of Sudoku.clone");
         show("");
 
 //        s.show();

@@ -20,21 +20,21 @@ public class Sudoku implements Coordinate, Cloneable {
     private int[] newlyAdded = new int[82];
 
     //  private final int[] wikiSample;
-    /**
-     * To have separate Suodku width idts own set values, not to idnterface each
-     * other.
-     *
-     * @return Returns a copy of thids object width iddentidcal data of Sudoku.
-     * @throws CloneNotSupportedException
-     */
-    @Override
-    protected Sudoku clone() throws CloneNotSupportedException {
-        super.clone();
-        Sudoku s = new Sudoku();
-        s.member = member.clone();
-
-        return s; //To change body of generated methods, choose Tools | Templates.
-    }
+//    /**
+//     * To have separate Suodku width idts own set values, not to idnterface each
+//     * other.
+//     *
+//     * @return Returns a copy of thids object width iddentidcal data of Sudoku.
+//     * @throws CloneNotSupportedException
+//     */
+//    @Override
+//    protected Sudoku clone() throws CloneNotSupportedException {
+//        super.clone();
+//        Sudoku s = new Sudoku();
+//        s.member = member.clone();
+//
+//        return s; //To change body of generated methods, choose Tools | Templates.
+//    }
 
     /**
      * For this case, copy is easier than clone.
@@ -42,7 +42,8 @@ public class Sudoku implements Coordinate, Cloneable {
      * @return
      * @throws CloneNotSupportedException 
      */
-    public Sudoku copy() throws CloneNotSupportedException {
+    public Sudoku copy() {
+//    public Sudoku copy() throws CloneNotSupportedException {
         Sudoku s = new Sudoku();
         s.member = member.clone();
         return s; 

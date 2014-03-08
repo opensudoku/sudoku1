@@ -136,7 +136,7 @@ public class SolverExt extends Solver {
             }
             case "clean": {
                 show(" ans:clean working pad is done");
-                getCore().getAnswer().setSudoku(getCore().getQuestion().clone());
+                getCore().getAnswer().setSudoku(getCore().getQuestion().copy());
                 getCore().getPossible().init();
                 return true;
             }
@@ -197,7 +197,7 @@ public class SolverExt extends Solver {
             case "question=answer": {
                 show(" ans:assign question with answer, done!");
 //                    solver.getCore();
-                getCore().getQuestion().setSudoku(getCore().getAnswer().clone());
+                getCore().getQuestion().setSudoku(getCore().getAnswer().copy());
                 getCore().getPossible().init();
 
                 return true;
@@ -205,7 +205,7 @@ public class SolverExt extends Solver {
             case "answer=question": {
                 show(" ans:assign answer with question, done!");
 //                    solver.getCore();
-                getCore().getAnswer().setSudoku(getCore().getQuestion().clone());
+                getCore().getAnswer().setSudoku(getCore().getQuestion().copy());
                 getCore().getPossible().init();
 
                 return true;
@@ -335,7 +335,7 @@ public class SolverExt extends Solver {
         //      show(" ...after Core's run \n show List: " + branch.toString());
         for (Integer val : branch) {
             Sudoku newQuestion = new Sudoku();
-            newQuestion = core.getAnswer().clone();
+            newQuestion = core.getAnswer().copy();
 //            show(" ... cell#" + id + " with assigned value " + val.toString());
             newQuestion.setData(id, val);
 //            newQuestion.show();
@@ -391,7 +391,7 @@ public class SolverExt extends Solver {
             //      show(" ...after Core's run \n show List: " + branch.toString());
             for (Integer val : branch) {
                 Sudoku newQuestion = new Sudoku();
-                newQuestion = core.getAnswer().clone();
+                newQuestion = core.getAnswer().copy();
                 newQuestion.setData(id, val);
 
                 // since going to get max3 answers only, no concern of StackOverflow

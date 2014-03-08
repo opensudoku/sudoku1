@@ -76,8 +76,8 @@ public class Core {
      * @param problem
      */
     public Core(Sudoku s) throws CloneNotSupportedException {
-        question = s.clone();
-        answer = s.clone();
+        question = s.copy();
+        answer = s.copy();
 
 //        following is the style without clone method,
 //        --------------------------------------------
@@ -127,7 +127,7 @@ public class Core {
 
     public void run() throws CloneNotSupportedException {
         //DEBUG
-        answer = question.clone();
+        answer = question.copy();
         possible = new Possible();
 
 //        if (IS_DEBUG) {
