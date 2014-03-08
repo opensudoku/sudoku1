@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
  */
 public class SolverExt extends Solver {
 
-    private int MAX_ANSWER_COUNT = 12;
+    private final int MAX_ANSWER_COUNT = 12;
     private int answerCnt;
     private Sudoku[] max3Answers = new Sudoku[MAX_ANSWER_COUNT + 1];
 
@@ -37,19 +37,15 @@ public class SolverExt extends Solver {
         this.answerCnt = answerCnt;
     }
 
-    public SolverExt() throws CloneNotSupportedException {
-        //  super.
-    }
-
     /**
      * autorun is rewritten, able to provide first 3 answers
      *
      * @param cmd
      * @return
-     * @throws CloneNotSupportedException
+     *
      */
     @Override
-    public boolean runCommand(String cmd) throws CloneNotSupportedException {
+    public boolean runCommand(String cmd) {
         String str = "009036040008070310007000060000000050090642030070000000020000400081090600040580900";
 //http://www.dailysudoku.com/sudoku//pdf/2014/01/2014-01-5_S2_N1_X.pdf
         String str1 = "000120000#710000920#003005008#109006080#060207040#040900603#400700800#031000064#000083000";
@@ -170,15 +166,15 @@ public class SolverExt extends Solver {
 //                        getAnswer(2).show();
 //                        break;
                     default:
-                        if (getAnswerCnt()==MAX_ANSWER_COUNT){
-                        show("ans:this question has " + getAnswerCnt() + " or more answers!");
-                            
-                        }else{
-                        show("   this question has " + getAnswerCnt() + " answers!");
+                        if (getAnswerCnt() == MAX_ANSWER_COUNT) {
+                            show("ans:this question has " + getAnswerCnt() + " or more answers!");
+
+                        } else {
+                            show("   this question has " + getAnswerCnt() + " answers!");
                         }
                         for (int k = 0; k < getAnswerCnt(); k++) {
-                        show("\n   #"+(1+k)+" answer:");
-                            
+                            show("\n   #" + (1 + k) + " answer:");
+
                             getAnswer(k).show();
 
                         }
@@ -298,19 +294,21 @@ public class SolverExt extends Solver {
                 if (cmd.startsWith("set question=")) {
                     getCore().getQuestion().setData(cmd);
                     //show(" ans:set question="+getCore.getQuestion(). done! ");
-                    show(" ans:set question="+getCore().getQuestion().toString()+", done!");
+                    show(" ans:set question=" + getCore().getQuestion().toString() + ", done!");
                     show(" ans:show question, as follows");
                     //   getCore().getQuestion().setData(str);
                     getCore().getQuestion().show();
                     return true;
-                    
+
                 }
         }
         return false;
     }
 
     @Override
-    public void run() throws CloneNotSupportedException {
+    public void run() {
+        Sudoku temp = new Sudoku();
+        temp = core.getQuestion().copy();
         core.run();
 //        core.show();
 
@@ -347,6 +345,15 @@ public class SolverExt extends Solver {
         }
         run2();
 
+        // ver 1.5
+        core.getQuestion().setSudoku(temp);
+        // ver 1.6
+        // when no answer, clean answer
+        if (getAnswerCnt()==0){
+            core.getAnswer().init();
+        }
+        
+        
 //        show("??? WHAT IS ANSWER COUNT???"+getAnswerCnt());
 //        core.getAnswer().show();
     }
@@ -356,9 +363,9 @@ public class SolverExt extends Solver {
      *
      * @return (1:got answer , 0:given question is broken ??? TODO )-1:out of
      * stack
-     * @throws CloneNotSupportedException
+     *
      */
-    private int run2() throws CloneNotSupportedException {
+    private int run2() {
         int result = 0;
         Sudoku s = new Sudoku();
         while (!stack.isEmpty()) {

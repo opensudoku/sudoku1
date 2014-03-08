@@ -75,7 +75,7 @@ public class Core {
      *
      * @param problem
      */
-    public Core(Sudoku s) throws CloneNotSupportedException {
+    public Core(Sudoku s)  {
         question = s.copy();
         answer = s.copy();
 
@@ -125,7 +125,7 @@ public class Core {
         return false;
     }
 
-    public void run() throws CloneNotSupportedException {
+    public void run()  {
         //DEBUG
         answer = question.copy();
         possible = new Possible();
