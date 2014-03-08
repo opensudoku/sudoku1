@@ -37,7 +37,7 @@ public class MainExt {
         SolverExt solver = new SolverExt();
         show("");
         show(" *====================================*");
-        show(" *   Welcome to OpenSudoku ver 1.3    *");
+        show(" *   Welcome to OpenSudoku ver 1.6.1    *");
         show(" *====================================*");
         show(" releated date: ");
         show("   3/7/2014 by Mark\n");

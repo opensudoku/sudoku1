@@ -307,6 +307,9 @@ public class SolverExt extends Solver {
 
     @Override
     public void run() {
+        // ver 1.7
+        answerCnt=0;
+        
         Sudoku temp = new Sudoku();
         temp = core.getQuestion().copy();
         core.run();
@@ -377,6 +380,7 @@ public class SolverExt extends Solver {
             if (core.getAnswer().isSolved()) {
 //                show(" *** Game Over  ***");
 //                show(" *** Solved!!!  ***");
+                show ("DEBUG... answerCnt"+answerCnt);
                 max3Answers[answerCnt++] = core.getAnswer().copy();
                 if (answerCnt == MAX_ANSWER_COUNT) {
                     return MAX_ANSWER_COUNT;
